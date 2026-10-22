@@ -257,15 +257,18 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
           intersectionObserver.observe(container);
 
           // --- Render Loop ---
-          const clock = new THREE.Clock();
+          let lastTime = performance.now();
+          const startTime = performance.now();
 
           const animate = () => {
             animationFrameId = requestAnimationFrame(animate);
 
             if (!isVisible) return;
 
-            const delta = clock.getDelta();
-            const time = clock.getElapsedTime();
+            const now = performance.now();
+            const delta = Math.min((now - lastTime) / 1000, 0.1);
+            lastTime = now;
+            const time = (now - startTime) / 1000;
 
             targetCameraX += (mouseX - targetCameraX) * 0.05;
             targetCameraY += (3.5 + mouseY - targetCameraY) * 0.05;

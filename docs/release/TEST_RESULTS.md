@@ -10,9 +10,9 @@ This document presents the complete test execution records, verification metrics
 | Test Suite | Tooling | Tests / Files | Result | Execution Time |
 | :--- | :--- | :--- | :--- | :--- |
 | **Data Validation Pipeline** | Python / Hashes / Invariants | 49 files / 6 domains | **PASSED** (100%) | 2.6s |
-| **Backend Unit & Integration** | Pytest / FastAPI TestClient | 137 tests | **PASSED** (100%) | 7.95s |
+| **Backend Unit & Integration** | Pytest / FastAPI TestClient | 137 tests | **PASSED** (100%) | 4.22s |
 | **Frontend Static Typecheck** | Astro Check / TypeScript | 14 source files | **PASSED** (0 errors) | 3.1s |
-| **Production Build** | Vite / Astro Static Compiler | 5 output pages | **PASSED** | 1.04s |
+| **Production Build** | Vite / Astro Static Compiler | 2 output pages | **PASSED** | 1.28s |
 | **Browser End-to-End** | Headless Chrome Automation | 7 user journeys | **PASSED** | 12.4s |
 
 ---
@@ -114,13 +114,22 @@ npm run build --prefix frontend
 
 ### 5. Automated Browser End-to-End Verification
 
-**Artifact Recording:** `final_master_build_e2e_1792647922647.webp`  
+**Artifact Recordings:**
+- Primary Audit Video: `grainwatch_e2e_1792648916762.webp`
+- Baseline Session Video: `final_master_build_e2e_1792647922647.webp`
+
+**Captured Verification Screenshots:**
+- `landing_page_1792648930736.png`: Three.js 3D agricultural scene, wheat tile favicon, typography, and dual CTAs.
+- `dashboard_real_evidence_1792648947094.png`: Real Evidence Mode showing 28% data sufficiency, neutral status banner, and 4 real timeseries charts.
+- `synthetic_demo_scenario_b_1792648988376.png`: Synthetic Demo Mode showing persistent red watermark, Scenario B convergent anomaly (Score 93.8/100), and divergence graph.
+
 **Execution Environment:** Chromium headless on Windows, testing `http://127.0.0.1:4321/` and `http://127.0.0.1:4321/dashboard/`.
 
 #### Verified User Journeys:
 
 1. **Landing Page Navigation (`/`)**:
-   - 3D Grain & Silo Hero renders with ambient lighting and rotation.
+   - 3D Grain & Silo Hero renders with ambient lighting and rotation using `performance.now()` frame deltas (0 deprecation warnings).
+   - Custom agricultural favicon rendered in browser tab.
    - Click "Launch Synthetic Demo" -> successfully navigates to `/dashboard?mode=synthetic`.
 2. **Dashboard in Real Evidence Mode**:
    - District selection: Ludhiana and Patiala selected consecutively.
@@ -157,4 +166,6 @@ npm run build --prefix frontend
      - Warnings list truncated series and missing arrival telemetry.
 4. **Console & Performance Audit**:
    - Zero unhandled exceptions or critical console errors during all scenario switches.
+   - Zero Three.js deprecation warnings following migration to `performance.now()`.
    - No layout shifts or text overlaps in 1268x710 viewport.
+

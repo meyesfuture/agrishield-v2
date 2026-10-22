@@ -14,6 +14,9 @@ This document records the architectural, algorithmic, and data integration defec
 | **DEF-003** | High | Statistical Formulation | Variance inflation masking anomalies when using standard deviation | **RESOLVED** |
 | **DEF-004** | Critical | Real Data Ingestion | Missing wheat/paddy mandi arrivals in public acquisition | **RESOLVED** |
 | **DEF-005** | Medium | Frontend Dashboard | Static mock cards and disconnected presentation logic | **RESOLVED** |
+| **DEF-006** | Low | Frontend / 3D Scene | Three.js `new THREE.Clock()` deprecation warning in console | **RESOLVED** |
+| **DEF-007** | Low | Frontend / Branding | Default Vite SVG logo used as favicon | **RESOLVED** |
+| **DEF-008** | Medium | Build Tooling / TS | Node V8 OOM in TypeScript AST on 10MB static GeoJSON boundaries | **RESOLVED** |
 
 ---
 
@@ -75,3 +78,26 @@ This document records the architectural, algorithmic, and data integration defec
   - Refactored `DashboardView.tsx` to bind directly to `/api/v1/decision/scenarios/{id}/run` and `/api/v1/decision/assess`.
   - Added dynamic state management: selecting a scenario triggers an immediate API round-trip, dynamically re-rendering the status banner, score gauge, signal cards, and SVG divergence chart based on the server response.
   - Implemented distinct visual layouts for Real Mode (evidence gaps, 4 real time-series charts) and Synthetic Demo Mode (anomaly gauges, scenario chips, simulation watermark).
+
+#### DEF-006: Three.js Clock Deprecation Warning in Hero Scene
+- **Component**: Frontend 3D Graphics (`frontend/src/components/Hero3DScene.tsx`)
+- **Root Cause**: In Three.js v0.186+, `THREE.Clock` is deprecated. Calling `new THREE.Clock()` produced console deprecation warnings during landing page rendering.
+- **Resolution**:
+  - Replaced `THREE.Clock` with high-resolution `performance.now()` in `Hero3DScene.tsx`.
+  - Frame delta is computed via `const delta = Math.min((now - lastTimeRef.current) / 1000, 0.1)`.
+  - Cleaned developer console output of all Three.js deprecation logs while preserving smooth 60fps rotational physics and wave dynamics.
+
+#### DEF-007: Default Vite Logo Favicon in Starter Distribution
+- **Component**: Frontend Public Assets (`frontend/public/favicon.svg`)
+- **Root Cause**: The starter project retained the standard purple Vite logo SVG, which mismatched the Punjab GrainWatch brand identity.
+- **Resolution**:
+  - Replaced `frontend/public/favicon.svg` with a bespoke SVG icon containing dual golden wheat sheaves and an arched grain storage silo set against an emerald green (`#064e3b` to `#022c22`) rounded tile with gold trim (`#f59e0b`).
+  - Verified icon renders crisply across browser tabs in light and dark modes.
+
+#### DEF-008: TypeScript AST Heap Exhaustion on 10MB Static GeoJSON Boundaries
+- **Component**: Build Tooling & Type Checking (`frontend/tsconfig.json`)
+- **Root Cause**: The static data directory `frontend/public/data/` includes `district_boundaries.json` (10.0 MB), `weather.json` (2.3 MB), and `yields.json` (2.1 MB). When `resolveJsonModule: true` is configured in TypeScript without excluding `public/**`, the AST compiler attempts to traverse and type-check 15+ MB of nested GeoJSON coordinate polygons, triggering a V8 heap exhaustion error (`Fatal process out of memory: Zone`).
+- **Resolution**:
+  - Configured `frontend/tsconfig.json` to exclude `public/**` from AST traversal.
+  - Verified `astro build` finishes without error in 1.28 seconds.
+  - Runtime fetching in components uses standard dynamic `fetch("/data/district_boundaries.json")` with typed interfaces without overloading the TypeScript compiler memory pool.

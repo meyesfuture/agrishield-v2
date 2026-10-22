@@ -53,9 +53,11 @@ Punjab_GrainWatch/
 |   `-- ...                         # 118 existing unit & validation tests (Total: 137 passed)
 `-- docs/release/
     |-- BASELINE_AUDIT.md           # Initial architectural comparison against AgriShield
+    |-- MASTER_RECOVERY_AUDIT.md    # Comprehensive system audit and recovery dossier
     |-- DECISION_ENGINE.md          # Statistical methodology, formulas, & semantic statuses
     |-- DATA_PROVENANCE_AND_DEMO_MODE.md # Real data boundaries & synthetic watermark rules
-    |-- DEFECT_REGISTER.md          # Identified defects and resolutions (DEF-001 to DEF-005)
+    |-- DEFECT_REGISTER.md          # Identified defects and resolutions (DEF-001 to DEF-008)
+    |-- SECURITY_AND_ACCESSIBILITY_REVIEW.md # Zero-leakage security and WCAG 2.2 AA audit
     |-- TEST_RESULTS.md             # Complete test run outputs and browser E2E logs
     |-- UI_UX_REVIEW.md             # Material Design 3 light mode audit & accessibility compliance
     `-- FINAL_RELEASE_REPORT.md     # This comprehensive release document
@@ -84,20 +86,20 @@ $$\text{Robust } Z = \frac{X_{\text{observed}} - \text{median}(X_{\text{baseline
 ### Verification & Quality Gate Results
 
 1. **Backend Test Suite (`pytest`)**:
-   - **137 passed, 0 failed, 0 errors** in 7.95 seconds.
+   - **137 passed, 0 failed, 0 errors** in 4.22 seconds.
    - Tested normal baselines, planted convergent anomalies, single signals, truncated series, zero variance, and cross-mode isolation.
 2. **Data Integrity Pipeline (`scripts/run_validation_pipeline.py`)**:
    - **49/49 source files verified** against original SHA-256 manifests.
    - 6 domain invariants verified across yields, prices, stocks, weather, boundaries, and scenarios.
 3. **Frontend Typecheck & Production Build**:
    - `npm run check --prefix frontend`: **0 errors, 0 warnings**.
-   - `npm run build --prefix frontend`: Compiled static bundle in **1.04 seconds**.
-4. **Browser End-to-End Test (`final_master_build_e2e_1792647922647.webp`)**:
+   - `npm run build --prefix frontend`: Compiled static bundle in **1.28 seconds**.
+4. **Browser End-to-End Test (`grainwatch_e2e_1792648916762.webp`)**:
    - Tested in Chromium headless.
-   - Landing page 3D silo/field scene rendered cleanly.
+   - Landing page 3D silo/field scene rendered cleanly with `performance.now()` frame timing and custom agricultural vector favicon.
    - Real Mode: Ludhiana & Patiala assessed; correctly returns `INSUFFICIENT_DATA` (28% sufficiency).
    - Synthetic Mode: Scenario B triggers `CONVERGENT SUPPLY ANOMALY DETECTED` (Intensity 93.8/100, Price +52.6%, Arrival -58.8%). Scenario A triggers `NO MATERIAL ANOMALY DETECTED` (Intensity 0/100). Scenarios C & D trigger isolated signals. Scenario E triggers `INSUFFICIENT_DATA`.
-   - Browser console: **0 fatal errors, 0 unhandled rejections**.
+   - Browser console: **0 fatal errors, 0 unhandled rejections, 0 deprecation warnings**.
 
 ---
 

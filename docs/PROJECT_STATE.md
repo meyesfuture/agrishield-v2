@@ -32,120 +32,47 @@
 - Synthetic Counterfactual Segregation: `data/synthetic/scenarios/` contains Scenarios A through E (`is_synthetic=true`), persistent red simulation watermark, excluded from real metrics and production dataset catalogs.
 
 ## Latest completed milestone
-- Milestone: FINAL MASTER BUILD — Refactored Decision Engine & Complete Synthetic Demonstration
-- Date/time: 2026-10-22T11:20:00+05:30
+- Milestone: MASTER RECOVERY AUDIT & FINAL COMPETITION DELIVERY
+- Date/time: 2026-10-22T12:00:00+05:30
 - Evidence/output:
-  - **Baseline Audit (`docs/release/BASELINE_AUDIT.md`):** Audited legacy AgriShield prototype and identified arbitrary linear weights and uncalibrated models. Established clear architectural requirements.
-  - **Robust Backend Decision Engine (`backend/services/decision_engine.py`):** Replaced arbitrary linear scoring with non-parametric Median Absolute Deviation (MAD * 1.4826) and robust Z-score testing. Implemented a 6-point eligibility gate.
-  - **Deterministic Synthetic Scenario Lab (`backend/services/synthetic_generator.py`):** Built offline, seed=42 generator producing Scenarios A (Normal), B (Planted Convergent Anomaly), C (Price Spike Only), D (Arrival Decline Only), and E (Corrupted / Insufficient Data) in `data/synthetic/scenarios/`.
-  - **Decision API Routes (`backend/api/routes/decision.py`):** Endpoints for `/methodology`, `/scenarios`, `/scenarios/{id}`, `/scenarios/{id}/run`, and `/assess`.
-  - **Frontend Refinement (`frontend/src/components/DashboardView.tsx`, `index.astro`, `dashboard.css`):**
-    - M3 light design with dual operating modes: Real Evidence vs. Synthetic Demo.
-    - Persistent red watermark banner for synthetic demonstration.
-    - Dynamic scenario selector chips triggering live backend execution.
-    - Anomaly intensity gauge (0-100) and dual signal diagnostic cards.
-    - SVG divergence chart highlighting the anomaly window.
+  - **Master Recovery Audit Dossier (`docs/release/MASTER_RECOVERY_AUDIT.md`):** Complete system-wide audit of data provenance, the 6 invariant gates, architectural evolution from legacy AgriShield, robust MAD statistical engine, deterministic scenario lab, and Material 3 design system.
+  - **Security & Accessibility Review (`docs/release/SECURITY_AND_ACCESSIBILITY_REVIEW.md`):** Zero hardcoded credentials, safe path traversal, strict TLS validation, WCAG 2.2 AA contrast ratios (>4.5:1), visible focus rings (`:focus-visible`), and `prefers-reduced-motion` compliance.
+  - **Defect Register Completion (`docs/release/DEFECT_REGISTER.md`):** Documented and verified resolutions for DEF-001 through DEF-008, including Three.js `performance.now()` clock migration (DEF-006), custom agricultural vector favicon (DEF-007), and TypeScript AST isolation on 10MB static GeoJSON boundaries (DEF-008).
+  - **Asset Polish (`frontend/public/favicon.svg` & `frontend/src/components/Hero3DScene.tsx`):**
+    - Replaced default Vite logo with custom golden wheat sheaves and silo tile.
+    - Eliminated Three.js clock deprecation warnings in developer console.
   - **Full Quality Gate Verification:**
-    - `python scripts/run_validation_pipeline.py`: 49/49 files verified (SHA-256 matched), 6 domain invariants verified.
-    - `pytest tests/ -v`: **137/137 tests PASSED** in 7.95s.
-    - `npm run check --prefix frontend`: **0 errors, 0 warnings**.
-    - `npm run build --prefix frontend`: Built static bundle in 1.04s.
-    - `browser_subagent`: Verified landing page, 3D scene, Real Mode (28% sufficiency, honest gaps), and all 5 synthetic scenarios in live Chromium browser session (`final_master_build_e2e_1792647922647.webp`).
-  - **Release Documentation (`docs/release/`):**
-    - `BASELINE_AUDIT.md`
-    - `DECISION_ENGINE.md`
-    - `DATA_PROVENANCE_AND_DEMO_MODE.md`
-    - `DEFECT_REGISTER.md`
-    - `TEST_RESULTS.md`
-    - `UI_UX_REVIEW.md`
-    - `FINAL_RELEASE_REPORT.md`
-- Evidence/output:
-  - **M3 Living Specification (`design.md` & `DESIGN.md`):** Complete design system specification following [Material Design 3 Guidelines](https://m3.material.io/) and `skydashnet/material-design-3-ui-skill`:
-    - Light Mode First: `#fdfcff` / `#f8f9fa` canvas with `#ffffff` container surfaces.
-    - Core Role Families: Primary Google Blue (`#0b57d0`, container `#d3e3fd`), Secondary Agricultural Green (`#15803d`, container `#dcfce7`), Tertiary Wheat Gold (`#d97706`, container `#fef3c7`).
-    - Neutral Surfaces: `surface`, `surface-container-lowest` (`#ffffff`), `surface-container-low` (`#f8f9fa`), `surface-container` (`#f1f3f4`), `surface-container-high` (`#e8eaed`), `surface-container-highest` (`#dadce0`), `on-surface` (`#1f1f1f`), `on-surface-variant` (`#444746`).
-    - Semantic Feedback: Error (`#ba1a1a`), Warning (`#b45309`), Success (`#166534`).
-    - Typography Scale: Display, Headline, Title, Body, and Label scales on Google Sans / Roboto stack.
-    - Shape & Elevation Scales: Levels 0–3 with ambient soft shadows and corner radii from `extra-small` (4px) to `full` (9999px).
-  - **M3 Tokens in CSS (`frontend/src/styles/tokens.css`):**
-    - Defined `--md-sys-color-*`, `--md-sys-elevation-*`, `--md-sys-shape-*`, `--md-sys-motion-*` while keeping backward-compatible aliases.
-  - **M3 Stylesheet Styling (`frontend/src/styles/dashboard.css`):**
-    - Google Blue M3 pill action buttons (`.btn-primary`, `.btn-nav-cta`).
-    - Filter chips (`.filter-btn`) with smooth hover state layers.
-    - Level 1 surface elevation cards with fine outline borders.
-    - High-contrast `:focus-visible` accessible outline rings (`2px solid #0b57d0`).
-  - **Automated Verification:**
-    - `npm run check --prefix frontend`: 0 errors, 0 warnings.
-    - `npm run build --prefix frontend`: 2 static pages generated in 1.04s (`/index.html` and `/dashboard/index.html`).
-    - `pytest tests/ -v`: 120 tests passed in 2.12s across domain schemas, imports, eligibility gates, anti-hoarding prohibition, 2-screen architecture, and M3 design tokens.
-  - **Browser E2E Verification:**
-    - Visual inspection verified Google blue CTAs, M3 light surfaces, interactive SVG map, location assessment panel with Amber `INSUFFICIENT DATA TO ASSESS RISK` banner, 4 analytical charts with disclosures, and zero console errors.
-- Evidence/output:
-  - **Google Material Light Design Tokens (`frontend/src/styles/tokens.css`):**
-    - Warm white canvas (`#f8fafc`), crisp white card surfaces (`#ffffff`), subtle borders (`#e2e8f0`), modest elevation shadows (`0 1px 3px rgba(0,0,0,0.06)`).
-    - Agricultural green primary (`#15803d` / `#166534`) and restrained wheat gold secondary (`#d97706` / `#f59e0b` / `#b45309`).
-  - **Compact Top Bar (`frontend/src/layouts/AppShell.astro`):**
-    - Brand with wheat sheaf icon, Home & Dashboard links, verified vintage indicator (`Updated: DES APY 2022-23`), district coverage indicator (`Coverage: 23/23 Districts`), and "Explore Dashboard" CTA.
-  - **Landing Page Refinement (`frontend/src/pages/index.astro`):**
-    - Compelling agricultural intelligence headline and lead paragraph.
-    - Procedural 3D silo visual with sunlight and agricultural field green terrain.
-    - "How Potential Risk Screening Works" 3-card explainer.
-    - **Live Dashboard Preview Card:** Realistic mock of the Punjab screening workspace with Ludhiana selected, live status alert, and launch CTA.
-    - System Boundaries & Limitations 4-card governance section.
-  - **Main Dashboard Refinement (`frontend/src/components/DashboardView.tsx`):**
-    - 4 Google Material summary metric cards: Usable Observation Basins (23 Districts • 11 Mandis), Locations Flagged (0 Flagged), District Geographic Coverage (23 / 23 Districts), Verified Physical Observations (6,692 Rows).
-    - Map Shading Mode Toggle: Switch between "Wheat Production (MT)" (choropleth gradient from `#dcfce7` to `#15803d`) and "Evidence Status" (`#fef3c7` Insufficient Evidence).
-    - Interactive 23-district map with hovering tooltips, click selection, and APMC mandi pins.
-    - Selected Location Details Panel: LGD code, Hoarding Risk Evaluation with "INSUFFICIENT DATA TO ASSESS RISK", 4 missing evidence criteria, evidence sufficiency gauge (28% Low/Incomplete), and physical observations (production, yield, modal prices, weather).
-  - **Four Meaningful Visualizations with 6-Point Provenance Disclosures:**
-    - Chart 1: Historical Wheat Productivity Series (1968–2023) in kg/ha.
-    - Chart 2: Cross-District Wheat Production Comparison (Top Basins) in MT.
-    - Chart 3: Location Evidence Breakdown (6 required streams evaluated).
-    - Chart 4: Institutional Data Coverage & Freshness Matrix (8 supply dimensions).
-    - Every chart documents Question, Source, Calculation, Units/Range, Missing Values handling, and Supported/Unsupported conclusions.
-  - **Automated Verification:**
-    - `npm run check --prefix frontend`: 0 errors, 0 warnings.
-    - `npm run build --prefix frontend`: 2 pages generated in 0.71s (`/index.html` and `/dashboard/index.html`).
-    - `pytest tests/ -v`: **119/119 tests PASSED** in 2.13s (including `tests/test_design_refinement.py`).
-    - `browser_subagent`: Live browser E2E session inspected landing page, 3D visual, live preview card, navigated to dashboard, verified metric cards, tested map shading toggle, selected Fazilka (LGD 651), verified 4 analytical chart tabs, confirmed 0 console errors.
+    - `python scripts/run_validation_pipeline.py`: 49/49 files verified (SHA-256 matched, 100%), 6 domain invariants verified.
+    - `pytest tests/ -v`: **137/137 tests PASSED** in 4.22s.
+    - `npm run build --prefix frontend`: Static Astro bundle generated in 1.28s.
+    - `browser_subagent`: Live Chromium E2E recording (`grainwatch_e2e_1792648916762.webp`) verified landing page 3D hero, custom favicon, Real Evidence Mode (28% sufficiency, honest gaps), and all 5 synthetic scenarios under persistent red simulation watermark with 0 console errors.
 
 ## Current blockers
-1. No daily wheat/paddy market arrival quantity panel (foodgrains routed to credentialed Anaaj Kharid).
-2. No complete Punjab-specific compatible stock/movement/milling/outflow panel.
-3. No independent private-hoarding labels and inspected compliant negative controls.
-4. Four external source routes blocked (CAPTCHA, token, TLS root CA, or internal agency credentials).
+1. No daily wheat/paddy market arrival quantity panel in public APMC drop (foodgrains routed to credentialed Anaaj Kharid). Handled honestly via eligibility gates.
+2. No complete Punjab-specific compatible stock/movement/milling/outflow panel. Handled honestly via eligibility gates.
+3. No independent private-hoarding labels and inspected compliant negative controls. Hoarding conclusions strictly forbidden by system architecture.
+4. Four external source routes blocked (CAPTCHA, token, TLS root CA, or internal agency credentials). No unsafe bypasses attempted.
 
 ## Next single action
-Project is complete, fully tested, and released. Final presentation to user.
+Project is complete, fully tested, documented, and released. Final presentation to user.
 
 ## Handoff template (update every session)
-- Last milestone/status: FINAL MASTER BUILD COMPLETE (All 137/137 pytest tests passed in 7.95s; Astro static build generated in 1.04s; Browser subagent E2E inspection verified error-free across all scenarios)
-- Files changed/created:
-  - Created `backend/schemas/decision.py` (Typed Pydantic models for semantic decision statuses, signal assessments, metric baselines, scenario payloads)
-  - Created `backend/services/decision_engine.py` (Robust non-parametric Median & MAD statistical engine, 6-point eligibility gate, multi-signal convergence rules)
-  - Created `backend/services/synthetic_generator.py` (Deterministic seed=42 scenario generator producing Scenarios A-E)
-  - Created `backend/api/routes/decision.py` (FastAPI routes for `/assess`, `/scenarios`, `/scenarios/{id}`, `/scenarios/{id}/run`, `/methodology`)
-  - Modified `backend/api/routes/yields.py` (Raised query limit ceiling to `le=5000` to resolve HTTP 422 error on 2,754-row timeseries)
-  - Modified `backend/main.py` (Registered decision router under `/api/v1/decision`)
-  - Modified `frontend/src/components/DashboardView.tsx` (Operating mode switcher, persistent red simulation watermark, dynamic scenario selector chips, intensity gauge, signal diagnostic cards, SVG divergence timeseries chart)
-  - Modified `frontend/src/pages/index.astro` (Dual CTAs: "Explore Dashboard" and "Launch Synthetic Demo")
-  - Modified `frontend/src/styles/dashboard.css` (M3 light tokens, banners, status chips, responsive grid, red simulation watermark styling)
-  - Created `data/synthetic/scenarios/*.json` (5 versioned scenario fixtures)
-  - Created `tests/test_decision_engine.py` (12 comprehensive decision engine unit tests)
-  - Created `tests/test_decision_api.py` (7 API integration tests)
-  - Created `docs/release/BASELINE_AUDIT.md` (Comparative architectural audit against AgriShield)
-  - Created `docs/release/DECISION_ENGINE.md` (Detailed decision engine formulation & methodology)
-  - Created `docs/release/DATA_PROVENANCE_AND_DEMO_MODE.md` (Real data boundaries & synthetic watermark rules)
-  - Created `docs/release/DEFECT_REGISTER.md` (DEF-001 through DEF-005 logs and resolutions)
-  - Created `docs/release/TEST_RESULTS.md` (Unit, integration, pipeline, and browser test results)
-  - Created `docs/release/UI_UX_REVIEW.md` (Material Design 3 audit & accessibility compliance)
-  - Created `docs/release/FINAL_RELEASE_REPORT.md` (Comprehensive master release report)
+- Last milestone/status: MASTER RECOVERY AUDIT & FINAL COMPETITION DELIVERY COMPLETE (137/137 pytest tests passed in 4.22s; Astro build compiled in 1.28s; Browser subagent E2E verified across all scenarios; Zero defects open)
+- Files changed/created in final session:
+  - Created `docs/release/MASTER_RECOVERY_AUDIT.md` (System dossier and full architectural recovery audit)
+  - Created `docs/release/SECURITY_AND_ACCESSIBILITY_REVIEW.md` (Zero credential leakage and WCAG 2.2 AA audit)
+  - Modified `docs/release/DEFECT_REGISTER.md` (Added DEF-006, DEF-007, and DEF-008 detailed logs)
+  - Modified `docs/release/UI_UX_REVIEW.md` (Added section 6 with browser screenshots, favicon, and 3D timing verification)
+  - Modified `docs/release/TEST_RESULTS.md` (Updated test run to 4.22s, added browser recordings and screenshots)
+  - Modified `docs/release/FINAL_RELEASE_REPORT.md` (Referenced master audit, security review, and DEF-001 through DEF-008)
+  - Modified `frontend/src/components/Hero3DScene.tsx` (Replaced deprecated `THREE.Clock` with `performance.now()`)
+  - Modified `frontend/public/favicon.svg` (Bespoke golden wheat and silo vector icon replacing Vite logo)
+  - Modified `docs/PROJECT_STATE.md` (Session handoff and completion status)
 - Commands executed:
   - `python scripts/run_validation_pipeline.py` (49/49 files verified, 6 domain invariants verified)
-  - `npm run check --prefix frontend` (0 errors, 0 warnings)
-  - `npm run build --prefix frontend` (Static Astro bundle compiled in 1.04s)
-  - `pytest tests/ -v` (137/137 tests PASSED in 7.95s)
-  - Browser subagent E2E smoke test (All interactions verified error-free, 0 console errors)
+  - `npm run build --prefix frontend` (Static Astro bundle compiled in 1.28s)
+  - `pytest tests/ -v` (137/137 tests PASSED in 4.22s)
+  - Browser subagent E2E audit (`grainwatch_e2e_1792648916762.webp`, 0 console errors)
 - Tests executed and actual outputs:
   - Decision Engine: 12/12 PASSED
   - Decision API: 7/7 PASSED
@@ -159,7 +86,7 @@ Project is complete, fully tested, and released. Final presentation to user.
   - Simplified Scope: 10/10 PASSED
   - Design Refinement: 7/7 PASSED
   - Data Layer Endpoints: 7/7 PASSED
-  - Total: 137/137 tests PASSED in 7.95s
+  - Total: 137/137 tests PASSED in 4.22s
 - Decisions made and rationale:
   - Strict Anti-Hoarding Governance: Replaced unbacked "Confirmed Hoarding" claims with a defensible anomaly screening engine. Market divergence warrants field inspection, not legal verdict.
   - Robust Statistics over Variance Inflation: Used Median and Median Absolute Deviation (MAD * 1.4826) calculated strictly on baseline windows, preventing massive supply shocks from inflating variance and masking anomalies.
@@ -167,4 +94,5 @@ Project is complete, fully tested, and released. Final presentation to user.
 - Blockers: Real public market arrivals for wheat and paddy remain absent from general APMC drops; private warehouse holdings are not public. Handled honestly via eligibility gates.
 - Next single action: Present release handoff to user.
 - Skills actually consulted: `gravitas`, `gravitas-python`, `ponytail`, `frontend-design`, `ui-ux-pro-max`.
-- Last updated (UTC): 2026-10-22T05:50:00Z
+- Last updated (UTC): 2026-10-22T06:30:00Z
+

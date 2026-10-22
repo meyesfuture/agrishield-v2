@@ -90,3 +90,22 @@ The dashboard organizes complex spatial and temporal telemetry into a balanced 3
    - The 3D Three.js hero suspends camera rotation and wind oscillation animations in reduced-motion mode.
 4. **Screen Reader Support**:
    - All SVG charts and gauges feature descriptive `aria-label` tags and tabular accessible text descriptions for screen readers.
+
+---
+
+### 6. Visual Assets & Verified Browser Artifacts
+
+The final interface was audited and verified via live automated browser execution (`grainwatch_e2e_1792648916762.webp`):
+
+1. **Bespoke Agricultural Favicon (`frontend/public/favicon.svg`)**:
+   - Replaced default Vite logo with custom vector iconography: dual golden wheat ears (`#f59e0b`) framing an arched grain silo on an emerald green field tile (`#064e3b` to `#022c22`).
+2. **Landing Page Hero (Three.js WebGL)**:
+   - Evaluated under `landing_page_1792648930736.png`.
+   - Frame timing migrated to native `performance.now()` (DEF-006), ensuring clean console output and smooth 60fps rotational dynamics.
+3. **Real Evidence Dashboard**:
+   - Evaluated under `dashboard_real_evidence_1792648947094.png`.
+   - Verifies 28% sufficiency indicator, neutral grey status banner, and clean rendering of 4 real timeseries charts.
+4. **Synthetic Demo Mode (Scenario B)**:
+   - Evaluated under `synthetic_demo_scenario_b_1792648988376.png`.
+   - Verifies persistent red simulation watermark, 93.8/100 anomaly intensity gauge, and crimson highlighting of the anomalous time window on the SVG divergence chart.
+

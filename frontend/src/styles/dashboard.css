@@ -949,3 +949,157 @@
   background: rgba(232, 200, 114, 0.08) !important;
   color: var(--color-wheat-400) !important;
 }
+
+/* ==========================================================================
+   Phase 5 Polish: 3D Hero Scene, Selective Glassmorphism & Motion Tokens
+   ========================================================================== */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.hero-3d-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background: radial-gradient(circle at 60% 40%, rgba(232, 200, 114, 0.08) 0%, rgba(15, 23, 42, 0.8) 65%, #0a0d12 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.hero-3d-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-3d-canvas.loaded {
+  opacity: 1;
+}
+
+.hero-static-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0d12;
+}
+
+.static-fallback-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.static-fallback-badge {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-3);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.hero-3d-overlay {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  right: var(--space-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.hero-3d-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 10px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-wheat-400);
+}
+
+.hero-3d-tag .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-emerald-400);
+  box-shadow: 0 0 8px var(--color-emerald-400);
+}
+
+.motion-toggle-btn {
+  pointer-events: auto;
+  padding: 4px 10px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.motion-toggle-btn:hover {
+  background: rgba(30, 41, 59, 0.9);
+  color: var(--text-primary);
+  border-color: var(--color-wheat-500);
+}
+
+.motion-toggle-btn:focus-visible {
+  outline: 2px solid var(--color-wheat-500);
+  outline-offset: 2px;
+}
+
+/* Accessible Focus States on all interactive elements */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-wheat-400) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(232, 200, 114, 0.25) !important;
+}
+
+/* Reduced Motion Guarantees */
+@media (prefers-reduced-motion: reduce) {
+  .hero-3d-canvas {
+    transition: none !important;
+  }
+  .hub-card:hover {
+    transform: none !important;
+  }
+  .btn-primary:hover {
+    transform: none !important;
+  }
+}

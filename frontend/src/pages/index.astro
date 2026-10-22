@@ -2,35 +2,44 @@
 import AppShell from '../layouts/AppShell.astro';
 import MetricCard from '../components/MetricCard.astro';
 import GuardrailBanner from '../components/GuardrailBanner.astro';
+import Hero3DScene from '../components/Hero3DScene';
 ---
 
 <AppShell title="Punjab GrainWatch — Executive Overview" activeNav="overview">
   <div class="overview-page">
-    <!-- Hero Header -->
+    <!-- Hero Header with 3D Agricultural Silo & Field Visualizer -->
     <section class="hero-section" aria-labelledby="hero-title">
-      <div class="hero-badge">PHASE 4 OPERATIONAL INTELLIGENCE DASHBOARD</div>
-      <h1 id="hero-title" class="hero-title">
-        Auditable Agricultural Intelligence for <span class="text-wheat">Punjab Supply Chains</span>
-      </h1>
-      <p class="hero-lead">
-        An honest, reproducible evidence platform built on verifiable physical datasets. Enforces strict provenance,
-        exact checksums, and zero simulated metrics.
-      </p>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">PHASE 5 REFINED AGRICULTURAL INTELLIGENCE</div>
+          <h1 id="hero-title" class="hero-title">
+            Auditable Agricultural Intelligence for <span class="text-wheat">Punjab Supply Chains</span>
+          </h1>
+          <p class="hero-lead">
+            An honest, reproducible evidence platform built on verifiable physical datasets. Enforces strict provenance,
+            exact checksums, and zero simulated metrics.
+          </p>
 
-      <div class="hero-actions">
-        <a href="/production-yield" class="btn btn-primary">
-          <span>Production & Yields</span>
-          <span aria-hidden="true">→</span>
-        </a>
-        <a href="/district-map" class="btn btn-secondary">
-          <span>District Map</span>
-        </a>
-        <a href="/datasets" class="btn btn-secondary">
-          <span>Dataset Explorer</span>
-        </a>
-        <a href="/status" class="btn btn-secondary">
-          <span>Readiness & Integrity</span>
-        </a>
+          <div class="hero-actions">
+            <a href="/production-yield" class="btn btn-primary">
+              <span>Production & Yields</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="/district-map" class="btn btn-secondary">
+              <span>District Map</span>
+            </a>
+            <a href="/datasets" class="btn btn-secondary">
+              <span>Dataset Explorer</span>
+            </a>
+            <a href="/status" class="btn btn-secondary">
+              <span>Readiness & Integrity</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <Hero3DScene client:load />
+        </div>
       </div>
     </section>
 

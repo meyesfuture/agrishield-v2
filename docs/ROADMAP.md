@@ -37,9 +37,13 @@
 - Output: `frontend/src/pages/`, `frontend/src/components/`, `frontend/src/styles/dashboard.css`, `frontend/public/data/`, `tests/test_phase4_dashboard.py`, `logs/phase_reports/PHASE_4_REPORT.md`.
 - Gate: 87/87 pytest tests passed in 2.15s; 9/9 Astro static routes built cleanly in 1.48s; Browser subagent E2E smoke test passed with zero console errors.
 
-## Phase 5 — 3D landing and motion polish
-- Implement restrained grain/silo hero, reduced-motion and WebGL fallbacks, meaningful micro-interactions.
-- Output: premium visual system while preserving legibility and performance.
+## Phase 5 — 3D landing and motion polish [DONE]
+- Implemented restrained Apple-inspired typography, Google Material clarity, selective glassmorphism, and agricultural token palette.
+- Built procedural 3D WebGL agricultural silo & field hero scene (`Hero3DScene.tsx`) with stainless steel elevators, undulating alluvium terrain, floating wheat chaff particles, mouse parallax, and accessible static SVG blueprint fallback.
+- Lazy-loaded Three.js dynamically to prevent bundler memory pressure and code-split the library cleanly; non-3D routes load in ~290 KB JS.
+- Provided user-facing Play/Pause 3D motion controls (`aria-pressed`), high-contrast `:focus-visible` rings, and full `@media (prefers-reduced-motion: reduce)` overrides.
+- Output: `frontend/src/components/Hero3DScene.tsx`, `frontend/src/styles/dashboard.css`, `frontend/src/pages/index.astro`, `tests/test_phase5_polish.py`, `logs/phase_reports/PHASE_5_REPORT.md`.
+- Gate: 93/93 pytest tests passed in 2.05s; 9/9 Astro static routes built cleanly in 1.36s; Browser subagent E2E smoke test passed with zero console errors.
 
 ## Phase 6 — Data quality and exploratory analysis
 - Coverage matrix, missingness panels, unit checks, source readiness. Only implement anomaly candidates if evidence gates pass.

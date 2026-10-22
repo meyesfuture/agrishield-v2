@@ -10,8 +10,9 @@
 - [x] Application scaffold/build created (Phase 2 complete).
 - [x] Data Layer & Domain Endpoints implemented (Phase 3 complete).
 - [x] Core usable dashboard implemented with 9 dedicated views, real data, and interactive filters (Phase 4 complete).
-- [ ] Scenario & Anomaly Modeling Guardrails (Phase 5).
-- [ ] Release checks passed (Phases 6–7).
+- [x] UI & Motion Polish, Accessible Focus Rings, 3D Agricultural Silo & Field Hero Visualizer (Phase 5 complete).
+- [ ] Exploratory Data Quality Analysis & Scenario Modeling Guardrails (Phase 6).
+- [ ] Release checks passed (Phase 7).
 
 ## Current evidence guardrails
 - APMC arrival panel: verified 3,892 daily observations for produce (62 crops); zero wheat/paddy grain rows. 71 rows matching "dhan" are Coriander Green (Hara Dhaniya). 3 rows have `modal_price == 0.0` as explicit clerk sentinels for "not reported".
@@ -27,24 +28,16 @@
 - No independently adjudicated private hoarding dataset or negative controls. Statistical anomaly != hoarding.
 
 ## Latest completed phase
-- Phase: 4 (Usable Dashboard: 9 Interactive Views, Dual-Source API & Static Caching, Accessible Data Tables, SVG Choropleth Map with Malerkotla 2022 Vintage, Client-Side Dataset Downloader with Provenance & Caveats)
-- Date/time: 2026-10-22T09:15:00+05:30
+- Phase: 5 (Interface Polish: Apple-Inspired Restraint, Google Material Clarity, 3D Agricultural Silo & Field Hero, Code-Split Lazy Three.js, WCAG 2.2 AA Focus Rings, Reduced-Motion Overrides, and Zero Regressions)
+- Date/time: 2026-10-22T09:25:00+05:30
 - Evidence/output:
-  - 9 Dedicated Astro & React Views:
-    1. Overview (`/`): Operational modules hub, verified inventory KPI grid, strict guardrails banner
-    2. Dataset Explorer (`/datasets`): Real-time search, schema inspection modal, JSON download trigger with provenance/caveats
-    3. Production & Yield (`/production-yield`): Commodity, district, and year filters, bar charts, accessible data table
-    4. Market Watch (`/market-watch`): Daily AGMARKNET paddy prices, mandatory evidence boundary banner on 100% null quantities, APMC filter
-    5. Weather Context (`/weather`): NASA POWER 5-station agroclimatology, temperature/precipitation/RH filters, table equivalent
-    6. Procurement & Stocks (`/procurement-stocks`): Segregated CFPP RMS snapshot and DFPD Central Pool buffer stocks with disclaimers
-    7. District Map (`/district-map`): Dynamic SVG projection of 23 Punjab districts, clickable district detail drawer, LGD crosswalk table
-    8. Audit & Readiness (`/status`): System Health Monitor, 8-element coverage matrix with prominent NO-GO verdict, 6 integrity assertions
-    9. Methodology (`/methodology`): 4 core scientific governance principles and decision log
-  - Static JSON data caches in `frontend/public/data/` (11 cached assets matching validated physical files)
-  - Dashboard CSS Design System: `frontend/src/styles/dashboard.css`
-  - Automated tests: 87/87 tests passed across workspace (including 32 new tests in `tests/test_phase4_dashboard.py`)
-  - End-to-end browser subagent walkthrough: All 9 views, dropdown filters, SVG map clicks, modal inspection, and drawer transitions verified error-free
-  - `logs/phase_reports/PHASE_4_REPORT.md`
+  - `frontend/src/components/Hero3DScene.tsx`: Procedural 3D WebGL agricultural scene with stainless steel silos, undulating alluvium terrain, floating wheat chaff particles, mouse parallax, and accessible static SVG blueprint fallback
+  - `frontend/src/styles/dashboard.css`: Phase 5 design tokens, `.hero-grid`, `.hero-3d-wrapper`, high-contrast `:focus-visible` rings, and `@media (prefers-reduced-motion: reduce)` overrides
+  - `frontend/src/pages/index.astro`: Responsive two-column hero layout mounting `Hero3DScene` with client-side code splitting
+  - Code Splitting: `three.module.DB3egixL.js` is dynamically lazy-loaded; non-3D routes load in ~290 KB JS
+  - Automated tests: 93/93 tests passed across workspace (including 6 new tests in `tests/test_phase5_polish.py`)
+  - End-to-end browser subagent walkthrough: 3D scene rendering, Play/Pause motion toggle, keyboard focus rings, mobile 400px responsive stacking, and zero console errors verified
+  - `logs/phase_reports/PHASE_5_REPORT.md`
 
 ## Current blockers
 1. No daily wheat/paddy market arrival quantity panel (foodgrains routed to credentialed Anaaj Kharid).
@@ -53,10 +46,10 @@
 4. Four external source routes blocked (CAPTCHA, token, TLS root CA, or internal agency credentials).
 
 ## Next single action
-Execute Phase 5 from `prompts/PHASED_BUILD_PLAN.md`: Scenario & Anomaly Modeling Guardrails. Build strictly segregated synthetic counterfactual models, statistical anomaly detection prompt engines with mandatory non-hoarding disclaimers, and clear UI boundaries preventing synthetic data contamination.
+Execute Phase 6 from `prompts/PHASED_BUILD_PLAN.md`: Exploratory Data Quality Analysis & Scenario Modeling Guardrails. Build strictly segregated synthetic counterfactual models with mandatory non-hoarding disclaimers.
 
 ## Handoff template (update every session)
-- Last phase/status: Phase 4 COMPLETE (All 87/87 pytest tests passed in 2.15s; Astro static build 9/9 routes passed in 1.48s; Browser subagent E2E smoke test passed)
+- Last phase/status: Phase 5 COMPLETE (All 93/93 pytest tests passed in 2.05s; Astro static build 9/9 routes passed in 1.36s; Browser subagent E2E smoke test passed)
 - Files changed:
   - Created `frontend/src/styles/dashboard.css` (dashboard design tokens, responsive layout, KPI cards, visual charts, accessible data tables, and guardrail alerts)
   - Created `frontend/src/components/ProductionYieldView.tsx` (real production & yield data, filters, bar chart, accessible data table)

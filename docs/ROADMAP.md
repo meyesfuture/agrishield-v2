@@ -28,9 +28,14 @@
 - Output: `backend/schemas/`, `backend/services/`, `backend/ingestion/`, `backend/api/routes/`, `tests/test_domain_schemas.py`, `tests/test_idempotent_import.py`, `tests/test_data_layer_endpoints.py`.
 - Gate: 55/55 pytest tests passed in 1.70s; raw files 100% immutable; zero live provider requests on page load.
 
-## Phase 4 — Core dashboard
-- Production/yield, paddy price, weather, procurement/stocks context and district map.
-- Output: functional charts, filters, map and caveat labels.
+## Phase 4 — Core dashboard [DONE]
+- Built the complete main user flow across 9 dedicated routes with real validated values from FastAPI and physical catalog caches.
+- Implemented: Overview (`/`), Dataset Explorer (`/datasets`), Production & Yield (`/production-yield`), Market Watch (`/market-watch`), Weather Context (`/weather`), Procurement & Stocks (`/procurement-stocks`), District Map (`/district-map`), Audit & Readiness (`/status`), and Methodology (`/methodology`).
+- Displayed prominent, explicit data gap disclaimers: 0 wheat/paddy arrivals in APMC panel, 100% null arrival quantities in Agmarknet, national-only Central Pool buffer stocks, single-position non-summing procurement, and zero private hoarding labels.
+- Added dynamic interactive filters with accessible table equivalents for all visual charts and maps.
+- Exported client-side JSON downloads attaching SHA-256 digests, provenance metadata, and strict empirical caveats directly to user downloads.
+- Output: `frontend/src/pages/`, `frontend/src/components/`, `frontend/src/styles/dashboard.css`, `frontend/public/data/`, `tests/test_phase4_dashboard.py`, `logs/phase_reports/PHASE_4_REPORT.md`.
+- Gate: 87/87 pytest tests passed in 2.15s; 9/9 Astro static routes built cleanly in 1.48s; Browser subagent E2E smoke test passed with zero console errors.
 
 ## Phase 5 — 3D landing and motion polish
 - Implement restrained grain/silo hero, reduced-motion and WebGL fallbacks, meaningful micro-interactions.

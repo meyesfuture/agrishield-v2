@@ -1,0 +1,168 @@
+{
+  "total": 23,
+  "limit": 100,
+  "offset": 0,
+  "items": [
+    {
+      "district_source_name_apy": "Amritsar",
+      "district_name_boundary": "Amritsar",
+      "district_id_candidate_lgd": 27,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Barnala",
+      "district_name_boundary": "Barnala",
+      "district_id_candidate_lgd": 605,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Bathinda",
+      "district_name_boundary": "Bathinda",
+      "district_id_candidate_lgd": 28,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Faridkot",
+      "district_name_boundary": "Faridkot",
+      "district_id_candidate_lgd": 29,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Fatehgarh sahib",
+      "district_name_boundary": "Fatehgarh Sahib",
+      "district_id_candidate_lgd": 30,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Fazilka",
+      "district_name_boundary": "Fazilka",
+      "district_id_candidate_lgd": 651,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=update2014"
+    },
+    {
+      "district_source_name_apy": "Firozepur",
+      "district_name_boundary": "Ferozepur",
+      "district_id_candidate_lgd": 31,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Gurdaspur",
+      "district_name_boundary": "Gurdaspur",
+      "district_id_candidate_lgd": 32,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Hoshiarpur",
+      "district_name_boundary": "Hoshiarpur",
+      "district_id_candidate_lgd": 33,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Jalandhar",
+      "district_name_boundary": "Jalandhar",
+      "district_id_candidate_lgd": 34,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Kapurthala",
+      "district_name_boundary": "Kapurthala",
+      "district_id_candidate_lgd": 35,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Ludhiana",
+      "district_name_boundary": "Ludhiana",
+      "district_id_candidate_lgd": 36,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Malerkotla",
+      "district_name_boundary": "Malerkotla",
+      "district_id_candidate_lgd": 737,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Malerkotla district recorded as 2022 vintage; pre-split APY years cannot be reliably assigned between Malerkotla and Sangrur; boundary feature vintage=2022"
+    },
+    {
+      "district_source_name_apy": "Mansa",
+      "district_name_boundary": "Mansa",
+      "district_id_candidate_lgd": 37,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Moga",
+      "district_name_boundary": "Moga",
+      "district_id_candidate_lgd": 38,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Muktsar",
+      "district_name_boundary": "Sri Muktsar Sahib",
+      "district_id_candidate_lgd": 39,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Nawanshahr",
+      "district_name_boundary": "Shahid Bhagat Singh Nagar",
+      "district_id_candidate_lgd": 40,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Pathankot",
+      "district_name_boundary": "Pathankot",
+      "district_id_candidate_lgd": 662,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Patiala",
+      "district_name_boundary": "Patiala",
+      "district_id_candidate_lgd": 41,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Rupnagar",
+      "district_name_boundary": "Rupnagar",
+      "district_id_candidate_lgd": 42,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "S.a.s nagar",
+      "district_name_boundary": "S.A.S Nagar",
+      "district_id_candidate_lgd": 608,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Sangrur",
+      "district_name_boundary": "Sangrur",
+      "district_id_candidate_lgd": 43,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Malerkotla district recorded as 2022 vintage; pre-split APY years cannot be reliably assigned between Malerkotla and Sangrur; boundary feature vintage=2011_c"
+    },
+    {
+      "district_source_name_apy": "Tarn taran",
+      "district_name_boundary": "Tarn Taran",
+      "district_id_candidate_lgd": 609,
+      "match_status": "manual_name_equivalence_candidate",
+      "temporal_note": "Current name/code candidate; historical validity not established; boundary feature vintage=2011_c"
+    }
+  ]
+}

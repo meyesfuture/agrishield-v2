@@ -1,0 +1,75 @@
+{
+  "total": 7,
+  "limit": 50,
+  "offset": 0,
+  "items": [
+    {
+      "issue_id": "ISSUE-01",
+      "dataset_id": "punjab_mandi_arrivals_oct2026",
+      "rule_name": "foodgrain_arrival_absence",
+      "severity": "CRITICAL",
+      "description": "Acquired Mandi Board daily arrival panel of 3,892 records contains zero wheat and zero paddy records.",
+      "affected_count": 3892,
+      "resolution_or_handling": "Expose produce market arrivals only; do not attempt grain arrival anomaly calculations."
+    },
+    {
+      "issue_id": "ISSUE-02",
+      "dataset_id": "punjab_mandi_arrivals_oct2026",
+      "rule_name": "clerk_sentinel_zero_price",
+      "severity": "WARNING",
+      "description": "3 records have modal_price == 0.0 as explicit clerk sentinel indicating price not reported.",
+      "affected_count": 3,
+      "resolution_or_handling": "Treated as unobserved/not-reported; excluded from price averages."
+    },
+    {
+      "issue_id": "ISSUE-03",
+      "dataset_id": "agmarknet_punjab_daily_prices",
+      "rule_name": "arrival_quantity_unexposed",
+      "severity": "CRITICAL",
+      "description": "All 53 paddy price records have null arrival quantities (100% missing).",
+      "affected_count": 53,
+      "resolution_or_handling": "Preserve nulls; never default arrival quantity to 0.0 or combine with price series."
+    },
+    {
+      "issue_id": "ISSUE-04",
+      "dataset_id": "stock_observations_national_dfpd",
+      "rule_name": "geographic_scope_national_only",
+      "severity": "CRITICAL",
+      "description": "All 100 stock observation records have null state; coverage is India Central Pool only.",
+      "affected_count": 100,
+      "resolution_or_handling": "Strictly label as National Central Pool; prohibit labeling as Punjab regional stock."
+    },
+    {
+      "issue_id": "ISSUE-05",
+      "dataset_id": "cfpp_punjab_wheat_procurement_2025_26",
+      "rule_name": "multi_temporal_dimension_snapshot",
+      "severity": "WARNING",
+      "description": "Procurement snapshot contains 3 rows with 3 different temporal bases and units for the same date.",
+      "affected_count": 3,
+      "resolution_or_handling": "Marked cannot_be_summed=true; displayed as distinct analytical measures."
+    },
+    {
+      "issue_id": "ISSUE-06",
+      "dataset_id": "district_crop_production",
+      "rule_name": "null_area_production_cells",
+      "severity": "INFO",
+      "description": "6 rows have null area, production, and yield values (Fazilka, Pathankot, SAS Nagar in early years).",
+      "affected_count": 6,
+      "resolution_or_handling": "Preserve null values in API output; do not replace with 0."
+    },
+    {
+      "issue_id": "ISSUE-07",
+      "dataset_id": "district_crosswalk",
+      "rule_name": "historical_district_vintage_split",
+      "severity": "WARNING",
+      "description": "Malerkotla carved out of Sangrur in 2021/2022; historical APY series cannot be split retroactively.",
+      "affected_count": 1,
+      "resolution_or_handling": "Maintain separate candidate mapping notes in crosswalk."
+    }
+  ],
+  "severity_breakdown": {
+    "CRITICAL": 3,
+    "WARNING": 3,
+    "INFO": 1
+  }
+}

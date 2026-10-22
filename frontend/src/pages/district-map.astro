@@ -1,0 +1,12 @@
+---
+import AppShell from '../layouts/AppShell.astro';
+import DistrictMapView from '../components/DistrictMapView';
+---
+
+<AppShell
+  title="District Boundaries & Geospatial Map — Punjab GrainWatch"
+  description="Verified Survey of India / NWIC district boundaries with administrative crosswalk and vintage audit."
+  activeNav="map"
+>
+  <DistrictMapView client:load />
+</AppShell>

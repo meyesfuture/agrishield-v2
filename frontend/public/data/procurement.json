@@ -1,0 +1,52 @@
+{
+  "total": 3,
+  "as_of_date": "2025-05-15",
+  "state": "Punjab",
+  "cannot_be_summed": true,
+  "is_time_series": false,
+  "temporal_basis_warning": "CFPP reports contain 3 distinct temporal dimensions: seasonal target (LMT), single-day intake (MT), and cumulative intake (MT). Never sum these rows.",
+  "items": [
+    {
+      "observation_date": "2025-05-15",
+      "state": "Punjab",
+      "commodity": "Wheat",
+      "season": "RMS 2025-26",
+      "measure_name": "season_estimate",
+      "measure_value": 124.0,
+      "measure_unit": "Lakh Metric Tonnes (LMT)",
+      "temporal_basis": "seasonal_target_estimate",
+      "reporting_agency": "Central Food Grains Procurement Portal (CFPP)",
+      "source_url": "https://cfpp.nic.in/cfppui/reports/reportsdata.html",
+      "retrieval_date_utc": "20261021T191516Z",
+      "quality_note": "Official state seasonal procurement target estimate."
+    },
+    {
+      "observation_date": "2025-05-15",
+      "state": "Punjab",
+      "commodity": "Wheat",
+      "season": "RMS 2025-26",
+      "measure_name": "daily_procurement",
+      "measure_value": 19706.25,
+      "measure_unit": "Metric Tonnes (MT)",
+      "temporal_basis": "single_day",
+      "reporting_agency": "Central Food Grains Procurement Portal (CFPP)",
+      "source_url": "https://cfpp.nic.in/cfppui/reports/reportsdata.html",
+      "retrieval_date_utc": "20261021T191516Z",
+      "quality_note": "Single-day procurement quantity on position date 2025-05-15."
+    },
+    {
+      "observation_date": "2025-05-15",
+      "state": "Punjab",
+      "commodity": "Wheat",
+      "season": "RMS 2025-26",
+      "measure_name": "progressive_procurement",
+      "measure_value": 11919510.1,
+      "measure_unit": "Metric Tonnes (MT)",
+      "temporal_basis": "cumulative_season_to_date",
+      "reporting_agency": "Central Food Grains Procurement Portal (CFPP)",
+      "source_url": "https://cfpp.nic.in/cfppui/reports/reportsdata.html",
+      "retrieval_date_utc": "20261021T191516Z",
+      "quality_note": "Cumulative season-to-date procurement through 2025-05-15."
+    }
+  ]
+}

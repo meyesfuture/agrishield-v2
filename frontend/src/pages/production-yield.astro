@@ -1,0 +1,12 @@
+---
+import AppShell from '../layouts/AppShell.astro';
+import ProductionYieldView from '../components/ProductionYieldView';
+---
+
+<AppShell
+  title="Production & Yield History — Punjab GrainWatch"
+  description="Verified district-level annual cultivated area, harvest output, and productivity from DES APY and OGD Punjab."
+  activeNav="production"
+>
+  <ProductionYieldView client:load />
+</AppShell>

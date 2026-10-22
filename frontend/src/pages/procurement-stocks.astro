@@ -1,0 +1,12 @@
+---
+import AppShell from '../layouts/AppShell.astro';
+import ProcurementStocksView from '../components/ProcurementStocksView';
+---
+
+<AppShell
+  title="Procurement & Central Pool Stocks — Punjab GrainWatch"
+  description="State wheat procurement snapshots and National Central Pool buffer reserves with non-summing and geographic scope guardrails."
+  activeNav="procurement"
+>
+  <ProcurementStocksView client:load />
+</AppShell>

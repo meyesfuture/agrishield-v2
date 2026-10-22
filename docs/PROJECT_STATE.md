@@ -9,7 +9,8 @@
 - [x] All Phase 5 dataset row counts and hashes independently revalidated by implementation scripts (Phase 1 complete).
 - [x] Application scaffold/build created (Phase 2 complete).
 - [x] Data Layer & Domain Endpoints implemented (Phase 3 complete).
-- [ ] Core dashboard implemented (Phases 4–5).
+- [x] Core usable dashboard implemented with 9 dedicated views, real data, and interactive filters (Phase 4 complete).
+- [ ] Scenario & Anomaly Modeling Guardrails (Phase 5).
 - [ ] Release checks passed (Phases 6–7).
 
 ## Current evidence guardrails
@@ -26,19 +27,24 @@
 - No independently adjudicated private hoarding dataset or negative controls. Statistical anomaly != hoarding.
 
 ## Latest completed phase
-- Phase: 3 (Data Layer: Typed Pydantic Domain Schemas, Versioned FastAPI Endpoints, Idempotent Ingestion Service, API Source Registry & Connectors, Fixture & Endpoint Pytest Suite)
-- Date/time: 2026-10-22T08:20:00+05:30
+- Phase: 4 (Usable Dashboard: 9 Interactive Views, Dual-Source API & Static Caching, Accessible Data Tables, SVG Choropleth Map with Malerkotla 2022 Vintage, Client-Side Dataset Downloader with Provenance & Caveats)
+- Date/time: 2026-10-22T09:15:00+05:30
 - Evidence/output:
-  - `backend/schemas/`: Typed domain schemas for all existing datasets (`common.py`, `production.py`, `yields.py`, `prices.py`, `weather.py`, `procurement.py`, `stocks.py`, `geography.py`, `coverage.py`, `sources.py`, `quality.py`, `methodology.py`)
-  - `backend/services/`: Query services with caching and strict null preservation (`data_service.py`, `sources_service.py`, `ingestion_service.py`)
-  - `backend/ingestion/`: Safe connector interfaces (`connectors.py`) enforcing timeout, bounded retry, strict TLS verification, and auth/CAPTCHA non-bypass policies
-  - `backend/api/routes/`: 13 versioned route modules mounted on FastAPI `/api/v1`
-  - `tests/test_domain_schemas.py`: Schema invariant and null preservation tests (6 tests)
-  - `tests/test_idempotent_import.py`: Idempotent import and immutable source file tests (3 tests)
-  - `tests/test_data_layer_endpoints.py`: End-to-end endpoint tests covering filters, pagination, domain guardrails, and error handling (21 tests)
-  - Total automated tests: 55/55 passed in 1.70s
-  - Frontend static build: 4/4 static pages generated cleanly in 1.35s
-  - `logs/phase_reports/PHASE_3_REPORT.md`
+  - 9 Dedicated Astro & React Views:
+    1. Overview (`/`): Operational modules hub, verified inventory KPI grid, strict guardrails banner
+    2. Dataset Explorer (`/datasets`): Real-time search, schema inspection modal, JSON download trigger with provenance/caveats
+    3. Production & Yield (`/production-yield`): Commodity, district, and year filters, bar charts, accessible data table
+    4. Market Watch (`/market-watch`): Daily AGMARKNET paddy prices, mandatory evidence boundary banner on 100% null quantities, APMC filter
+    5. Weather Context (`/weather`): NASA POWER 5-station agroclimatology, temperature/precipitation/RH filters, table equivalent
+    6. Procurement & Stocks (`/procurement-stocks`): Segregated CFPP RMS snapshot and DFPD Central Pool buffer stocks with disclaimers
+    7. District Map (`/district-map`): Dynamic SVG projection of 23 Punjab districts, clickable district detail drawer, LGD crosswalk table
+    8. Audit & Readiness (`/status`): System Health Monitor, 8-element coverage matrix with prominent NO-GO verdict, 6 integrity assertions
+    9. Methodology (`/methodology`): 4 core scientific governance principles and decision log
+  - Static JSON data caches in `frontend/public/data/` (11 cached assets matching validated physical files)
+  - Dashboard CSS Design System: `frontend/src/styles/dashboard.css`
+  - Automated tests: 87/87 tests passed across workspace (including 32 new tests in `tests/test_phase4_dashboard.py`)
+  - End-to-end browser subagent walkthrough: All 9 views, dropdown filters, SVG map clicks, modal inspection, and drawer transitions verified error-free
+  - `logs/phase_reports/PHASE_4_REPORT.md`
 
 ## Current blockers
 1. No daily wheat/paddy market arrival quantity panel (foodgrains routed to credentialed Anaaj Kharid).
@@ -47,66 +53,52 @@
 4. Four external source routes blocked (CAPTCHA, token, TLS root CA, or internal agency credentials).
 
 ## Next single action
-Execute Phase 4 from `prompts/PHASED_BUILD_PLAN.md`: UI and Interactive Dashboards. Integrate the new versioned endpoints into the Astro/React frontend with interactive filters, data visualizations (production/yield, prices, weather, procurement, stocks, and district maps), restrained Apple typography, Google Material clarity, and 3D grain/silo hero.
+Execute Phase 5 from `prompts/PHASED_BUILD_PLAN.md`: Scenario & Anomaly Modeling Guardrails. Build strictly segregated synthetic counterfactual models, statistical anomaly detection prompt engines with mandatory non-hoarding disclaimers, and clear UI boundaries preventing synthetic data contamination.
 
 ## Handoff template (update every session)
-- Last phase/status: Phase 3 COMPLETE (All 55/55 pytest tests passed; frontend static build passed in 1.35s)
+- Last phase/status: Phase 4 COMPLETE (All 87/87 pytest tests passed in 2.15s; Astro static build 9/9 routes passed in 1.48s; Browser subagent E2E smoke test passed)
 - Files changed:
-  - Modified `backend/config.py` (added dataset file paths)
-  - Created `backend/schemas/common.py`
-  - Created `backend/schemas/production.py`
-  - Created `backend/schemas/yields.py`
-  - Created `backend/schemas/prices.py`
-  - Created `backend/schemas/weather.py`
-  - Created `backend/schemas/procurement.py`
-  - Created `backend/schemas/stocks.py`
-  - Created `backend/schemas/geography.py`
-  - Created `backend/schemas/coverage.py`
-  - Created `backend/schemas/sources.py`
-  - Created `backend/schemas/methodology.py`
-  - Modified `backend/schemas/quality.py`
-  - Modified `backend/schemas/__init__.py`
-  - Created `backend/services/data_service.py`
-  - Created `backend/services/sources_service.py`
-  - Created `backend/services/ingestion_service.py`
-  - Created `backend/ingestion/connectors.py`
-  - Created `backend/ingestion/__init__.py`
-  - Created `backend/api/routes/production.py`
-  - Created `backend/api/routes/yields.py`
-  - Created `backend/api/routes/prices.py`
-  - Created `backend/api/routes/weather.py`
-  - Created `backend/api/routes/procurement.py`
-  - Created `backend/api/routes/stocks.py`
-  - Created `backend/api/routes/geography.py`
-  - Created `backend/api/routes/coverage.py`
-  - Created `backend/api/routes/sources.py`
-  - Created `backend/api/routes/methodology.py`
-  - Modified `backend/api/routes/quality.py`
-  - Modified `backend/main.py`
-  - Created `tests/test_domain_schemas.py`
-  - Created `tests/test_idempotent_import.py`
-  - Created `tests/test_data_layer_endpoints.py`
-  - Updated `docs/API_INTEGRATIONS.md`
+  - Created `frontend/src/styles/dashboard.css` (dashboard design tokens, responsive layout, KPI cards, visual charts, accessible data tables, and guardrail alerts)
+  - Created `frontend/src/components/ProductionYieldView.tsx` (real production & yield data, filters, bar chart, accessible data table)
+  - Created `frontend/src/components/MarketWatchView.tsx` (daily modal prices, mandatory evidence boundary banner on 100% null quantities, APMC filter, data table)
+  - Created `frontend/src/components/WeatherView.tsx` (NASA POWER daily observations, station selector, parameter filter, summary stats, data table)
+  - Created `frontend/src/components/ProcurementStocksView.tsx` (segregated CFPP wheat snapshot and DFPD national central pool buffer stocks)
+  - Created `frontend/src/components/DistrictMapView.tsx` (SVG choropleth of Punjab's 23 districts from GeoJSON, clickable district detail drawer, LGD crosswalk)
+  - Created `frontend/src/components/QualityReadinessView.tsx` (8-element supply chain coverage matrix with NO-GO verdict, 6 integrity assertions, quality issues table)
+  - Modified `frontend/src/components/DatasetExplorer.tsx` (added `handleDownloadDataset` client-side JSON downloader with provenance, schema, and caveats)
+  - Modified `frontend/src/layouts/AppShell.astro` (added all 9 views to top navigation, skip-link, and responsive mobile scroll)
+  - Modified `frontend/src/pages/index.astro` (added Phase 4 Interactive Modules Hub with cards linking to all 8 views and verified KPI grid)
+  - Created `frontend/src/pages/production-yield.astro`
+  - Created `frontend/src/pages/market-watch.astro`
+  - Created `frontend/src/pages/weather.astro`
+  - Created `frontend/src/pages/procurement-stocks.astro`
+  - Created `frontend/src/pages/district-map.astro`
+  - Modified `frontend/src/pages/status.astro` (integrated both SystemHealthMonitor and QualityReadinessView)
+  - Exported 11 static JSON data caches to `frontend/public/data/` (`production.json`, `yields.json`, `prices.json`, `weather.json`, `procurement.json`, `stocks.json`, `district_boundaries.json`, `district_crosswalk.json`, `coverage_matrix.json`, `sources.json`, `quality_issues.json`)
+  - Created `tests/test_phase4_dashboard.py` (32 automated tests verifying routes, DOM landmarks, data gap warnings, accessible tables, static caches, and zero simulated hoarding scores)
   - Updated `docs/PROJECT_STATE.md`
   - Updated `docs/ROADMAP.md`
-  - Created `logs/phase_reports/PHASE_3_REPORT.md`
+  - Created `logs/phase_reports/PHASE_4_REPORT.md`
 - Commands executed:
-  - `pytest -v` (55/55 tests PASSED in 1.70s)
-  - `npm run build --prefix frontend` (4 static pages generated in 1.35s)
+  - `npm run build --prefix frontend` (9 static routes generated cleanly in 1.48s)
+  - `pytest tests/test_phase4_dashboard.py -v` (32/32 tests PASSED in 0.33s)
+  - `pytest tests/ -v` (87/87 tests PASSED in 2.15s)
+  - Browser subagent E2E smoke test (All 9 views, dropdown filters, SVG map clicks, modal inspection, and drawer transitions verified error-free)
 - Tests executed and actual outputs:
-  - Backend Data Layer Endpoints: 21/21 tests PASSED.
-  - Domain Schemas & Invariants: 6/6 tests PASSED.
-  - Idempotent Ingestion & File Immutability: 3/3 tests PASSED.
-  - Core Backend API: 9/9 tests PASSED.
-  - Data Integrity: 16/16 tests PASSED.
-  - Total: 55/55 tests PASSED in 1.70s.
+  - Frontend Routes & Headings: 9/9 tests PASSED
+  - Navigation & Accessibility: 9/9 tests PASSED
+  - Data Gap Notices & Guardrails: 1/1 test PASSED
+  - Accessible Data Tables: 1/1 test PASSED
+  - Static Data Caches: 11/11 tests PASSED
+  - Zero Simulated Hoarding Invariant: 1/1 test PASSED
+  - Data Layer & Schemas Regression: 55/55 tests PASSED
+  - Total: 87/87 tests PASSED in 2.15s
 - Decisions made and rationale:
-  - Preserved null values strictly for all missing cells (Malerkotla pre-split years, Agmarknet arrival quantities, DFPD stock state). Never defaulted to 0.0.
-  - Bound endpoints strictly to datasets that actually exist; did not expose nonexistent daily grain arrival series.
-  - Enforced `cannot_be_summed=true` on CFPP procurement snapshot to prevent catastrophic multi-temporal double counting.
-  - Restricted Central Pool stock endpoint with `geographic_scope="National Central Pool only"`.
-  - Audited external sources into standardized evidence statuses: `working-tested`, `blocked-auth`, `blocked-captcha`, `metadata-only`, `unavailable`.
-- Blockers: None for Phase 4.
-- Next single action: Phase 4 — Application UI and Interactive Dashboards.
-- Skills actually consulted: `gravitas`, `gravitas-python`, `ponytail`.
-- Last updated (UTC): 2026-10-22T02:50:00Z
+  - Implemented Dual-Source Data Strategy: Components fetch from live FastAPI `/api/v1` and fall back gracefully to verified static `/data/*.json` caches, guaranteeing offline reliability and fast static builds.
+  - Displayed explicit data gap disclaimers: prominently documented 0 wheat/paddy arrivals in APMC panel, 100% null arrival quantities in Agmarknet, national-only Central Pool buffer stocks, single-position non-summing procurement, and zero private hoarding labels.
+  - SVG Projection for Punjab 23 Districts: dynamically bounds GeoJSON coordinates to a 560x600 SVG viewBox, highlighting Malerkotla with 2022 carveout caveat and linking to 1:1 LGD crosswalk.
+  - Exported Client-Side JSON Downloads: `DatasetExplorer` creates JSON blobs attaching SHA-256 digests, provenance metadata, and strict empirical caveats directly to user downloads.
+- Blockers: None for Phase 5.
+- Next single action: Phase 5 — Scenario & Anomaly Modeling Guardrails.
+- Skills actually consulted: `gravitas`, `gravitas-python`, `ponytail`, `frontend-design`, `ui-ux-pro-max`.
+- Last updated (UTC): 2026-10-22T03:45:00Z

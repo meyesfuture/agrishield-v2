@@ -32,6 +32,36 @@ export const DatasetExplorer: React.FC = () => {
   const [selectedDataset, setSelectedDataset] = useState<DatasetItem | null>(null);
   const [dataSourceMode, setDataSourceMode] = useState<'API' | 'STATIC_FALLBACK'>('API');
 
+  const handleDownloadDataset = (item: DatasetItem) => {
+    const payload = {
+      dataset_id: item.dataset_id,
+      provenance: {
+        source_name: item.source_name,
+        source_url: item.source_url,
+        sha256_checksum: item.sha256,
+        evidence_status: item.evidence_status,
+        date_range: item.date_range,
+        geography: item.geographic_coverage,
+        commodity: item.commodity_coverage,
+        units: item.units,
+        licensing: item.licensing_access_notes,
+      },
+      audit_caveats_and_constraints: item.caveats,
+      governance_notice: "Downloaded from Punjab GrainWatch. Subject to AGENTS.md empirical governance: strict absence != zero, national data cannot be relabeled Punjab, no simulated hoarding claims.",
+      download_timestamp_utc: new Date().toISOString(),
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${item.dataset_id}_validated_metadata.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   // Load datasets on mount
   useEffect(() => {
     fetchDatasets();
@@ -486,7 +516,26 @@ export const DatasetExplorer: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ marginTop: 'var(--space-6)', textAlign: 'right' }}>
+            <div style={{ marginTop: 'var(--space-6)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
+              <button
+                onClick={() => handleDownloadDataset(selectedDataset)}
+                style={{
+                  padding: '0.45rem 0.9rem',
+                  background: 'rgba(232, 200, 114, 0.15)',
+                  border: '1px solid var(--color-wheat-500)',
+                  color: 'var(--color-wheat-400)',
+                  borderRadius: 'var(--radius-md)',
+                  fontWeight: 600,
+                  fontSize: 'var(--text-xs)',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                }}
+                title="Download verified dataset metadata with audit caveats"
+              >
+                <span>📥</span> Download Validated Package (with Metadata & Caveats)
+              </button>
               <button
                 onClick={() => setSelectedDataset(null)}
                 style={{
@@ -502,6 +551,7 @@ export const DatasetExplorer: React.FC = () => {
                 Close Inspector
               </button>
             </div>
+
           </div>
         </div>
       )}

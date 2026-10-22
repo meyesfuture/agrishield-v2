@@ -8,7 +8,7 @@ import GuardrailBanner from '../components/GuardrailBanner.astro';
   <div class="overview-page">
     <!-- Hero Header -->
     <section class="hero-section" aria-labelledby="hero-title">
-      <div class="hero-badge">PHASE 2 APPLICATION FOUNDATION</div>
+      <div class="hero-badge">PHASE 4 OPERATIONAL INTELLIGENCE DASHBOARD</div>
       <h1 id="hero-title" class="hero-title">
         Auditable Agricultural Intelligence for <span class="text-wheat">Punjab Supply Chains</span>
       </h1>
@@ -18,18 +18,110 @@ import GuardrailBanner from '../components/GuardrailBanner.astro';
       </p>
 
       <div class="hero-actions">
-        <a href="/datasets" class="btn btn-primary">
-          <span>Explore Verified Catalog</span>
+        <a href="/production-yield" class="btn btn-primary">
+          <span>Production & Yields</span>
           <span aria-hidden="true">→</span>
         </a>
+        <a href="/district-map" class="btn btn-secondary">
+          <span>District Map</span>
+        </a>
+        <a href="/datasets" class="btn btn-secondary">
+          <span>Dataset Explorer</span>
+        </a>
         <a href="/status" class="btn btn-secondary">
-          <span>View Audit & Integrity Matrix</span>
+          <span>Readiness & Integrity</span>
         </a>
       </div>
     </section>
 
     <!-- Guardrail Banner -->
     <GuardrailBanner />
+
+    <!-- Interactive Navigation Hub (9 Core Views) -->
+    <section class="views-hub-section" aria-labelledby="hub-heading">
+      <h2 id="hub-heading" class="section-heading">Operational Intelligence Modules</h2>
+      <div class="views-hub-grid">
+        <a href="/production-yield" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">🌾</span>
+            <span class="hub-badge status-observed">OBSERVED</span>
+          </div>
+          <h3 class="hub-title">Production & Yield Explorer</h3>
+          <p class="hub-desc">2,530 historical OGD yield records (1968–2022) and 230 DES APY district production rows (2018–2023) across 23 districts.</p>
+          <div class="hub-footer">Explore Trends & Data Table →</div>
+        </a>
+
+        <a href="/market-watch" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">📈</span>
+            <span class="hub-badge status-blocked">BLOCKED ARRIVALS</span>
+          </div>
+          <h3 class="hub-title">Market Watch & Modal Prices</h3>
+          <p class="hub-desc">AGMARKNET 2.0 daily modal prices for paddy across Punjab mandis. Highlights 100% null arrival quantity limitation.</p>
+          <div class="hub-footer">View Daily Modal Prices →</div>
+        </a>
+
+        <a href="/weather" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">⛅</span>
+            <span class="hub-badge status-observed">OBSERVED</span>
+          </div>
+          <h3 class="hub-title">Agro-Climatic Weather Context</h3>
+          <p class="hub-desc">NASA POWER daily temperature, precipitation, and relative humidity across 5 agro-climatic stations (3,655 rows, 0 nulls).</p>
+          <div class="hub-footer">Inspect Weather Stations →</div>
+        </a>
+
+        <a href="/procurement-stocks" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">🏛️</span>
+            <span class="hub-badge status-derived">CONTEXT ONLY</span>
+          </div>
+          <h3 class="hub-title">Procurement & Buffer Stocks</h3>
+          <p class="hub-desc">CFPP RMS 2025-26 wheat procurement snapshot alongside DFPD national monthly central pool buffer stocks (2020–2026).</p>
+          <div class="hub-footer">Inspect Buffer Stocks →</div>
+        </a>
+
+        <a href="/district-map" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">🗺️</span>
+            <span class="hub-badge status-observed">23 DISTRICTS</span>
+          </div>
+          <h3 class="hub-title">District Boundary Map</h3>
+          <p class="hub-desc">Interactive SVG boundary choropleth for 23 Punjab districts with Malerkotla 2022 vintage carveout and 1:1 crosswalk.</p>
+          <div class="hub-footer">Open Interactive Map →</div>
+        </a>
+
+        <a href="/status" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">🛡️</span>
+            <span class="hub-badge status-blocked">NO-GO VERDICT</span>
+          </div>
+          <h3 class="hub-title">Readiness & Integrity Matrix</h3>
+          <p class="hub-desc">8-element supply chain coverage matrix, 6 mathematical integrity assertions, and live system health telemetry.</p>
+          <div class="hub-footer">Review Readiness Audit →</div>
+        </a>
+
+        <a href="/datasets" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">📦</span>
+            <span class="hub-badge status-derived">20 DATASETS</span>
+          </div>
+          <h3 class="hub-title">Dataset Catalog & Downloads</h3>
+          <p class="hub-desc">Searchable data inventory with schema inspector, SHA-256 validation digests, and client-side JSON downloads with caveats.</p>
+          <div class="hub-footer">Inspect & Export Datasets →</div>
+        </a>
+
+        <a href="/methodology" class="hub-card">
+          <div class="hub-header">
+            <span class="hub-icon">📜</span>
+            <span class="hub-badge status-observed">GOVERNANCE</span>
+          </div>
+          <h3 class="hub-title">Methodology & Decision Log</h3>
+          <p class="hub-desc">Core non-negotiable evidentiary rules: zero hoarding conclusions, absence vs zero semantics, and calibrated schemas.</p>
+          <div class="hub-footer">Read Scientific Governance →</div>
+        </a>
+      </div>
+    </section>
 
     <!-- Executive KPI Grid -->
     <section class="kpi-section" aria-labelledby="kpi-heading">
@@ -83,65 +175,6 @@ import GuardrailBanner from '../components/GuardrailBanner.astro';
           badgeText="23 DISTRICTS"
           badgeType="observed"
         />
-      </div>
-    </section>
-
-    <!-- Supply Chain Dimensions Breakdown -->
-    <section class="domains-section" aria-labelledby="domains-heading">
-      <h2 id="domains-heading" class="section-heading">Evidence Domains & Provenance Boundaries</h2>
-
-      <div class="domain-cards-grid">
-        <div class="domain-card">
-          <div class="domain-header">
-            <span class="domain-icon">🌾</span>
-            <h3>Mandi Arrivals & Market Prices</h3>
-          </div>
-          <p class="domain-desc">
-            Contains 3,892 produce records from Punjab Mandi Board (PSAMB) e-Mandikaran and 53 Paddy modal prices from AGMARKNET 2.0.
-          </p>
-          <div class="domain-status status-warning">
-            <strong>Limitation:</strong> Foodgrains are routed into credentialed state portals; open feeds lack daily wheat/paddy arrivals.
-          </div>
-        </div>
-
-        <div class="domain-card">
-          <div class="domain-header">
-            <span class="domain-icon">📊</span>
-            <h3>Historical Production & Yields</h3>
-          </div>
-          <p class="domain-desc">
-            Combines 2,530 historical OGD yield records (1968–2022) with 230 DES APY district production rows (2018–2023) across 23 districts.
-          </p>
-          <div class="domain-status status-success">
-            <strong>Verified:</strong> Complete coverage for Wheat and Paddy with 0 duplicate composite keys.
-          </div>
-        </div>
-
-        <div class="domain-card">
-          <div class="domain-header">
-            <span class="domain-icon">🏛️</span>
-            <h3>Procurement & Central Stocks</h3>
-          </div>
-          <p class="domain-desc">
-            Includes CFPP RMS 2025-26 state wheat procurement snapshot and 100 DFPD monthly buffer stock observations (2020–2026).
-          </p>
-          <div class="domain-status status-warning">
-            <strong>Limitation:</strong> Stocks are India Central Pool aggregates only (state=NaN); facility stocks are unpublished.
-          </div>
-        </div>
-
-        <div class="domain-card">
-          <div class="domain-header">
-            <span class="domain-icon">🛰️</span>
-            <h3>Weather & Geospatial Context</h3>
-          </div>
-          <p class="domain-desc">
-            Includes NASA POWER 2-year daily agroclimatology (3,655 records), 23-district Survey of India GeoJSON boundaries, and Sentinel-2B tile.
-          </p>
-          <div class="domain-status status-success">
-            <strong>Verified:</strong> Full spatial geometry and climatological context for agricultural analysis.
-          </div>
-        </div>
       </div>
     </section>
   </div>
@@ -248,67 +281,92 @@ import GuardrailBanner from '../components/GuardrailBanner.astro';
     gap: var(--space-2);
   }
 
-  .kpi-grid {
+  .views-hub-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-4);
   }
 
-  .domain-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-4);
-  }
-
-  .domain-card {
+  .hub-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     padding: var(--space-5);
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-2);
+    text-decoration: none;
+    transition: all var(--transition-normal);
   }
 
-  .domain-header {
+  .hub-card:hover {
+    border-color: var(--color-wheat-500);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+  }
+
+  .hub-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--space-3);
+    margin-bottom: var(--space-1);
   }
 
-  .domain-icon {
+  .hub-icon {
     font-size: 1.5rem;
   }
 
-  .domain-header h3 {
-    font-size: var(--text-sm);
+  .hub-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .status-observed {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--color-emerald-400);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .status-derived {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  .status-blocked {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+
+  .hub-title {
+    font-size: var(--text-base);
     font-weight: 700;
     color: var(--text-primary);
   }
 
-  .domain-desc {
+  .hub-desc {
     font-size: var(--text-xs);
     color: var(--text-secondary);
     line-height: 1.5;
     flex: 1;
   }
 
-  .domain-status {
-    padding: var(--space-3);
-    border-radius: var(--radius-md);
-    font-size: 0.7rem;
-    line-height: 1.4;
+  .hub-footer {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-wheat-500);
+    margin-top: var(--space-2);
   }
 
-  .status-warning {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--color-amber-400);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-  }
-
-  .status-success {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--color-emerald-400);
-    border: 1px solid rgba(16, 185, 129, 0.3);
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
   }
 </style>

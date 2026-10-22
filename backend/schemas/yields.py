@@ -21,7 +21,7 @@ class DistrictYieldItem(BaseModel):
     agricultural_year: Optional[str] = Field(default=None, description="Agricultural year format YYYY-YY")
     source_year_label: Optional[str] = Field(default=None, description="Source year label (e.g. 2022)")
     effective_year: str = Field(..., description="Normalized effective year for query and sorting")
-    yield_value: float = Field(..., description="Crop yield value in kg/ha")
+    yield_value: Optional[float] = Field(default=None, description="Crop yield value in kg/ha (null for pre-formation district years)")
     yield_unit: str = Field(..., description="Unit of yield measurement (kg/ha)")
     observation_status: str = Field(..., description="Empirical observation status")
     source_url: Optional[str] = Field(default=None, description="Source provenance URL")

@@ -1,0 +1,89 @@
+{
+  "total_elements": 8,
+  "elements_ready_for_reconciliation": 0,
+  "critical_gaps_count": 7,
+  "reconciliation_overall_verdict": "NO-GO for grain supply reconciliation or hoarding detection",
+  "methodological_principle": "Without concurrent localized grain arrivals, disaggregated procurement, and verified private commercial stock data, localized supply reconciliation is mathematically unidentifiable.",
+  "items": [
+    {
+      "supply_flow_element": "1. Production (Annual Output)",
+      "required_granularity": "District x Year (Tonnes)",
+      "available_sources": "DES APY Browser Extract (2018-19 to 2022-23); OGD Punjab Yield (1968-2022)",
+      "current_status": "PARTIALLY COVERED",
+      "exact_coverage": "23 Punjab districts, 5 years (2018-19 to 2022-23); 12 missing cells (Malerkotla); yield series to 2022",
+      "unit_standard": "Production in Metric Tonnes; Area in Hectares; Yield in kg/ha",
+      "audit_limitation": "Native DES CSV blocked by TLS trust failure; OGD API requires key; historical district split ambiguity (Sangrur/Malerkotla)",
+      "reconciliation_readiness": "CONDITIONAL (historical baseline only; no live current-year output)"
+    },
+    {
+      "supply_flow_element": "2. Mandi Market Arrivals (Gross Flow)",
+      "required_granularity": "Market x Date x Commodity (Quantities)",
+      "available_sources": "Punjab Mandi Board e-Mandikaran; AGMARKNET 2.0; PIB snapshots",
+      "current_status": "CRITICAL GAP FOR GRAINS",
+      "exact_coverage": "3,892 verified daily arrival records for APMC produce (Oct 2026); 53 Paddy modal prices; zero daily grain arrival records",
+      "unit_standard": "Arrival quantity in Quintals (where reported); Modal price in Rs./Quintal",
+      "audit_limitation": "AGMARKNET 2.0 arrival report endpoint requires CAPTCHA; CEDA requires token; Mandi Board separates foodgrains to Anaaj Kharid",
+      "reconciliation_readiness": "NO-GO for wheat & paddy grain market anomaly ranking"
+    },
+    {
+      "supply_flow_element": "3. Government Procurement & Lifting",
+      "required_granularity": "Center/District x Date x Agency (MT)",
+      "available_sources": "CFPP / WPMS reportsdata.html; PIB Press Releases",
+      "current_status": "STATE AGGREGATE ONLY",
+      "exact_coverage": "CFPP wheat RMS 2025-26 (124 LMT target, 11.92 MMT cumulative); PIB Paddy KMS 2024 cumulative snapshots",
+      "unit_standard": "Lakh Metric Tonnes (LMT) and Metric Tonnes (MT)",
+      "audit_limitation": "Disaggregated district/center lifting and agency breakdown not exposed in public tables; temporal basis differs from daily arrivals",
+      "reconciliation_readiness": "NO-GO for localized supply reconciliation"
+    },
+    {
+      "supply_flow_element": "4. Depot-Level Public Stocks (FCI / State Agencies)",
+      "required_granularity": "Depot/District x Month/Day x Commodity",
+      "available_sources": "DFPD National Stock Bulletins; FCI Central Pool Statements",
+      "current_status": "NATIONAL TOTALS ONLY",
+      "exact_coverage": "25 national quarterly/monthly dates (2020-01-01 to 2026-01-01) for Central Pool wheat & rice stocks and norms",
+      "unit_standard": "Lakh Metric Tonnes (LMT)",
+      "audit_limitation": "National pool aggregate cannot represent Punjab regional inventory; district-level FCI records unverified in archive",
+      "reconciliation_readiness": "NO-GO for Punjab-specific inventory balances"
+    },
+    {
+      "supply_flow_element": "5. Rice Custom Milling (Paddy -> Rice Outturn)",
+      "required_granularity": "Miller/District x Month x Allocation",
+      "available_sources": "CFPP CMR navigation links; PIB Press Releases",
+      "current_status": "NOT ACQUIRED",
+      "exact_coverage": "Navigation links identified; underlying miller power consumption & milling outturn tables require authenticated access",
+      "unit_standard": "Outturn ratio (67% statutory standard)",
+      "audit_limitation": "No miller-level milling allocations, deliveries, or power consumption data acquired",
+      "reconciliation_readiness": "NO-GO for processing balance"
+    },
+    {
+      "supply_flow_element": "6. Outflows & Public Distribution (PDS Offtake / Dispatches)",
+      "required_granularity": "District x Month (Allotted vs Lifted)",
+      "available_sources": "Punjab AePDS / ePOS portal (documented only)",
+      "current_status": "NOT ACQUIRED",
+      "exact_coverage": "Zero localized PDS offtake or inter-state rail dispatches acquired",
+      "unit_standard": "Metric Tonnes (MT)",
+      "audit_limitation": "No operational railway wagon dispatch or fair-price shop distribution ledger acquired",
+      "reconciliation_readiness": "NO-GO for outflow reconciliation"
+    },
+    {
+      "supply_flow_element": "7. Private Commercial Inventories & Warehouse Receipts",
+      "required_granularity": "Trader/Warehouse x Facility x Commodity",
+      "available_sources": "None publicly accessible",
+      "current_status": "COMPLETE ABSENCE",
+      "exact_coverage": "Zero commercial godown receipts, private mill stock, or trader balance sheets",
+      "unit_standard": "Metric Tonnes (MT)",
+      "audit_limitation": "Private inventories are legally protected commercial data not published on open portals",
+      "reconciliation_readiness": "NO-GO for total stock balance"
+    },
+    {
+      "supply_flow_element": "8. Independent Ground Truth (Enforcement / Hoarding Findings)",
+      "required_granularity": "Case / Entity / Godown x Inspection Date x Adjudication",
+      "available_sources": "District police/administration FIR news leads (Tarn Taran Pungrain loss)",
+      "current_status": "NO VALIDATION GROUND TRUTH",
+      "exact_coverage": "One government custodian stock discrepancy lead; zero verified private hoarding cases or negative controls",
+      "unit_standard": "Legal case record / Inspection audit finding",
+      "audit_limitation": "Allegations and custodial losses are not verified private hoarding labels; detector validation impossible",
+      "reconciliation_readiness": "NO-GO for supervised detector training or validation"
+    }
+  ]
+}

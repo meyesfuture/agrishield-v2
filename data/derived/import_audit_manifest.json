@@ -1,0 +1,63 @@
+{
+  "execution_utc": "2026-10-22T02:46:59.612775+00:00",
+  "idempotent": true,
+  "source_files_preserved": true,
+  "datasets_verified": 6,
+  "all_schemas_valid": true,
+  "outcomes": [
+    {
+      "dataset_id": "district_crop_production",
+      "file_path": "data\\inbox\\gemini_phase5\\phase5_acquisition\\processed\\district_crop_production.csv",
+      "sha256_hash": "bd545ff36267379976423d5a9f551a7d942aa87785cc304ef50e5b5adc5cc7bd",
+      "row_count": 230,
+      "status": "IMPORTED_VALIDATED",
+      "schema_valid": true,
+      "notes": "230 rows; 6 null cells preserved for Fazilka, Pathankot, SAS Nagar."
+    },
+    {
+      "dataset_id": "agmarknet_punjab_daily_prices",
+      "file_path": "data\\inbox\\gemini_phase5\\phase5_acquisition\\processed\\agmarknet_punjab_daily_prices.csv",
+      "sha256_hash": "29c5c159d1a7dc9ca8b0380e7af61e6dc7251281bbb3a4b903beee06d2bb0623",
+      "row_count": 53,
+      "status": "IMPORTED_VALIDATED",
+      "schema_valid": true,
+      "notes": "53 rows; arrival_quantity is strictly 100% null."
+    },
+    {
+      "dataset_id": "stock_observations_national_dfpd",
+      "file_path": "data\\inbox\\gemini_phase5\\phase5_acquisition\\processed\\stocks\\stock_observations_national_dfpd.csv",
+      "sha256_hash": "21c173141c3ae576f455abbe22e00843a6d21d8163b2d88f4ace9c2b91a2d17f",
+      "row_count": 100,
+      "status": "IMPORTED_VALIDATED",
+      "schema_valid": true,
+      "notes": "100 rows; state column is strictly 100% null (national pool only)."
+    },
+    {
+      "dataset_id": "cfpp_punjab_wheat_procurement_2025_26",
+      "file_path": "data\\inbox\\gemini_phase5\\phase5_acquisition\\processed\\cfpp_punjab_wheat_procurement_2025_26.csv",
+      "sha256_hash": "7731bc98a8d734b4aed73d31cc0b37e72328dc469d7e9f972a4a4816df113a6a",
+      "row_count": 3,
+      "status": "IMPORTED_VALIDATED",
+      "schema_valid": true,
+      "notes": "3 rows; single-date snapshot with 3 distinct non-summable temporal dimensions."
+    },
+    {
+      "dataset_id": "punjab_multi_zone_daily_weather_2024_2025",
+      "file_path": "data\\inbox\\gemini_phase5\\phase5_acquisition\\processed\\punjab_multi_zone_daily_weather_2024_2025.csv",
+      "sha256_hash": "ef7e77faa87ab15bc866b474cddcf3e4e6c110c105b1b95a8d7808280a42c3fa",
+      "row_count": 3655,
+      "status": "IMPORTED_VALIDATED",
+      "schema_valid": true,
+      "notes": "3,655 rows across 5 agro-climatic stations; 100% complete."
+    },
+    {
+      "dataset_id": "punjab_district_boundaries",
+      "file_path": "data\\inbox\\gemini_phase5\\phase5_acquisition\\processed\\geospatial\\punjab_district_boundaries.geojson",
+      "sha256_hash": "97909ce2ff857f1a88268db33784c22c27782a25dac082de6a80db17d5c5bd5d",
+      "row_count": 23,
+      "status": "IMPORTED_VALIDATED",
+      "schema_valid": true,
+      "notes": "23 district boundary polygons in EPSG:4326."
+    }
+  ]
+}

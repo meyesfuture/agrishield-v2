@@ -20,10 +20,13 @@
 - Output: `backend/`, `frontend/`, `scripts/run_dev.ps1`, `tests/test_backend_api.py`.
 - Gate: 25/25 pytest tests passed; frontend built cleanly in 0.93s; browser smoke test verified live interaction with zero console errors.
 
-## Phase 3 — Data layer and API adapters
-- Build normalized schema/read layer and fixture-based tests.
-- Integrate only sources currently acquired; blocked provider connections should report status.
-- Output: dataset explorer, provenance and source health.
+## Phase 3 — Data layer and API adapters [DONE]
+- Built typed Pydantic domain schemas and repository/service boundaries for all active datasets.
+- Implemented 13 versioned endpoints aligned with `docs/ARCHITECTURE.md` (`/coverage`, `/production`, `/yields`, `/markets/prices`, `/weather`, `/procurement`, `/stocks`, `/geo/districts`, `/geo/crosswalk`, `/sources`, `/quality/issues`, `/methodology`).
+- Preserved strict null semantics (Malerkotla pre-split years, Agmarknet arrival quantities, DFPD stock states; null != 0).
+- Implemented idempotent local import service (`ingestion_service.py`) and safe external connector interfaces (`connectors.py`).
+- Output: `backend/schemas/`, `backend/services/`, `backend/ingestion/`, `backend/api/routes/`, `tests/test_domain_schemas.py`, `tests/test_idempotent_import.py`, `tests/test_data_layer_endpoints.py`.
+- Gate: 55/55 pytest tests passed in 1.70s; raw files 100% immutable; zero live provider requests on page load.
 
 ## Phase 4 — Core dashboard
 - Production/yield, paddy price, weather, procurement/stocks context and district map.

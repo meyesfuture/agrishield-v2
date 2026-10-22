@@ -59,6 +59,54 @@ class Settings(BaseSettings):
         return self.data_dir / "derived"
 
     @property
+    def phase5_dir(self) -> Path:
+        return self.data_dir / "inbox" / "gemini_phase5" / "phase5_acquisition"
+
+    @property
+    def processed_dir(self) -> Path:
+        return self.phase5_dir / "processed"
+
+    @property
+    def production_csv(self) -> Path:
+        return self.processed_dir / "district_crop_production.csv"
+
+    @property
+    def yield_csv(self) -> Path:
+        return self.processed_dir / "district_crop_yield.csv"
+
+    @property
+    def prices_csv(self) -> Path:
+        return self.processed_dir / "agmarknet_punjab_daily_prices.csv"
+
+    @property
+    def weather_csv(self) -> Path:
+        return self.processed_dir / "punjab_multi_zone_daily_weather_2024_2025.csv"
+
+    @property
+    def procurement_csv(self) -> Path:
+        return self.processed_dir / "cfpp_punjab_wheat_procurement_2025_26.csv"
+
+    @property
+    def stocks_csv(self) -> Path:
+        return self.processed_dir / "stocks" / "stock_observations_national_dfpd.csv"
+
+    @property
+    def boundaries_geojson(self) -> Path:
+        return self.processed_dir / "geospatial" / "punjab_district_boundaries.geojson"
+
+    @property
+    def crosswalk_csv(self) -> Path:
+        return self.processed_dir / "geospatial" / "district_crosswalk.csv"
+
+    @property
+    def source_status_csv(self) -> Path:
+        return self.phase5_dir / "SOURCE_STATUS.csv"
+
+    @property
+    def coverage_matrix_csv(self) -> Path:
+        return self.phase5_dir / "SUPPLY_FLOW_COVERAGE_MATRIX.csv"
+
+    @property
     def catalog_json(self) -> Path:
         return self.manifests_dir / "dataset_catalog.json"
 

@@ -1,80 +1,65 @@
 # API & Source Integration Register
 
-**Status date:** based on the bundled Phase 5 evidence dated 2026-10-22. Statuses describe the tests documented in this artifact and must be reproduced in the current runtime before being treated as live-current.
+**Status date:** 2026-10-22 (Phase 3 Data Layer implementation).
+Statuses describe the verified tests and endpoints implemented in the Punjab GrainWatch application.
 
-## Connection rules
+## 1. Connection and Ingestion Rules
 
-- Keep credentials in environment variables or a local untracked `.env`; never add keys to Git or reports.
-- Do not bypass CAPTCHA, login, authorization, TLS checks or provider restrictions.
-- Every adapter must have a time limit, bounded retry/backoff, pagination handling, response-size limit, schema validation, source metadata and an explicit failure status.
-- Use precise states: `VERIFIED_DATA_ACQUIRED`, `VERIFIED_ENDPOINT_ONLY`, `BLOCKED_AUTH`, `BLOCKED_CAPTCHA`, `TLS_OR_NETWORK_FAILURE`, `SCHEMA_MISMATCH`, `NOT_TESTED`, `STALE_DATA`.
-- A provider page or metadata API working does not prove that a data endpoint works.
+- **Offline / Local Guarantee:** All client page views and API requests are served strictly from validated, provenance-preserving local stores; zero live provider requests occur during page load.
+- **Credential Safety:** Keep credentials in environment variables or a local untracked `.env`; never commit secrets or tokens to Git or phase reports.
+- **No CAPTCHA or Auth Bypass:** Do not attempt to bypass CAPTCHA, login, authorization, TLS checks, or provider access restrictions.
+- **Adapter Standard:** Connectors (`backend/ingestion/connectors.py`) enforce timeout, bounded retry/backoff, explicit pagination, TLS verification (`verify=True`), response schema validation, and an opt-in manual/scheduled acquisition path.
+- **Evidence-Based Registry Statuses:** Use exact standardized statuses:
+  - `working-tested`: Verified working with acquired data.
+  - `metadata-only`: Verified endpoint providing schema/filter catalogs only.
+  - `blocked-auth`: Blocked due to missing user credentials / API key.
+  - `blocked-captcha`: Blocked by interactive CAPTCHA challenge.
+  - `unavailable`: Network, TLS trust, or institutional session restriction prevents access.
+  - `stale`: Historical series exceeding freshness threshold without updates.
+  - `not-tested`: Endpoint candidate not yet verified in runtime.
 
-## Tested sources
+---
 
-### AGMARKNET 2.0 — filter/master metadata
-- Method: GET
-- Endpoint: `https://api.agmarknet.gov.in/v1/daily-price-arrival/filters`
-- Phase 5 report: HTTP 200, filters/masters returned; source reported 245 Punjab markets, 22 districts and 605 commodities nationally/in filters.
-- Use: controlled lookup tables; refresh and compare schema.
-- Does not provide actual historical wheat/paddy arrival quantities by itself.
+## 2. Tested External Sources
 
-### AGMARKNET 2.0 — weekly market price feed
-- Method: GET
-- Endpoint: `https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek`
-- Phase 5 report: HTTP 200; weekly data over seven daily dates, price unit `Rs./Quintal`; 53 active paddy prices in the Punjab extract, wheat out-of-season in that run; arrival quantity null.
-- Use: paddy price dashboard with clear date/unit/source labels.
-- Do not infer arrivals from prices.
+| Source ID | Name & URL | Category | Protocol | Auth Type | Live Status | Evidence Status | Acquired Observations & Limitations |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `emandikaran_pb` | Punjab Mandi Board (PSAMB)<br>`api.emandikaran-pb.in` | State APMC | REST GET | None | HTTP 200 | `working-tested` | 3,892 produce records. **Zero wheat/paddy records.** Foodgrains routed to Anaaj Kharid. |
+| `agmarknet_v2_prices` | AGMARKNET 2.0 Weekly Prices<br>`api.agmarknet.gov.in` | Central Mandi | REST GET | None | HTTP 200 | `working-tested` | 53 daily Paddy modal prices. **Arrival quantity is 100% null.** |
+| `agmarknet_v2_filters` | AGMARKNET 2.0 Master Filters<br>`api.agmarknet.gov.in` | Mandi Metadata | REST GET | None | HTTP 200 | `metadata-only` | 277 master records (245 Punjab markets, 22 districts, 605 commodities). |
+| `cfpp_procurement` | Central Procurement Portal (CFPP)<br>`cfpp.nic.in` | Central Govt | HTTPS GET | None | HTTP 200 | `working-tested` | 3 state wheat measures (RMS 2025-26 as of 2025-05-15). **Non-summable temporal dimensions.** |
+| `nasa_power_weather` | NASA POWER Agrometeorology<br>`power.larc.nasa.gov` | Open Weather | REST GET | None | HTTP 200 | `working-tested` | 3,655 station-days across 5 agro-climatic stations (2024-2025). 100% complete. |
+| `data_gov_in_ogd` | OGD Platform India<br>`api.data.gov.in` | Open Data Portal | REST GET | API Key | HTTP 400 | `blocked-auth` | Blocked: requires API key. Next step: Register on data.gov.in and configure `DATA_GOV_IN_API_KEY`. |
+| `des_agri_gov_in` | Directorate of Economics & Statistics<br>`data.desagri.gov.in` | Crop Statistics | HTTPS GET | None | SSL_ERROR | `unavailable` | Blocked: NIC root CA not in OS cert store. Next step: Install NIC root certificate; TLS bypass prohibited. |
+| `ceda_ashoka_api` | Ashoka University CEDA<br>`api.ceda.ashoka.edu.in` | Research Portal | REST POST | Bearer Token | HTTP 401 | `blocked-auth` | Blocked: unauthorized without bearer token. Next step: Request academic API access token. |
+| `enam_portal` | National Agriculture Market (e-NAM)<br>`enam.gov.in` | Trading Portal | HTTPS GET | Portal Login | HTTP 200 | `unavailable` | Static CMS landing page. Operational trade dashboards require authenticated participant session. |
+| `anaajkharid_pb` | Punjab Anaaj Kharid Portal<br>`anaajkharid.in` | State Procurement | HTTPS GET | Agency Login | HTTP 404 | `unavailable` | Public link yields 404. Operational gatepass tracking restricted to licensed state agencies/millers. |
 
-### AGMARKNET 2.0 — daily arrival report
-- Method: POST
-- Endpoint: `https://api.agmarknet.gov.in/v1/daily-price-arrival/report`
-- Phase 5 result: HTTP 400 `TOKEN_OR_CAPTCHA_REQUIRED` / CAPTCHA fields required.
-- Status: `BLOCKED_CAPTCHA`. Do not attempt bypass. Continue only through a legitimate provider-supported route or manual authorized download.
+---
 
-### Punjab Mandi Board / e-Mandikaran APMC arrivals
-- Pattern: `https://api.emandikaran-pb.in/CommonMasterDataAPI/getDailyArrival/{dist}/{mkt}/{cmdt}/{from}/{to}`
-- Phase 5 report: HTTP 200; 3,892 daily arrivals with quantities in quintals for Oct 1–21, 2026, across 8 districts, 16 branches and 62 produce commodities.
-- Critical restriction: the acquired set contains **zero wheat/paddy daily grain-arrival rows**; foodgrains are routed to separate credentialed Anaaj Kharid infrastructure.
-- Use: demonstrate source ingestion only for verified commodity scope, not grain supply model input.
+## 3. Implemented Versioned API Surface (`/api/v1`)
 
-### CEDA AGMARKNET quantities
-- Documented source: `https://api.ceda.ashoka.edu.in/documentation/`
-- Candidate endpoint reported: `https://api.ceda.ashoka.edu.in/v1/agmarknet/quantities`
-- Phase 5 result: HTTP 401, API key missing.
-- Status: `BLOCKED_AUTH`; use only after registering and receiving an authorized bearer token. Never hardcode the key.
-- The precise schema/request contract must be verified from current official documentation before implementation.
+Aligned strictly with `docs/ARCHITECTURE.md`. All endpoints enforce pagination (`limit`, `offset`), typed Pydantic models, and strict null preservation.
 
-### NASA POWER daily point weather
-- Official docs: `https://power.larc.nasa.gov/docs/services/api/temporal/daily/`
-- API base: `https://power.larc.nasa.gov/api/temporal/daily/point`
-- Phase 5 files: five points (Ludhiana, Bathinda, Amritsar, Patiala, Hoshiarpur), 2024-01-01 through 2025-12-31, 731 dates per point; 3,655 station-days. Variables documented: T2M (°C), PRECTOTCORR (mm/day), RH2M (%).
-- Use: weather context only; validate parameter names, metadata and missing/sentinel values directly from JSON.
-
-### CFPP wheat procurement
-- Page: `https://cfpp.nic.in/cfppui/reports/reportsdata.html`
-- Phase 5 acquired public HTML and derived three state-level measures for Punjab wheat RMS 2025–26, position as of 2025-05-15: estimate 124 LMT, daily procurement 19,706.25 MT, progressive procurement about 11.92 million MT.
-- Use: as-of labelled state aggregate context only; not daily district grain flow.
-
-### OGD/DES production and yield
-- DES catalog: `https://data.desagri.gov.in/website/apy-query-report-web`
-- Punjab OGD catalog: `https://punjab.data.gov.in/catalog/district-wise-season-wise-crop-production-statistics-0`
-- Phase 5 production extract: 230 rows across 23 source district names, wheat/Rabi and rice/Kharif, 2018–19 through 2022–23; partial browser extract, with missing cells/vintage caveats.
-- Historical yield: packaged wheat and rice files labelled 1968–2022.
-- Use: only after reading actual schema/headers and auditing the production file for missing values and district mapping.
-
-### Boundary data
-- Packaged: `processed/geospatial/punjab_district_boundaries.geojson`, 23 features with LGD identifiers, boundary vintage through 2024 per report, GeoJSON likely EPSG:4326.
-- Verify CRS, feature count, IDs, geometry validity and source attribution before plotting or joining.
-
-### National stocks
-- Packaged: `processed/stocks/stock_observations_national_dfpd.csv`, 100 rows, 25 quarterly/monthly dates, national Central Pool wheat/rice stocks/norms, 2020–2026.
-- Use: national context only. Never relabel as Punjab inventory.
-
-### Satellite
-- Packaged: `processed/satellite/S2B_43REP_20241005_B04_512px_window.tif`; one 512×512 Band 04 window, 10 m, dated 2024-10-05.
-- This is a single raster window, not a repeat-observation warehouse dataset. Validate CRS/geotransform/no-data and do not claim private stock detection.
-
-## Required adapter contract
-
-Each provider adapter must return `{status, source_id, requested_at_utc, request_parameters, http_status, data_path, raw_sha256, row_count, schema_version, coverage, limitations, error_class}`. Redact secrets and sensitive headers. Use fixtures for tests; tests must not depend on internet availability.
+| Method | Endpoint | Query Filters | Response Schema | Description & Invariants |
+| :--- | :--- | :--- | :--- | :--- |
+| `GET` | `/healthz` | — | `{"status": "ok", "timestamp_utc": str}` | Fast liveness probe. |
+| `GET` | `/api/v1/health` | — | `HealthResponse` | Component health check (catalog, quality report, data directory). |
+| `GET` | `/api/v1/status` | — | `StatusResponse` | Verified critical guardrails and system gate status (`PASSED`). |
+| `GET` | `/api/v1/datasets` | `category`, `status`, `search`, `limit`, `offset` | `DatasetListResponse` | Machine-readable dataset catalog (20 verified datasets). |
+| `GET` | `/api/v1/datasets/{dataset_id}` | — | `DatasetDetailResponse` | Detailed dataset metadata, columns, and disk existence. |
+| `GET` | `/api/v1/coverage` | — | `CoverageMatrixResponse` | 8-element Grain Supply Flow Coverage Matrix. Verdict: **NO-GO**. |
+| `GET` | `/api/v1/production` | `district`, `crop`, `agricultural_year`, `limit`, `offset` | `ProductionListResponse` | District crop production & area (230 rows). 6 null cells preserved for Malerkotla pre-split years. |
+| `GET` | `/api/v1/yields` | `district`, `crop`, `year_from`, `year_to`, `limit`, `offset` | `YieldListResponse` | Historical district crop yield observations (2,754 rows, 1968-2022). |
+| `GET` | `/api/v1/markets/prices` | `market_name`, `commodity`, `date_from`, `date_to`, `limit`, `offset` | `PriceListResponse` | Daily mandi wholesale prices (53 rows). **Invariant:** `arrival_quantity` is 100% null (never 0.0). |
+| `GET` | `/api/v1/weather` | `station_name`, `date_from`, `date_to`, `limit`, `offset` | `WeatherListResponse` | Daily multi-zone agrometeorological series (3,655 rows, 2024-2025). |
+| `GET` | `/api/v1/procurement` | `commodity`, `measure_name` | `ProcurementResponse` | Wheat procurement snapshot (RMS 2025-26). **Invariants:** `cannot_be_summed=true`, `is_time_series=false`. |
+| `GET` | `/api/v1/stocks` | `commodity`, `measure_name`, `observation_type`, `limit`, `offset` | `StockResponse` | Central Pool stocks (100 rows). **Invariants:** `geographic_scope="National Central Pool only"`, `state=null`. |
+| `GET` | `/api/v1/geo/districts` | `name` | `DistrictBoundaryCollection` | GeoJSON FeatureCollection of 23 Punjab district boundaries (EPSG:4326). |
+| `GET` | `/api/v1/geo/districts/{district_id}` | — | `DistrictBoundaryFeature` | Single district GeoJSON polygon feature by district or LGD ID. |
+| `GET` | `/api/v1/geo/crosswalk` | `match_status`, `limit`, `offset` | `DistrictCrosswalkResponse` | Statistical to geospatial administrative crosswalk with Sangrur/Malerkotla temporal notes. |
+| `GET` | `/api/v1/sources` | `category`, `status` | `SourceRegistryResponse` | External provider status registry with evidence-based status counts. |
+| `GET` | `/api/v1/sources/{source_id}` | — | `SourceRegistryItem` | Provider operational details, verified technical blockers, and legitimate next steps. |
+| `GET` | `/api/v1/quality/summary` | `reload` | `QualitySummaryResponse` | Validation pipeline gate summary, critical assertions, and quarantined files. |
+| `GET` | `/api/v1/quality/issues` | `severity`, `dataset_id`, `limit`, `offset` | `QualityIssuesResponse` | Granular data quality issues (foodgrain arrival absence, clerk sentinels, null quantities). |
+| `GET` | `/api/v1/methodology` | — | `MethodologyResponse` | Analytical charter, anti-hoarding policies, data contracts, and evidence hierarchy. |

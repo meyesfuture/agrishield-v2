@@ -10,7 +10,21 @@ from fastapi.responses import JSONResponse
 
 from .config import settings
 from .logger import logger
-from .api.routes import health, datasets, quality
+from .api.routes import (
+    health,
+    datasets,
+    quality,
+    production,
+    yields,
+    prices,
+    weather,
+    procurement,
+    stocks,
+    geography,
+    coverage,
+    sources,
+    methodology,
+)
 
 
 @asynccontextmanager
@@ -62,6 +76,16 @@ async def generic_exception_handler(request: Request, exc: Exception):
 app.include_router(health.router)
 app.include_router(datasets.router)
 app.include_router(quality.router)
+app.include_router(production.router)
+app.include_router(yields.router)
+app.include_router(prices.router)
+app.include_router(weather.router)
+app.include_router(procurement.router)
+app.include_router(stocks.router)
+app.include_router(geography.router)
+app.include_router(coverage.router)
+app.include_router(sources.router)
+app.include_router(methodology.router)
 
 
 @app.get("/", summary="Root API welcome & pointer")
@@ -73,7 +97,22 @@ def read_root():
         "docs_url": "/docs",
         "health_url": "/api/v1/health",
         "status_url": "/api/v1/status",
-        "datasets_url": "/api/v1/datasets",
-        "quality_url": "/api/v1/quality/summary",
+        "endpoints": {
+            "datasets": "/api/v1/datasets",
+            "coverage": "/api/v1/coverage",
+            "production": "/api/v1/production",
+            "yields": "/api/v1/yields",
+            "market_prices": "/api/v1/markets/prices",
+            "weather": "/api/v1/weather",
+            "procurement": "/api/v1/procurement",
+            "stocks": "/api/v1/stocks",
+            "districts_geo": "/api/v1/geo/districts",
+            "district_crosswalk": "/api/v1/geo/crosswalk",
+            "sources": "/api/v1/sources",
+            "quality_summary": "/api/v1/quality/summary",
+            "quality_issues": "/api/v1/quality/issues",
+            "methodology": "/api/v1/methodology",
+        },
         "evidence_standard": "Strict empirical evidence; no simulated hoarding scores or fabricated grain arrivals."
     }
+

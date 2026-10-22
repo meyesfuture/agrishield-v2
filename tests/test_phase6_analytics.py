@@ -209,18 +209,19 @@ class TestPhase6AntiHoardingProhibition:
 
     def test_frontend_templates_do_not_contain_hoarding_claims(self):
         root = Path(__file__).resolve().parent.parent
-        analytics_view_file = root / "frontend" / "src" / "components" / "AnalyticsGateView.tsx"
-        assert analytics_view_file.exists()
+        dashboard_view_file = root / "frontend" / "src" / "components" / "DashboardView.tsx"
+        assert dashboard_view_file.exists()
         
-        content = analytics_view_file.read_text(encoding="utf-8")
+        content = dashboard_view_file.read_text(encoding="utf-8")
         
-        # Verify prohibition statements exist
-        assert "STRICTLY FORBIDDEN" in content
-        assert "HOARDING CLAIMS PROHIBITED" in content
-        assert "INSUFFICIENT EVIDENCE (BLOCKED)" in content
-        assert "Strict Non-Hoarding Protocol Enforced" in content
+        # Verify prohibition statements and insufficient evidence disclaimers exist
+        assert "INSUFFICIENT DATA TO ASSESS RISK" in content
+        assert "Zero Wheat/Paddy" in content
+        assert "100% Null Arrival Volumes" in content
+        assert "AGENTS.md Rule 6" in content
         
         # Ensure no trader ranking table exists in frontend view
         assert "Trader Rank" not in content
         assert "Top Hoarders" not in content
         assert "Hoarding Detected" not in content
+

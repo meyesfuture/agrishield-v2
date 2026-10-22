@@ -42,6 +42,11 @@ if ($Mode -eq "test") {
 
 if ($Mode -eq "build") {
     Write-Host "[*] Building frontend static distribution..." -ForegroundColor Green
+    if (Test-Path "B:\temp") {
+        $env:TEMP = "B:\temp"
+        $env:TMP = "B:\temp"
+    }
+    $env:NODE_OPTIONS = "--max-old-space-size=4096"
     npm run build --prefix (Join-Path $WorkspaceRoot "frontend")
     exit $LASTEXITCODE
 }

@@ -29,11 +29,8 @@
 - Gate: 55/55 pytest tests passed in 1.70s; raw files 100% immutable; zero live provider requests on page load.
 
 ## Phase 4 — Core dashboard [DONE]
-- Built the complete main user flow across 9 dedicated routes with real validated values from FastAPI and physical catalog caches.
-- Implemented: Overview (`/`), Dataset Explorer (`/datasets`), Production & Yield (`/production-yield`), Market Watch (`/market-watch`), Weather Context (`/weather`), Procurement & Stocks (`/procurement-stocks`), District Map (`/district-map`), Audit & Readiness (`/status`), and Methodology (`/methodology`).
-- Displayed prominent, explicit data gap disclaimers: 0 wheat/paddy arrivals in APMC panel, 100% null arrival quantities in Agmarknet, national-only Central Pool buffer stocks, single-position non-summing procurement, and zero private hoarding labels.
-- Added dynamic interactive filters with accessible table equivalents for all visual charts and maps.
-- Exported client-side JSON downloads attaching SHA-256 digests, provenance metadata, and strict empirical caveats directly to user downloads.
+- Built the complete main user flow across dedicated routes with real validated values from FastAPI and physical catalog caches.
+- Implemented initial modular views with data gap disclaimers and exportable data caches.
 - Output: `frontend/src/pages/`, `frontend/src/components/`, `frontend/src/styles/dashboard.css`, `frontend/public/data/`, `tests/test_phase4_dashboard.py`, `logs/phase_reports/PHASE_4_REPORT.md`.
 - Gate: 87/87 pytest tests passed in 2.15s; 9/9 Astro static routes built cleanly in 1.48s; Browser subagent E2E smoke test passed with zero console errors.
 
@@ -51,14 +48,19 @@
 - Verified and enforced strict zero grain arrival invariant (0 wheat/paddy rows), 100% null Agmarknet arrival quantities, national DFPD buffer stocks, and isolated procurement snapshots.
 - Implemented `INSUFFICIENT EVIDENCE (BLOCKED)` and `STRICTLY FORBIDDEN` for private hoarding claims, actor-level rankings, or trader naming under AGENTS.md Rule 6.
 - Created segregated Synthetic Demo Lab in `data/synthetic/` with prominent crimson watermarks, rolling 3-year median ±1.96 IQR bounds, and non-hoarding investigation protocols.
-- Built dedicated `/analytics` route and interactive `AnalyticsGateView.tsx` with stream switcher and synthetic lab toggle.
-- Output: `backend/schemas/analytics.py`, `backend/services/analytics_service.py`, `backend/api/routes/analytics.py`, `data/synthetic/scenario_hypothetical_wheat_dip.json`, `frontend/src/components/AnalyticsGateView.tsx`, `frontend/src/pages/analytics.astro`, `frontend/public/data/eligibility_gate.json`, `frontend/public/data/synthetic_scenario.json`, `tests/test_phase6_analytics.py`, `docs/ANALYTICS_AND_ALERTS.md`, `logs/phase_reports/PHASE_6_REPORT.md`.
-- Gate: 108/108 pytest tests passed in 3.88s; 10/10 Astro static routes built cleanly in 2.20s; Browser E2E verification confirmed error-free rendering.
+- Output: `backend/schemas/analytics.py`, `backend/services/analytics_service.py`, `backend/api/routes/analytics.py`, `data/synthetic/scenario_hypothetical_wheat_dip.json`, `tests/test_phase6_analytics.py`, `docs/ANALYTICS_AND_ALERTS.md`, `logs/phase_reports/PHASE_6_REPORT.md`.
+- Gate: 108/108 pytest tests passed in 3.88s; Browser E2E verification confirmed error-free rendering.
 
-
-## Phase 7 — Hardening and release
-- Tests, accessibility, security, performance, clean install, production build and presentation mode.
-- Output: release report and known limitations.
+## Phase 7 — Hardening, Release Verification, and Ruthless Product Simplification [DONE]
+- Performed architectural audit and ruthlessly simplified user-facing surface area to strictly two primary experiences:
+  1. **Landing Page (`/`)**: Product purpose, hoarding-risk screening explanation, "Open Dashboard" CTA, 3D agricultural visual (`Hero3DScene`), methodology boundaries, and clean footer.
+  2. **Main Dashboard (`/dashboard`)**: Interactive 23-district Punjab map, APMC mandi markers, selected-location details panel with "INSUFFICIENT DATA TO ASSESS RISK", physical observations (production, yields, modal prices, weather), minimal filters, and clear data limitations.
+- Preserved 100% of raw evidence (`data/inbox/`), backend services, data ingestion pipelines, and API endpoints.
+- Removed 18 obsolete/redundant frontend files (9 Astro pages, 9 React views) with zero broken dependencies.
+- Verified release across all test suites: 112/112 pytest tests passing; `astro check` 0 errors, 0 warnings; `astro build` 2 static pages generated in 1.04s.
+- Executed browser E2E session verifying landing CTA, map interactions, location selection, and 0 console errors.
+- Output: `DESIGN.md`, `docs/release/SIMPLIFICATION_PLAN.md`, `docs/release/REMOVAL_LOG.md`, `docs/release/SIMPLIFICATION_TEST_RESULTS.md`, `docs/research/FINAL_VERIFICATION_REPORT.md`, `frontend/src/pages/dashboard.astro`, `frontend/src/components/DashboardView.tsx`, `tests/test_simplified_product.py`, `logs/phase_reports/PHASE_7_REPORT.md`.
+- Gate: 112/112 tests passed; clean 2-page production build; full security and data-governance verification confirmed.
 
 ## Phase gate protocol
 Do one phase at a time. Mark `NOT STARTED`, `IN PROGRESS`, `BLOCKED` or `DONE` with evidence. Do not mark done because files were written; the acceptance tests must pass. Keep current status in `PROJECT_STATE.md`.

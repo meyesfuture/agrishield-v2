@@ -8,7 +8,7 @@ interface Props {
   badgeType?: 'observed' | 'derived' | 'blocked' | 'missing' | 'neutral';
 }
 
-const { title, value, subtitle, status, badgeText, badgeType = 'neutral' } = Astro.props;
+const { title, value, subtitle, badgeText, badgeType = 'neutral' } = Astro.props;
 ---
 
 <div class="metric-card">

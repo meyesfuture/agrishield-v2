@@ -1,0 +1,12 @@
+---
+import AppShell from '../layouts/AppShell.astro';
+import DashboardView from '../components/DashboardView';
+---
+
+<AppShell
+  title="Punjab GrainWatch — Hoarding Risk Dashboard"
+  description="Interactive Punjab map and location-level grain hoarding risk screening assessment."
+  activeNav="dashboard"
+>
+  <DashboardView client:load />
+</AppShell>

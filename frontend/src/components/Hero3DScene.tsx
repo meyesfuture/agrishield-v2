@@ -431,7 +431,7 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
             className="motion-toggle-btn"
             onClick={() => setIsMotionPaused(!isMotionPaused)}
             aria-pressed={isMotionPaused}
-            title={isMotionPaused ? 'Resume 3D rotation and particle breeze' : 'Pause 3D motion for accessibility'}
+            title={prefersReducedMotion ? 'System prefers reduced motion (paused by default)' : (isMotionPaused ? 'Resume 3D rotation and particle breeze' : 'Pause 3D motion for accessibility')}
           >
             {isMotionPaused ? '▶ Play 3D' : '⏸ Pause 3D'}
           </button>

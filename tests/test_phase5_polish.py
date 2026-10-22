@@ -73,19 +73,19 @@ class TestPhase5Hero3DComponent:
 
 
 class TestPhase5EvidenceCaveatPreservation:
-    """Verifies that visual polish did not alter or obscure any underlying evidentiary boundaries."""
+    """Verifies that visual polish and simplification did not alter or obscure underlying evidentiary boundaries."""
 
     def test_caveats_and_null_semantics_preserved(self):
-        # 1. Market Watch
-        market_html = (FRONTEND_DIST / "market-watch/index.html").read_text(encoding="utf-8")
-        assert "100% NULL" in market_html or "100% missing" in market_html
-        assert "zero wheat or paddy" in market_html.lower()
+        # 1. Landing Page Caveats
+        index_html = (FRONTEND_DIST / "index.html").read_text(encoding="utf-8")
+        assert "Zero Wheat/Paddy" in index_html
+        assert "100% Null" in index_html
+        assert "Statistical Anomaly != Hoarding" in index_html or "Statistical Anomaly" in index_html
 
-        # 2. Procurement & Stocks
-        stocks_html = (FRONTEND_DIST / "procurement-stocks/index.html").read_text(encoding="utf-8")
-        assert "Central Pool" in stocks_html
-        assert "National Central Pool" in stocks_html or "State wheat procurement" in stocks_html
+        # 2. Main Dashboard Caveats & Insufficient Evidence
+        dash_html = (FRONTEND_DIST / "dashboard/index.html").read_text(encoding="utf-8")
+        assert "INSUFFICIENT DATA TO ASSESS RISK" in dash_html
+        assert "Zero Wheat/Paddy" in dash_html
+        assert "100% Null" in dash_html
+        assert "AGENTS.md Rule 6" in dash_html
 
-        # 3. Status View
-        status_html = (FRONTEND_DIST / "status/index.html").read_text(encoding="utf-8")
-        assert "NO-GO" in status_html

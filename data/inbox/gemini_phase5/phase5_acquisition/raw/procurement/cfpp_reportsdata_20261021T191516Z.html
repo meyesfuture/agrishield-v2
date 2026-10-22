@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CFPP - Central Food Grains Procurement Portal</title>
+  <meta content name="description">
+  <meta content name="keywords">
+
+  <!-- Favicons -->
+  <link href="https://cfpp.nic.in/assets/images/favicon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- plugins CSS Files -->
+   <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/plugins/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/theam0.css" rel="stylesheet">
+  <link href="../assets/css/table.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="row"
+      style="
+      background:linear-gradient(90deg, rgb(36 45 58) 0%, rgb(0 0 0) 50%, rgb(36 45 58) 100%); border-bottom: 1px solid #344154;">
+      <div class="col-6">
+        <nav class="header-nav">
+          <ul class="d-flex">
+            <li class="nav-item dropdown pe-3">
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                <span class="d-none d-md-block ps-2"><i class="bi bi-telephone me-1"></i> 011 - 43527348</span>
+              </a>
+            </li>
+          </ul>
+
+        </nav><!-- End Icons Navigation -->
+      </div>
+      <div class="col-6">
+        <nav class="header-nav float-end">
+          <ul class="d-flex">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-bell"></i>
+                <span class="badge bg-primary badge-number">4</span>
+              </a><!-- End Notification Icon -->
+
+            <li class="nav-item dropdown">
+              <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-chat-left-text"></i>
+                <span class="badge bg-success badge-number">3</span>
+              </a><!-- End Messages Icon -->
+            </li><!-- End Messages Nav -->
+
+            <li class="nav-item dropdown pe-3">
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                <span class="d-none d-md-block ps-2">Accessibility</span>
+              </a>
+            </li>
+
+            <li class="nav-item dropdown pe-3">
+
+              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                <!-- <img src="../assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
+                <span class="d-none d-md-block ps-2">Welcome: User</span>
+              </a><!-- End Profile Iamge Icon -->
+            </li><!-- End Profile Nav -->
+
+          </ul>
+        </nav><!-- End Icons Navigation -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+        <a href="https://dfpd.gov.in" class="logo" target="_blank">
+          <img src="../assets/images/logo.png" alt>
+        </a>
+      </div>
+
+      <div class="col-lg-6">
+        <h1 class="d_title text-white text-center ms-auto">Central Food Grains Procurement Portal</h1>
+      </div>
+      <div class="col-lg-3 text-end">
+        <a href="https://fci.gov.in" class="logo" target="_blank">
+          <img src="../assets/images/rlogo.png" alt>
+        </a>
+      </div>
+    </div>
+
+
+
+
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="/index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#season-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Season</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="season-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>RMS (2025-2026)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>KMS (2024-2025)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>KMS (2023-2024)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>RMS (2023-2024)</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#Report-nav" data-bs-toggle="collapse">
+          <i class="bi bi-menu-button-wide"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="Report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="estimate_proc_reports.html">
+              <i class="bi bi-circle "></i><span>Estimate vs Procurement</span>
+
+            </a>
+
+          </li>
+          <li>
+            <a href="register_proc_reports.html">
+              <i class="bi bi-circle"></i><span>Registration & Procurement</span>
+            </a>
+          </li>
+          <li>
+            <a href="agency_center_reports.html">
+              <i class="bi bi-circle"></i><span>Agencies & Procurement Centers</span>
+            </a>
+          </li>
+          <li>
+            <a href="milled_rice_reports.html">
+              <i class="bi bi-circle"></i><span>Custom Milled Rice (CMR)</span>
+            </a>
+          </li>
+          <li>
+            <a href="mills_truck_reports.html">
+              <i class="bi bi-circle"></i><span>Mills & Trucks</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="data_transmission_reports.html">
+              <i class="bi bi-circle"></i><span>Data Transmission</span>
+            </a>
+          </li>
+
+          <li class="sidebar-list-item sidebar-item-expanded">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#wpmsModule" aria-expanded="false">
+              <i class="bi bi-circle"></i>
+              <span>WPMS Module</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="wpmsModule" class="nav-content sub-nav-content collapse">
+               <li>
+                <a href="wpms_days_reports.html">
+                  <i class="bi bi-circle "></i><span>Day-wise Reports</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="wpms_Weekly_reports.html">
+                  <i class="bi bi-circle "></i><span>Week-wise Reports</span>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+
+          <li>
+            <a href="master_reports.html">
+              <i class="bi bi-circle"></i><span>Masters</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="mtps_reports.html">
+              <i class="bi bi-circle"></i><span>MTPs Reports</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="discrepancy_reports.html">
+              <i class="bi bi-circle"></i><span>Discrepancy Reports</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="prayas_reports.html">
+              <i class="bi bi-circle"></i><span>Prayas Report</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="integration_logs.html">
+              <i class="bi bi-circle"></i><span>Integration Logs</span>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="https://cfpp.nic.in/wpms" target="_blank">
+          <i class="bi bi-journal-text"></i><span>WPMS Portal</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#help-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Help</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="help-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Contact Us</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="bi bi-circle"></i><span>Feedback</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-journal-text"></i><span>Login</span>
+        </a>
+      </li>
+    </ul>
+
+  </aside>
+  <!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <section class="section dashboard">
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="d-flex justify-content-end">
+            <small class="lastupdatetime">Last Updated: <strong>28-05-2025 8:00 AM</strong></small>
+          </div>
+        </div>
+      </div>
+      <style>
+      .table_scroll {
+    max-height: 530px;
+}</style>
+
+      <div class="container mt-2">
+        <div class="card">
+          <h3 class="head">Procurement of Rabi Cereals - D1 (Wheat)</h3>
+          <div class="card-body pb-0" style="min-height: 420px;">
+            <div class="table-responsive table_scroll mt-3">
+
+             <table class="table table-bordered table-hover depot_repot">
+<thead >
+  <tr>
+    <th  width="5%" rowspan="3">S.No.</th>
+    <th  width="23%" rowspan="2">State/U.T.</th>
+    <th  colspan="3">Wheat (MTs)</th>
+    <th  width="18%" rowspan="2">Position as on</th>
+  </tr>
+  <tr>
+    <th width="18%">Estimate (LMTs)</th>
+    <th width="18%">Day's Procurement</th>
+    <th width="18%">Progressive Procurement</th>
+  </tr>
+  <tr><th >1</th><th >2</th><th >3</th><th >4</th><th >5</th></tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="text-center">1</td>
+    <td class="text-start">Bihar</td>
+    <td>2.00</td>
+    <td>5.14</td>
+    <td>17,941.87</td>
+    <td class="text-center">27/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">2</td>
+    <td class="text-start">Chandigarh <span>*</span></td>
+    <td>-</td>
+    <td>41.95</td>
+    <td>9,065.20</td>
+    <td class="text-center">15/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">3</td>
+    <td class="text-start">Gujarat</td>
+    <td>1.00</td>
+    <td>27.20</td>
+    <td>3,678.35</td>
+    <td class="text-center">27/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">4</td>
+    <td class="text-start">Haryana</td>
+    <td>75.00</td>
+    <td>7.00</td>
+    <td>72,05,034.76</td>
+    <td class="text-center">26/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">5</td>
+    <td class="text-start">Himachal Pradesh</td>
+    <td>0.10</td>
+    <td>1.05</td>
+    <td>2,990.95</td>
+    <td class="text-center">26/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">6</td>
+    <td class="text-start">Jammu And Kashmir</td>
+    <td>0.10</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td class="text-center">-</td>
+  </tr>
+  <tr>
+    <td class="text-center">7</td>
+    <td class="text-start">Madhya Pradesh</td>
+    <td>80.00</td>
+    <td>13,049.17</td>
+    <td>77,14,353.23</td>
+    <td class="text-center">26/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">8</td>
+    <td class="text-start">Punjab  <span>* </span></td>
+    <td>124.00</td>
+    <td>19,706.25</td>
+    <td>1,19,19,510.10</td>
+    <td class="text-center">15/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">9</td>
+    <td class="text-start">Rajasthan <span></span></td>
+    <td>20.00</td>
+    <td>19,437.17</td>
+    <td>19,21,204.38</td>
+    <td class="text-center">27/05/2025</td>
+  </tr>
+  <tr>
+    <td class="text-center">10</td>
+    <td class="text-start">Uttarakhand</td>
+    <td>0.50</td>
+    <td>342.50</td>
+    <td>342.50</td>
+    <td class="text-center">20/05/2025</td>
+  </tr>
+  </tbody>
+             </table>
+            </div>
+          </div>
+        </div><!-- End Budget Report -->
+
+        
+      </div>
+
+       <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <h2 class="carousel-title">State Procurement Portals</h2>
+            
+            <button class="carousel-control prev" id="prevBtn">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            
+            <div class="carousel-viewport" id="carouselViewport">
+                <div class="carousel-inner-custom" id="carouselInner">
+                
+
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/bihar_logo.png" alt="bihar" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/u_p_logo.png" alt="up" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/maharashtra_logo.png" alt="maharashtra" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/t_n_logo.png" alt="t_n" > 
+                    </div>
+
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/telangana_logo.png" alt="telangana" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/odisha.png" alt="Odisha" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/kerla_logo.png" alt="Kerala" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/karnataka.png" alt="karnataka" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/jharkhand_logo.png" alt="Jharkhand" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/j_k_logo.png" alt="j&K" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/h_p_logo.png" alt="hp" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/haryana_logo.png" alt="Haryana" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/gujarat_logo.png" alt="Gujarat" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/chandigarh.png" alt="chandigarh" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/chhattisgarh.png" alt="chhattisgarh" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/rajasthan.png" alt="rajasthan" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/assam.png" alt="assam" > 
+                    </div>
+                     <div class="logo-item">
+                        <img src="../assets/img_icons/w_b_logo.png" alt="w_b_logo" > 
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control next" id="nextBtn">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+            
+            <div class="carousel-indicators" id="indicators"></div>
+            <div class="play-pause-controls">
+
+  <button class="play-pause-btn" id="pauseBtn">Pause</button>
+  
+  <button class="play-pause-btn" id="playBtn" disabled>Play</button>
+</div>
+        </div>
+    </div>
+
+      <script>
+  class LogoCarousel {
+    constructor() {
+      this.carousel = document.getElementById('carouselInner');
+      this.viewport = document.getElementById('carouselViewport');
+      this.prevBtn = document.getElementById('prevBtn');
+      this.nextBtn = document.getElementById('nextBtn');
+      this.indicators = document.getElementById('indicators');
+      this.pauseBtn = document.getElementById('pauseBtn');
+      this.playBtn = document.getElementById('playBtn');
+
+      this.itemWidth = 120;
+      this.currentIndex = 5;
+      this.interval = null;
+
+      this.init();
+      this.startAutoScroll();
+    }
+
+    init() {
+      this.cloneItems();
+      this.updateCarousel();
+      this.attachEventListeners();
+    }
+
+    cloneItems() {
+      const items = this.carousel.children;
+      const firstItem = items[0].cloneNode(true);
+      const lastItem = items[items.length - 1].cloneNode(true);
+      this.carousel.appendChild(firstItem);
+      this.carousel.insertBefore(lastItem, items[0]);
+      this.totalItems = this.carousel.children.length;
+      this.maxIndex = this.totalItems - 1;
+    }
+
+    attachEventListeners() {
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+
+      this.carousel.addEventListener('transitionend', () => {
+        if (this.currentIndex === 0) {
+          this.carousel.style.transition = 'none';
+          this.currentIndex = this.maxIndex - 1;
+          this.updateCarousel();
+        } else if (this.currentIndex === this.maxIndex) {
+          this.carousel.style.transition = 'none';
+          this.currentIndex = 1;
+          this.updateCarousel();
+        }
+      });
+
+      this.pauseBtn.addEventListener('click', () => this.pauseAutoScroll());
+      this.playBtn.addEventListener('click', () => this.startAutoScroll());
+    }
+
+    nextSlide() {
+      if (this.currentIndex < this.maxIndex) {
+        this.currentIndex++;
+        this.carousel.style.transition = 'transform 0.4s ease-in-out';
+        this.updateCarousel();
+      }
+    }
+
+    prevSlide() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+        this.carousel.style.transition = 'transform 0.4s ease-in-out';
+        this.updateCarousel();
+      }
+    }
+
+    updateCarousel() {
+      const translateX = -this.currentIndex * this.itemWidth;
+      this.carousel.style.transform = `translateX(${translateX}px)`;
+      this.updateIndicators();
+    }
+
+    updateIndicators() {
+      
+    }
+
+    startAutoScroll() {
+      if (!this.interval) {
+        this.interval = setInterval(() => this.nextSlide(), 3000);
+        this.pauseBtn.disabled = false;
+        this.playBtn.disabled = true;
+      }
+    }
+
+    pauseAutoScroll() {
+      clearInterval(this.interval);
+      this.interval = null;
+      this.pauseBtn.disabled = true;
+      this.playBtn.disabled = false;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    new LogoCarousel();
+  });
+      </script>
+     <style>
+        .carousel-container {
+            background-color: #FAF4F4;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .carousel-wrapper {
+           
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-inner-custom {
+           margin-bottom: 35px;
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            gap: 20px;
+        }
+
+        .logo-item {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 95px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #c7710f;
+        }
+
+        .logo-item img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .carousel-control:hover {
+            background: linear-gradient(135deg, #f2f1f3 0%, #ea8066 100%);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .carousel-control:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: translateY(-50%) scale(0.9);
+        }
+
+        .carousel-control.prev {
+            left: 17px;
+        }
+
+        .carousel-control.next {
+            right: 15px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 8px;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #dee2e6;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background: #f1a45c;
+            transform: scale(1.2);
+        }
+
+        .carousel-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+      
+        @media (max-width: 768px) {
+            .logo-item {
+                width: 150px;
+                height: 100px;
+            }
+            
+            .carousel-control {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+            
+            .carousel-control.prev {
+                left: -20px;
+            }
+            
+            .carousel-control.next {
+                right: -20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-item {
+                width: 120px;
+                height: 80px;
+            }
+            
+            .carousel-wrapper {
+                padding: 20px;
+            }
+        }
+
+        .carousel-inner-custom {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  gap: 20px;
+       }
+
+
+        .play-pause-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: -15px;
+  margin-bottom: -10px;
+        }
+
+        .play-pause-btn {
+  background-color: #f31c1c61;
+  border: none;
+  color: rgb(29, 28, 28);
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  /* transition: background 0.3s ease; */
+        }
+
+         .play-pause-btn:hover {
+          background-color: #d98240;
+         }
+
+     </style>
+
+
+
+      <a href="#" class="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+        </svg>
+      </a>
+      <div>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer-main">
+        <div class="container">
+            <div class="row">
+               
+                 <div class="col-lg-3 col-md-6 footer-section">
+          <h5>Important Links</h5>
+          <ul>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Download</a></li>
+            <li><a href="#">WPMS Portal</a></li>
+          </ul>
+        </div>
+
+                
+                 <div class="col-lg-3 col-md-6 footer-section">
+          <h5>Help And Support</h5>
+          <ul>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Feedback</a></li>
+            <li><a href="#">Contact Us</a></li>
+
+          </ul>
+        </div>
+
+               
+                <div class="col-lg-3 col-md-6 footer-section">
+          <h5>Policies</h5>
+          <ul>
+            <li><a href="#">Disclaimer</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Copyright Policy</a></li>
+          </ul>
+        </div>
+
+                
+                <div class="col-lg-3 col-md-6 footer-section">
+          <h5>Address</h5>
+          <div class="contact-info">
+            <p>Food Corporation Of India</br> 16-20, Barakhamba Lane, </br> New Delhi-110001, India.</p>
+            <p><i class="bi bi-telephone me-1"></i> 011 - 43527485</p>
+            <p><i class="bi bi-envelope-at-fill"></i> &nbsp; gmit@fci.gov.in</p>
+
+          </div>
+        </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div style=" padding: 10px; border-radius: 5px; text-align: right;">
+            <img src="https://cfpp.nic.in/assets/images/nic.svg" width="150" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p style="color: #fffdfd; margin: 0px;">Copyright © 2025 | National Informatics Centre, All Rights Reserved
+          </p>
+        </div>
+        <div class="col-md-2" style="align-items: center;">
+          <p style="color: #fffdfd; margin: 0px;">Number of Visitor: <span class="visitor-count">289</span></p>
+        </div>
+        <div class="col-md-2" style="align-items: left;"><img src="https://cfpp.nic.in/assets/images/sac.png"
+            style="width: 45px;" /></div>
+
+      </div>
+    </div>
+  </div>
+
+    </footer>
+
+ <!-- plugins JS Files -->
+  <script src="../assets/plugins/apexcharts/apexcharts.min.js"></script>
+  <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/plugins/chart.js/chart.umd.js"></script>
+  <script src="../assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "source": "Punjab Mandi Board e-Mandikaran Daily Arrival API",
+  "url": "https://api.emandikaran-pb.in/CommonMasterDataAPI/getDailyArrival/0/0/0/01-10-2026/21-10-2026",
+  "status": "SUCCESS",
+  "timestamp_utc": "20261021T191417Z",
+  "raw_file": "raw\\emandikaran\\punjab_mandi_arrivals_01-10-2026_to_21-10-2026_20261021T191417Z.json",
+  "processed_file": "processed\\punjab_mandi_arrivals_oct2026.csv",
+  "sha256": "5191cf30d4cba662f3ecda9907b4b813c77f4e90e5a82f86f49acb85a492dee9",
+  "total_records": 3892,
+  "date_range": [
+    "2026-10-01",
+    "2026-10-21"
+  ],
+  "unique_dates_count": 21,
+  "unique_districts_count": 8,
+  "unique_branches_count": 16,
+  "unique_commodities_count": 62,
+  "districts_list": [
+    "AMRITSAR",
+    "BATHINDA",
+    "JALANDHAR",
+    "LUDHIANA",
+    "MALERKOTLA",
+    "PATIALA",
+    "RUPNAGAR",
+    "SHRI MUKTSAR SAHIB"
+  ],
+  "commodity_scope": "Agricultural produce traded in Punjab APMC yards (fruits, vegetables, cash crops). Foodgrains (Wheat/Paddy) are routed separately through Anaaj Kharid / central procurement portal."
+}

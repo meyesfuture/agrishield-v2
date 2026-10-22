@@ -1,0 +1,54 @@
+﻿observation_date,state,state_id,market_id,market_name,commodity_id,commodity_name,variety,modal_price,price_unit,arrival_quantity,arrival_unit,source_endpoint,retrieval_date_utc
+2026-10-19,Punjab,28,221,Abohar APMC,2,Paddy(Common),Abohar APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,221,Abohar APMC,2,Paddy(Common),Abohar APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-17,Punjab,28,221,Abohar APMC,2,Paddy(Common),Abohar APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,221,Abohar APMC,2,Paddy(Common),Abohar APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-15,Punjab,28,221,Abohar APMC,2,Paddy(Common),Abohar APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,221,Abohar APMC,2,Paddy(Common),Abohar APMC - Paddy,2466.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,221,Abohar APMC,2,Paddy(Common),Abohar APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-19,Punjab,28,1435,Adampur APMC,2,Paddy(Common),Adampur APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,1435,Adampur APMC,2,Paddy(Common),Adampur APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-17,Punjab,28,1435,Adampur APMC,2,Paddy(Common),Adampur APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,1435,Adampur APMC,2,Paddy(Common),Adampur APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-15,Punjab,28,1435,Adampur APMC,2,Paddy(Common),Adampur APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,1435,Adampur APMC,2,Paddy(Common),Adampur APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,1435,Adampur APMC,2,Paddy(Common),Adampur APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-19,Punjab,28,1460,Ahmedgarh APMC,2,Paddy(Common),Ahmedgarh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,1460,Ahmedgarh APMC,2,Paddy(Common),Ahmedgarh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-17,Punjab,28,1460,Ahmedgarh APMC,2,Paddy(Common),Ahmedgarh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,1460,Ahmedgarh APMC,2,Paddy(Common),Ahmedgarh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-15,Punjab,28,1460,Ahmedgarh APMC,2,Paddy(Common),Ahmedgarh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,1460,Ahmedgarh APMC,2,Paddy(Common),Ahmedgarh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,1460,Ahmedgarh APMC,2,Paddy(Common),Ahmedgarh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,3416,Ajnala (Sudhar) APMC,343,Paddy(Basmati),Ajnala (Sudhar) APMC - Basmati 1509,3850.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-19,Punjab,28,1589,Amargarh APMC,2,Paddy(Common),Amargarh APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,1589,Amargarh APMC,2,Paddy(Common),Amargarh APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,1589,Amargarh APMC,2,Paddy(Common),Amargarh APMC - Paddy,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,1589,Amargarh APMC,2,Paddy(Common),Amargarh APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-17,Punjab,28,1589,Amargarh APMC,2,Paddy(Common),Amargarh APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,1589,Amargarh APMC,2,Paddy(Common),Amargarh APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-19,Punjab,28,607,Amloh APMC,2,Paddy(Common),Amloh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,607,Amloh APMC,2,Paddy(Common),Amloh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-17,Punjab,28,607,Amloh APMC,2,Paddy(Common),Amloh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,607,Amloh APMC,2,Paddy(Common),Amloh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-15,Punjab,28,607,Amloh APMC,2,Paddy(Common),Amloh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,607,Amloh APMC,2,Paddy(Common),Amloh APMC - Common,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-19,Punjab,28,2494,Amloh(Gobind Garh Mandi) APMC,2,Paddy(Common),Amloh(Gobind Garh Mandi) APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,2494,Amloh(Gobind Garh Mandi) APMC,2,Paddy(Common),Amloh(Gobind Garh Mandi) APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,2494,Amloh(Gobind Garh Mandi) APMC,2,Paddy(Common),Amloh(Gobind Garh Mandi) APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-15,Punjab,28,2494,Amloh(Gobind Garh Mandi) APMC,2,Paddy(Common),Amloh(Gobind Garh Mandi) APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,2494,Amloh(Gobind Garh Mandi) APMC,2,Paddy(Common),Amloh(Gobind Garh Mandi) APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,1561,Attari APMC,2,Paddy(Common),Attari APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,1561,Attari APMC,2,Paddy(Common),Attari APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,1561,Attari APMC,343,Paddy(Basmati),Attari APMC - Basmati 1509,3700.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,1561,Attari APMC,343,Paddy(Basmati),Attari APMC - Basmati 1509,4000.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-15,Punjab,28,1561,Attari APMC,343,Paddy(Basmati),Attari APMC - Basmati 1509,4100.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,1561,Attari APMC,343,Paddy(Basmati),Attari APMC - Basmati 1509,3850.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-19,Punjab,28,1450,Badhni Kalan APMC,2,Paddy(Common),Badhni Kalan APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-18,Punjab,28,1450,Badhni Kalan APMC,2,Paddy(Common),Badhni Kalan APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-17,Punjab,28,1450,Badhni Kalan APMC,2,Paddy(Common),Badhni Kalan APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-16,Punjab,28,1450,Badhni Kalan APMC,2,Paddy(Common),Badhni Kalan APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-15,Punjab,28,1450,Badhni Kalan APMC,2,Paddy(Common),Badhni Kalan APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-14,Punjab,28,1450,Badhni Kalan APMC,2,Paddy(Common),Badhni Kalan APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,1450,Badhni Kalan APMC,2,Paddy(Common),Badhni Kalan APMC - Paddy fine,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z
+2026-10-13,Punjab,28,3423,Banga (Kataria) APMC,2,Paddy(Common),Banga (Kataria) APMC - Other,2461.0,Rs./Quintal,,,https://api.agmarknet.gov.in/v1/prices-and-arrivals/market-price/lastweek,20261021T191254Z

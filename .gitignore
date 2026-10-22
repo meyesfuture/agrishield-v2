@@ -1,0 +1,16 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Runtime/cache
+__pycache__/
+.pytest_cache/
+node_modules/
+dist/
+build/
+.astro/
+coverage/
+# Local temporary exports (keep source drop under version control only intentionally)
+logs/*.log

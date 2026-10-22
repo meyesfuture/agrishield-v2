@@ -1,0 +1,3981 @@
+[
+  {
+    "market_id": 221,
+    "market_name": "Abohar APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Abohar APMC - Paddy",
+          "2026-10-19": 2461.0,
+          "2026-10-18": 2461.0,
+          "2026-10-17": 2461.0,
+          "2026-10-16": 2461.0,
+          "2026-10-15": 2461.0,
+          "2026-10-14": 2466.0,
+          "2026-10-13": 2461.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 221,
+    "market_name": "Abohar APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 221,
+    "market_name": "Abohar APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1435,
+    "market_name": "Adampur APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Adampur APMC - Paddy",
+          "2026-10-19": 2461.0,
+          "2026-10-18": 2461.0,
+          "2026-10-17": 2461.0,
+          "2026-10-16": 2461.0,
+          "2026-10-15": 2461.0,
+          "2026-10-14": 2461.0,
+          "2026-10-13": 2461.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1435,
+    "market_name": "Adampur APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1435,
+    "market_name": "Adampur APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3550,
+    "market_name": "Ahemadpur APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3550,
+    "market_name": "Ahemadpur APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3550,
+    "market_name": "Ahemadpur APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1460,
+    "market_name": "Ahmedgarh APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Ahmedgarh APMC - Common",
+          "2026-10-19": 2461.0,
+          "2026-10-18": 2461.0,
+          "2026-10-17": 2461.0,
+          "2026-10-16": 2461.0,
+          "2026-10-15": 2461.0,
+          "2026-10-14": 2461.0,
+          "2026-10-13": 2461.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1460,
+    "market_name": "Ahmedgarh APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1460,
+    "market_name": "Ahmedgarh APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3430,
+    "market_name": "Ajitwal (Chogawan) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3430,
+    "market_name": "Ajitwal (Chogawan) APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3430,
+    "market_name": "Ajitwal (Chogawan) APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3436,
+    "market_name": "Ajitwal (Dala) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3436,
+    "market_name": "Ajitwal (Dala) APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3436,
+    "market_name": "Ajitwal (Dala) APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1451,
+    "market_name": "Ajitwal APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1451,
+    "market_name": "Ajitwal APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1451,
+    "market_name": "Ajitwal APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3416,
+    "market_name": "Ajnala (Sudhar) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3416,
+    "market_name": "Ajnala (Sudhar) APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Ajnala (Sudhar) APMC - Basmati 1509",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": 3850.0,
+          "2026-10-13": "NR",
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3416,
+    "market_name": "Ajnala (Sudhar) APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 597,
+    "market_name": "Ajnala APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 597,
+    "market_name": "Ajnala APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 597,
+    "market_name": "Ajnala APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1589,
+    "market_name": "Amargarh APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Amargarh APMC - Paddy",
+          "2026-10-19": 2461.0,
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": 2461.0,
+          "2026-10-15": "NR",
+          "2026-10-14": 2461.0,
+          "2026-10-13": "NR",
+          "unitOfPrice": "Rs./Quintal"
+        },
+        {
+          "variety": "Amargarh APMC - Paddy fine",
+          "2026-10-19": "NR",
+          "2026-10-18": 2461.0,
+          "2026-10-17": 2461.0,
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": 2461.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1589,
+    "market_name": "Amargarh APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1589,
+    "market_name": "Amargarh APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 607,
+    "market_name": "Amloh APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Amloh APMC - Common",
+          "2026-10-19": 2461.0,
+          "2026-10-18": 2461.0,
+          "2026-10-17": 2461.0,
+          "2026-10-16": 2461.0,
+          "2026-10-15": 2461.0,
+          "2026-10-14": 2461.0,
+          "2026-10-13": "NR",
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 607,
+    "market_name": "Amloh APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 607,
+    "market_name": "Amloh APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2494,
+    "market_name": "Amloh(Gobind Garh Mandi) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Amloh(Gobind Garh Mandi) APMC - Other",
+          "2026-10-19": 2461.0,
+          "2026-10-18": 2461.0,
+          "2026-10-17": "NR",
+          "2026-10-16": 2461.0,
+          "2026-10-15": 2461.0,
+          "2026-10-14": 2461.0,
+          "2026-10-13": "NR",
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2494,
+    "market_name": "Amloh(Gobind Garh Mandi) APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2494,
+    "market_name": "Amloh(Gobind Garh Mandi) APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 215,
+    "market_name": "Amritsar APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 215,
+    "market_name": "Amritsar APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 215,
+    "market_name": "Amritsar APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2498,
+    "market_name": "Amritsar(Amritsar Mewa Mandi) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2498,
+    "market_name": "Amritsar(Amritsar Mewa Mandi) APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2498,
+    "market_name": "Amritsar(Amritsar Mewa Mandi) APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2700,
+    "market_name": "Amritsar(Chehreta) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2700,
+    "market_name": "Amritsar(Chehreta) APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 2700,
+    "market_name": "Amritsar(Chehreta) APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 620,
+    "market_name": "Anandpur Sahib APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 620,
+    "market_name": "Anandpur Sahib APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 620,
+    "market_name": "Anandpur Sahib APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1561,
+    "market_name": "Attari APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Attari APMC - Other",
+          "2026-10-19": "NR",
+          "2026-10-18": 2461.0,
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": 2461.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1561,
+    "market_name": "Attari APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Attari APMC - Basmati 1509",
+          "2026-10-19": "NR",
+          "2026-10-18": 3700.0,
+          "2026-10-17": "NR",
+          "2026-10-16": 4000.0,
+          "2026-10-15": 4100.0,
+          "2026-10-14": "NR",
+          "2026-10-13": 3850.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1561,
+    "market_name": "Attari APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1450,
+    "market_name": "Badhni Kalan APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Badhni Kalan APMC - Paddy fine",
+          "2026-10-19": 2461.0,
+          "2026-10-18": 2461.0,
+          "2026-10-17": 2461.0,
+          "2026-10-16": 2461.0,
+          "2026-10-15": 2461.0,
+          "2026-10-14": 2461.0,
+          "2026-10-13": 2461.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1450,
+    "market_name": "Badhni Kalan APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1450,
+    "market_name": "Badhni Kalan APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3432,
+    "market_name": "Badhni Kallan (Bilaspur) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3432,
+    "market_name": "Badhni Kallan (Bilaspur) APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3432,
+    "market_name": "Badhni Kallan (Bilaspur) APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 228,
+    "market_name": "Baghapurana APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 228,
+    "market_name": "Baghapurana APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 228,
+    "market_name": "Baghapurana APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1453,
+    "market_name": "Balachaur APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1453,
+    "market_name": "Balachaur APMC",
+    "commodity_id": 343,
+    "commodity_name": "Paddy(Basmati)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Basmati), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 1453,
+    "market_name": "Balachaur APMC",
+    "commodity_id": 1,
+    "commodity_name": "Wheat",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Wheat, State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Unknown",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": "NR",
+          "unitOfPrice": "NR"
+        }
+      ]
+    }
+  },
+  {
+    "market_id": 3423,
+    "market_name": "Banga (Kataria) APMC",
+    "commodity_id": 2,
+    "commodity_name": "Paddy(Common)",
+    "response": {
+      "success": true,
+      "message": "Data fetched successfully.",
+      "title": "Market-wise Prices during last week Commodity: Paddy(Common), State/UT: Punjab",
+      "columns": [
+        {
+          "key": "variety",
+          "title": "Market - Variety"
+        },
+        {
+          "key": "2026-10-19",
+          "title": "19-10-2026"
+        },
+        {
+          "key": "2026-10-18",
+          "title": "18-10-2026"
+        },
+        {
+          "key": "2026-10-17",
+          "title": "17-10-2026"
+        },
+        {
+          "key": "2026-10-16",
+          "title": "16-10-2026"
+        },
+        {
+          "key": "2026-10-15",
+          "title": "15-10-2026"
+        },
+        {
+          "key": "2026-10-14",
+          "title": "14-10-2026"
+        },
+        {
+          "key": "2026-10-13",
+          "title": "13-10-2026"
+        },
+        {
+          "key": "unitOfPrice",
+          "title": "Unit of Price"
+        }
+      ],
+      "data": [
+        {
+          "variety": "Banga (Kataria) APMC - Other",
+          "2026-10-19": "NR",
+          "2026-10-18": "NR",
+          "2026-10-17": "NR",
+          "2026-10-16": "NR",
+          "2026-10-15": "NR",
+          "2026-10-14": "NR",
+          "2026-10-13": 2461.0,
+          "unitOfPrice": "Rs./Quintal"
+        }
+      ]
+    }
+  }
+]

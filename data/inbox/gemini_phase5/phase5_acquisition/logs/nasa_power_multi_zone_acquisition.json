@@ -1,0 +1,58 @@
+{
+  "source": "NASA POWER API Temporal Daily Point",
+  "timestamp_utc": "20261021T191429Z",
+  "date_range": [
+    "2024-01-01",
+    "2025-12-31"
+  ],
+  "stations_count": 5,
+  "total_observations": 3655,
+  "processed_file": "processed\\punjab_multi_zone_daily_weather_2024_2025.csv",
+  "stations": [
+    {
+      "station_name": "Ludhiana",
+      "latitude": 30.9,
+      "longitude": 75.85,
+      "status": "SUCCESS",
+      "days_count": 731,
+      "raw_file": "raw\\weather\\nasa_power_ludhiana_20240101_20251231_20261021T191429Z.json",
+      "sha256": "851ff3475c71a65953b5121d86dee7be40b96aafd60a4a8d197aa9b198ad81f3"
+    },
+    {
+      "station_name": "Bathinda",
+      "latitude": 30.21,
+      "longitude": 74.95,
+      "status": "SUCCESS",
+      "days_count": 731,
+      "raw_file": "raw\\weather\\nasa_power_bathinda_20240101_20251231_20261021T191429Z.json",
+      "sha256": "4f523733ce8e3e1c3af1b964eb70fd160328cc013985edb68b8cb15d9c668a33"
+    },
+    {
+      "station_name": "Amritsar",
+      "latitude": 31.63,
+      "longitude": 74.87,
+      "status": "SUCCESS",
+      "days_count": 731,
+      "raw_file": "raw\\weather\\nasa_power_amritsar_20240101_20251231_20261021T191429Z.json",
+      "sha256": "c851d6d77f612f5058bfdb386a4f3147759d32d00322a6cfa30c7f60d42cc8c7"
+    },
+    {
+      "station_name": "Patiala",
+      "latitude": 30.34,
+      "longitude": 76.38,
+      "status": "SUCCESS",
+      "days_count": 731,
+      "raw_file": "raw\\weather\\nasa_power_patiala_20240101_20251231_20261021T191429Z.json",
+      "sha256": "16d8fe22f776cf5cabc237403a7c29733a0a33eb195a962c9a310ad7512a7cd5"
+    },
+    {
+      "station_name": "Hoshiarpur",
+      "latitude": 31.53,
+      "longitude": 75.91,
+      "status": "SUCCESS",
+      "days_count": 731,
+      "raw_file": "raw\\weather\\nasa_power_hoshiarpur_20240101_20251231_20261021T191429Z.json",
+      "sha256": "de658ccfd7ee86e3bfe2d01fb76fd07699ab752a7b7ee27231a16eb9eb4a7d7b"
+    }
+  ]
+}

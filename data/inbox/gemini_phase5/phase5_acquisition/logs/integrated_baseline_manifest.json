@@ -1,0 +1,62 @@
+[
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/processed/district_crop_production.csv",
+    "destination_file": "processed\\district_crop_production.csv",
+    "bytes": 100088,
+    "sha256": "bd545ff36267379976423d5a9f551a7d942aa87785cc304ef50e5b5adc5cc7bd"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/processed/district_crop_yield.csv",
+    "destination_file": "processed\\district_crop_yield.csv",
+    "bytes": 834355,
+    "sha256": "09f170bb37617ca642e032d94ce0e96473f719bb36d2d65fc3bbe8e661ea8f36"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/processed/geospatial/district_crosswalk.csv",
+    "destination_file": "processed\\geospatial\\district_crosswalk.csv",
+    "bytes": 3824,
+    "sha256": "a9f9ffc21602d69c265a3e9149e0696cee8e6bba27bf38e1270ba6e3c10b3103"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/processed/geospatial/punjab_district_boundaries.geojson",
+    "destination_file": "processed\\geospatial\\punjab_district_boundaries.geojson",
+    "bytes": 3974131,
+    "sha256": "97909ce2ff857f1a88268db33784c22c27782a25dac082de6a80db17d5c5bd5d"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/processed/stocks/dfpd_stock_position_2020_2026_extracted.txt",
+    "destination_file": "processed\\stocks\\dfpd_stock_position_2020_2026_extracted.txt",
+    "bytes": 2643,
+    "sha256": "6c8037dd5f29c5bbf3e160fd8ff4a006cf88e7637bac39568d359722a69e957e"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/processed/stock_observations.csv",
+    "destination_file": "processed\\stocks\\stock_observations_national_dfpd.csv",
+    "bytes": 42031,
+    "sha256": "21c173141c3ae576f455abbe22e00843a6d21d8163b2d88f4ace9c2b91a2d17f"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/processed/satellite/S2B_43REP_20241005_B04_512px_window.tif",
+    "destination_file": "processed\\satellite\\S2B_43REP_20241005_B04_512px_window.tif",
+    "bytes": 376834,
+    "sha256": "24351bafc218809bc11ddec921504bb46f47fb7598593529454c6eb7a38832aa"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/raw/ogd_punjab_wheat_yield.csv",
+    "destination_file": "raw\\ogd\\ogd_punjab_wheat_yield.csv",
+    "bytes": 6171,
+    "sha256": "958fe37e224aae18ee2f37b34879f228a7ec46a402a06bdb966968a8765bcb84"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/raw/ogd_punjab_rice_yield.csv",
+    "destination_file": "raw\\ogd\\ogd_punjab_rice_yield.csv",
+    "bytes": 6164,
+    "sha256": "b42efba747a17cfe6895f9c129c93453f44c32218d54b2c3353d3fbc9caa6504"
+  },
+  {
+    "source_archive_path": "Punjab_Grain_Hoarding_Intelligence_Audit/raw/des_apy_phase3_browser_table_extracts.json",
+    "destination_file": "raw\\ogd\\des_apy_phase3_browser_table_extracts.json",
+    "bytes": 12850,
+    "sha256": "50ef03c0f7d72783d2803baba3b43255af292bc81a4dadae916897a0817edeaf"
+  }
+]

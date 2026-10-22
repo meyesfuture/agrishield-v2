@@ -1,0 +1,15 @@
+{
+  "source": "AGMARKNET 2.0 Filters API",
+  "url": "https://api.agmarknet.gov.in/v1/daily-price-arrival/filters",
+  "method": "GET",
+  "retrieved_utc": "20261021T191228Z",
+  "tls_verification": "enabled",
+  "status": "SUCCESS",
+  "http_status": 200,
+  "raw_file": "raw\\agmarknet\\agmarknet_filters_20261021T191228Z.json",
+  "sha256": "b9fa7fdaea201da5037708e3acebfec163e06f1dd634dd814c964b0088582683",
+  "total_markets_india": 4176,
+  "punjab_markets_count": 245,
+  "punjab_districts_count": 22,
+  "target_commodities_count": 10
+}

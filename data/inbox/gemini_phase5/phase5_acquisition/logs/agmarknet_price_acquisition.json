@@ -1,0 +1,16 @@
+{
+  "source": "AGMARKNET 2.0 Market Price API",
+  "timestamp_utc": "20261021T191254Z",
+  "markets_queried": 50,
+  "commodities_queried": [
+    "Paddy(Common)",
+    "Paddy(Basmati)",
+    "Wheat"
+  ],
+  "total_requests": 150,
+  "successful_requests": 64,
+  "active_price_observations": 53,
+  "raw_file": "raw\\agmarknet\\agmarknet_market_prices_raw_20261021T191254Z.json",
+  "processed_file": "processed\\agmarknet_punjab_daily_prices.csv",
+  "sha256": "9a0a9dad75903a07b3d8d13b5daf5c9f09a01cad566fffb3759d600f7577869b"
+}

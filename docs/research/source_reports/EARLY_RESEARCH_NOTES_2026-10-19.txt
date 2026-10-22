@@ -1,0 +1,195 @@
+# Punjab wheat and paddy supply anomaly prototype: public data research
+
+**Research date: 19 October 2026.** Intended use is an expo demonstration and human-review signal only. A statistical anomaly is not proof of hoarding. Inventory machine-readable files include 32 candidate sources. Statuses are defined in the brief. “Verified” is used only where actual page data was inspected; documentation claims are not upgraded to successful API tests.
+
+## Findings and source evidence
+
+### Production, markets, procurement
+
+Punjab OGD has a district/season/crop/year production resource described in hectares and tonnes, plus a food-grain area/production/yield catalog; its resource pages give crop examples extending 1968–2022. Treat exact crop-year coverage and units as resource-specific and record the download date. DES provides an official interactive district APY query for cross-checking. [Punjab district-season catalog](https://punjab.data.gov.in/catalog/district-wise-season-wise-crop-production-statistics-0), [Punjab food-grains catalog](https://punjab.data.gov.in/catalog/area-production-and-yield-food-grains-cultivation-punjab), [DES APY query](https://data.desagri.gov.in/website/apy-query-report-web).
+
+AGMARKNET’s official SOP documents daily arrival and price entry, not an independently measured transaction ledger; its instruction that arrivals cannot be zero is a notable reporting constraint. The current backend is documented by the `makrand999` client, which lists filter, market, and daily report routes, but its README also states plain requests can receive 403 and its reference has a 404 probe example. The older `Prajwal-Shrimali` project is a local Flask wrapper around web scraping with a commodity/state/market route; it does not establish a historical arrivals API. CEDA says its market portal holds daily Ministry-sourced price and quantity-arrival data since 2001, but its API response was not tested. [AGMARKNET SOP](https://www.agmarknet.gov.in/DailyDataEntry/Docs/SOP_DEO.pdf), [current client README](https://github.com/makrand999/agmarknet-api), [reference](https://github.com/makrand999/agmarknet-api/blob/main/AGMARKNET_REFERENCE.md), [older scraper](https://github.com/Prajwal-Shrimali/agmarknetAPI), [CEDA portal](https://ceda.ashoka.edu.in/data-portal/), [CEDA API docs](https://api.ceda.ashoka.edu.in/documentation/).
+
+CFPP publicly displayed Punjab wheat procurement with an estimate (124 LMT), day procurement (19,706.25 MT), progressive procurement (11,919,510.10 MT), and position date 15 May 2025 on the page captured. This is a state aggregate, not district data. CFPP menus list other weekly/district/centre and custom-milled-rice reports; those report titles are leads until actual rows, dates, columns, and downloads are inspected. Anaaj Kharid is an official operational portal but login/captcha and authorized-user workflows mean no public bulk dataset was verified. [CFPP report](https://cfpp.nic.in/cfppui/reports/reportsdata.html), [CFPP weekly reports](https://cfpp.nic.in/cfppui/reports/wpms_Weekly_reports.html), [CFPP CMR reports](https://cfpp.nic.in/cfppui/reports/milled_rice_reports.html), [Anaaj Kharid](https://anaajkharid.in/Home/).
+
+### Weather, imagery, location and context
+
+NASA POWER’s official daily API documentation specifies point/regional routes, JSON/CSV, daily UTC/LST time standards and 1981-to-near-real-time coverage. POWER is the simplest weather acquisition for a student. ERA5-Land offers hourly 0.1-degree historical reanalysis from 1950, with a CC-BY catalog; its ARCO guide warns that that implementation is experimental. CHIRPS offers 0.05-degree precipitation history from 1981; rainfall is a stress covariate, not a crop-loss observation. IMD’s cited 0.25-degree research rainfall dataset covers 1901–2010, but a current public download was not verified. [NASA POWER daily API](https://power.larc.nasa.gov/docs/services/api/temporal/daily/), [ERA5-Land catalog](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land-timeseries), [ERA5-Land guide](https://confluence.ecmwf.int/pages/viewpage.action?pageId=627854121), [CHIRPS ERDDAP](https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.html), [IMD rainfall product paper](https://mausamjournal.imd.gov.in/index.php/MAUSAM/article/view/851).
+
+Sentinel-2 imagery is free/open; Earth Engine catalog records 10/20m bands and 5-day nominal revisit, with catalog dates starting June 2015. Copernicus Data Space offers browser and API access subject to accounts/quotas. Neither is a ready-to-use wheat/paddy district statistics feed: cloud masking, crop calendar composites, labels and independent validation are needed. Bhuvan has a viewer and thematic layers, but this review did not verify a Punjab downloadable crop-statistics layer. [Earth Engine Sentinel-2 catalog](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_HARMONIZED), [Copernicus Data Space docs](https://documentation.dataspace.copernicus.eu/), [Bhuvan](https://bhuvan-app1.nrsc.gov.in/bhuvan2d/bhuvan/bhuvan2d.php).
+
+DFPD annual reports and foodgrain bulletins provide central-pool stock, allocation/offtake and some storage/movement context. The 2024–25 annual report describes wheat/rice Central Pool stock, quarterly norms and a state stock annex; these are not a census of private or local stocks. Foodgrain bulletins include rail/road movement tables, but the public tables do not establish shipment-specific market routes. LGD monthly-updated district codes provide a join dimension; Punjab mandi coordinates/canonical keys need a separate verified market directory. [DFPD annual report 2024–25](https://dfpd.gov.in/WriteReadData/AnnualRecordUploadDocuments/b9c640b8-5889-4ffd-a62d-5b56c5d4f029_Food%20AR%202024-25%20English%20small%20size.pdf), [foodgrain bulletin archive](https://dfpd.gov.in/Home/FoodGrainArchiveList?language=1), [LGD districts](https://data.gov.in/resource/local-government-directory-lgd-districts).
+
+Shipment-level e-way bill, toll, weighbridge and private warehouse records are not public prototype inputs. Public traffic/freight aggregates may contextualize volumes but cannot identify grain cargo, final destination, or actors. Do not infer an individual shipment from toll data. Census population and agricultural census holdings are background demand/farm-structure proxies, not local grain consumption or current crop volume.
+
+## Live test record
+
+Attempted HTTP GETs from the research runtime for the AGMARKNET API, CEDA API documentation host, NASA POWER API, and data.gov.in API. All four failed with **“The remote name could not be resolved”** at DNS lookup. This is a runtime network limitation, not a server response; none is marked as successfully API-tested. The web research reader could load official documentation pages, but that does not validate API behavior. Re-run the scripts below from a normal network and retain status/body/date as provenance. Example URLs are based on official API documentation, not claimed successful responses.
+
+## Priority shortlist
+
+1. **Punjab OGD crop production series + DES APY query.** District/crop/season production and historical context are core expected-supply inputs. Obtain resource files and cross-check definitions/units before comparing vintages.
+2. **AGMARKNET 2.0 with CEDA as an alternate.** These are the strongest candidate market-arrival/price sources. First deliverable should be a 2–3 market, 30-day response validation. Require real dates, quantity units, commodity identity, and stable market key; do not start the model until this passes.
+3. **CFPP public procurement reports.** Easy-to-view state aggregate and report families can contextualize official procurement. Use only verified level and dates; manually export or ask FCI for historical report extracts if needed.
+4. **NASA POWER daily weather.** Free, reproducible low-friction covariates; daily precipitation/temperature aggregates can inform weather-adjusted expectations.
+5. **Sentinel-2 via Earth Engine or Copernicus.** Independent area/condition evidence, but advanced and not required for the first credible baseline.
+
+DFPD stocks/bulletins, LGD district codes and Census demand proxies round out contextual inputs. For the first demo, prioritize 1–4 and one district/season; don’t wait for remote sensing.
+
+## Availability and feasibility matrix
+
+| Requirement | Availability | Evidence and boundary |
+|---|---|---|
+| Historical production | Available | Punjab OGD district/crop/season resource; verify downloaded coverage and definitions. |
+| Historical mandi arrivals | Partially available | AGMARKNET/CEDA document arrivals and history leads; direct current API responses remain untested in this runtime. |
+| Quantity actually traded | Unavailable | Arrivals are not a separate verified traded quantity. e-NAM participation/trade measures require distinct validation. |
+| Crop area and condition | Partially available | Annual district crop area from OGD; Sentinel imagery is raw and requires classification. |
+| Weather-related loss | Partially available | Weather covariates available; official district crop damage/loss records not verified as bulk series. Weather is not loss ground truth. |
+| Government procurement | Partially available | CFPP state total verified; finer reports listed, but raw rows/history must be tested. Punjab portal is role restricted. |
+| Public stocks/storage | Partially available | DFPD central-pool/state snapshots, monthly bulletins and WDRA aggregates; not local/private inventory. |
+| Transport/commodity movement | Unavailable (direct) / partially (aggregate context) | No public shipment-linked Punjab grain flow; DFPD aggregate rail/road reports may contextualize only. |
+| Local consumption/processing | Partially available | Population and mill/CMR report leads; no verified district grain consumption or total mill throughput. |
+| District/mandi geographic mapping | Partially available | LGD district code data; mandi name/code list exists as a lead but coordinates and crosswalk unverified. |
+
+## Zero-budget acquisition plan
+
+### First files
+
+Create `data/raw/{production,mandi,weather,procurement,geo}/`, `data/processed/`, `data/synthetic/`, `logs/`, `scripts/`. Save source, retrieval UTC/local time, request parameters, response headers, checksum, and license/source URL alongside each raw file. Preserve untouched originals. Recommended formats: CSV/JSON for tabular API results, GeoPackage for boundaries/mandi points, GeoTIFF/Cloud Optimized GeoTIFF for imagery, Parquet for normalized analytical tables.
+
+Download first: Punjab OGD crop production resource(s) and metadata; one CFPP procurement report per commodity/season; LGD district CSV. Then test AGMARKNET/CEDA for wheat and paddy on a few known markets. Obtain NASA POWER daily points only after selecting representative district centroids (one request per location, not repeated polling). For raster work, use Sentinel-2 only after the basic tabular pipeline works.
+
+### Reproducible smoke tests
+
+The following are **test recipes**, not assertions that requests succeeded. The POWER URL follows the official daily API example structure. Use the official variable dictionary to select supported variables; avoid repeated identical requests.
+
+```powershell
+# NASA POWER: small five-day JSON probe near Ludhiana. Save full response and status.
+$u = 'https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,PRECTOTCORR&community=AG&longitude=75.85&latitude=30.90&start=20240101&end=20240105&format=JSON&time-standard=UTC'
+Invoke-WebRequest -Uri $u -OutFile .\data\raw\weather\power_ludhiana_20240101_05.json
+
+# Inspect makrand999 client README/smoke test and install only into an isolated venv.
+git clone https://github.com/makrand999/agmarknet-api
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e .\agmarknet-api
+python .\agmarknet-api\scripts\smoke_test.py
+
+# OGD: open the catalog, select a wheat/rice resource, inspect its API link/schema,
+# register an API key if the resource requires it, then save the raw response.
+# Do not substitute a guessed resource ID or treat a placeholder key as valid.
+```
+
+AGMARKNET route body, commodity IDs and date semantics must come from the current repository reference/site network request; do not guess them. Try the included live smoke test before building ingestion. If official AGMARKNET returns 403/404 or network failures, try CEDA Swagger with its registration instructions, then manual dashboard export. No retry loops; cache responses, use exponential backoff, and respect service terms. For OGD, key registration/API parameters may be required and the exact dataset resource ID must be taken from the resource page. The above live web/API attempts failed at DNS in this environment.
+
+### Cleaning and fallback
+
+Maintain raw and canonical values. Normalize crop aliases to `wheat`, `paddy_unhusked`, and `rice_milled` only where source semantics support it; never equate paddy arrival with milled rice. Preserve arrival units as source-provided, then convert quintals/tonnes only with documented source units (1 quintal = 0.1 metric tonne; 1 kg = 0.001 tonne). Normalize dates to ISO `date`, retain source timezone, crop year and season separately. Resolve district/market names via versioned lookup tables; do not fuzzy-join without review. Treat blank, suppressed, zero and “not reported” as different states. Keep revisions and duplicate records, deduplicate only by source-native key after assessing updates. Fallbacks: production OGD ↔ DES/Statistical Abstract; market AGMARKNET ↔ CEDA ↔ manual official export; weather NASA POWER ↔ CHIRPS/ERA5-Land; procurement CFPP ↔ DFPD reports; imagery Sentinel ↔ Landsat.
+
+## PostgreSQL model and joins
+
+Use dimensions `dim_crop(crop_id, canonical_name, source_name, commodity_code, form, unit_basis)`, `dim_district(lgd_code, name, valid_from, valid_to, geometry_id)`, `dim_market(source_market_id, canonical_market_id, district_id, name, lat, lon, valid_from, valid_to)`, and `dim_season(crop_year, season, start_date, end_date, harvest_window_start, harvest_window_end)`. Facts: `fact_production(district_id,crop_id,season_id,area_ha,production_t, yield_kg_ha,estimate_stage,source_id,source_row_id,observed_at)`, `fact_mandi_daily(market_id,crop_id,date,arrival_qty,arrival_unit,min_price,max_price,modal_price,source_id,source_row_id,reported_at)`, `fact_procurement(location_id,commodity_form,date_or_period,qty_t,agency,season_id,source_id,grain_type)`, `fact_weather(location_or_grid,date,variable,value,unit,source_id)`, `fact_satellite_summary(geometry_id,crop_year,window,ndvi_median,classified_area_ha,model_version,confidence,source_id)`, and `fact_estimate(district,crop,season,expected_qty_t,interval_low_t,interval_high_t,model_version)`. `source_registry` records URL, access date, license, retrieval parameters, checksum, evidence status and notes.
+
+Join annual production to district + crop + season/crop-year; join arrivals by canonical market + crop + date, then map market to district with a versioned crosswalk. Join procurement only at its stated geographic/time resolution. Aggregate each fact separately before joining; never join daily arrivals directly to several procurement rows or multiply quantities through many-to-many locations. Keep `arrival_qty`, `procurement_qty`, `traded_qty` separate. Do not add procurement to mandi arrivals unless source documentation proves disjoint channels; procurement may be included in arrivals already. Distinguish paddy (unmilled) from rice (milled) and preserve conversion/recovery assumptions separately. Missing values remain NULL with a reason code; zero means a recorded zero only when source allows it. Keep observed facts, model-derived estimates and synthetic demo rows in separate schemas or tables with `record_class` and a prominent UI badge.
+
+## Anomaly feasibility and interpretation
+
+- **Production anomaly:** feasible as an annual estimate deviation after consistent area/yield vintages and uncertainty. District estimates and current-season official estimates may be delayed or revised.
+- **Mandi-arrival anomaly:** feasible at mandi/day if actual arrivals are verified. Use a seasonal calendar and same-mandi/same-week-of-season historical baseline, robust median/MAD or negative-binomial count/volume model, holidays, harvest timing, reporting coverage, weather and lag. Show missing-report flags separately.
+- **Price anomaly:** feasible with daily modal price if the same grade/variety/market is aligned. A sharp move may reflect demand/quality/transport and is not evidence of withholding.
+- **Procurement discrepancy:** partially feasible where CFPP has comparable procurement totals, dates and geography. Account for private sale, procurement eligibility, quality rejection, procurement center operation and delayed reporting.
+- **Transport-flow anomaly:** not feasible as shipment attribution from public data. Only macro movement context is available.
+- **Possible withholding/hoarding:** not established by public data in this prototype. Low arrivals can result from harvest timing, local consumption, direct mill/contract sales, storage, transport disruption, weather loss, mandi reporting omissions, alternate markets or procurement timing. Require independent production/area estimates, verified arrivals from all relevant markets, price/market-spread evidence, procurement/stock/milling reconciliations and authorized shipment/storage records before human escalation. A dashboard label should say “unusual supply signal—review required,” never accuse a named trader or farmer.
+
+For every alert, expose expected range, observed source and coverage fraction, data freshness, season/week, weather covariates, procurement context, competing explanations, uncertainty and exact provenance. Back-test only on events whose labels are independently documented; news reports alone are not ground truth.
+
+## Expo recommendation
+
+Build a small Punjab wheat Rabi and paddy Kharif story with one or two districts and a few markets. Show (1) historic district production/area as **official observations**, (2) daily arrivals/prices only after the API smoke test passes as **market-reported observations**, (3) a seasonal expected band and weather-adjusted estimate as **model estimates**, and (4) any intentionally fabricated missing shipment or hidden-stock examples in a separate **synthetic scenario** view with a persistent badge. A credible demo can show historical production baseline + real weather + real verified mandi series, and an explainable anomaly on an actual high/low reporting episode without asserting cause. If daily market data cannot be acquired, simulate only the time series for interface testing; never chart it as Punjab actual data. Do not simulate the procurement discrepancy as a real finding.
+
+## Primary sources and limitations
+
+The machine inventory contains direct URLs and per-source statuses. Live API requests were blocked here by DNS resolution, and no paid/restricted credentials were used. Dates and schemas left unknown are explicitly left unknown rather than inferred. Research was conducted via source pages and public portal documentation; endpoints should be rerun and archived before the demo is described as operational.
+
+## API catalogue and test status
+
+| Service | Request shape / parameters | Access and schema evidence | Test status |
+|---|---|---|---|
+| NASA POWER daily point | `GET https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M&community=AG&longitude=75.85&latitude=30.90&start=20240101&end=20240105&format=JSON&time-standard=UTC`. Docs support comma-separated parameters, coordinates, date range and CSV/JSON. | Official docs confirm endpoint and returned daily series; parameter dictionary is authoritative for allowed variable/community combinations. Max 20 parameters per point, and repeated/oversampled requests may be blocked. [Docs](https://power.larc.nasa.gov/docs/services/api/temporal/daily/), [request tutorial and service limits](https://power.larc.nasa.gov/docs/tutorials/service-data-request/api/). | Documentation verified. GET attempted, DNS resolution failed here; no payload inspected. Use `python acquire_weather.py --start 20240101 --end 20240105` after network access. |
+| NASA POWER daily regional | `GET /api/temporal/daily/regional?latitude-min=...&latitude-max=...&longitude-min=...&longitude-max=...&parameters=T2M&community=SB&start=YYYYMMDD&end=YYYYMMDD&format=CSV`. | Official docs specify regional examples; regional requests limited to one parameter. | Documentation verified; not live-tested. |
+| AGMARKNET 2.0 | Base `https://api.agmarknet.gov.in/v1`. The cited client lists `GET /daily-price-arrival/filters`, `GET /location/state?page=1`, `GET /list-market-category`, `GET /list-comm/{commodity_id}`, `POST /list-state`, `POST /prices-and-arrivals/market-report/daily`, `GET /prices-and-arrivals/market-report/specific`, and weighted-report POST. | Endpoint names and client wrapper exist in repository documentation/code; POST payload fields, valid commodity IDs, pagination and historical date semantics must be read from current code/site traffic. Do not construct guessed POST bodies. Plain requests may be rejected with 403 according to client README. [Client README](https://github.com/makrand999/agmarknet-api), [client implementation](https://github.com/makrand999/agmarknet-api/blob/main/agmarknet_api/client.py), [reference](https://github.com/makrand999/agmarknet-api/blob/main/AGMARKNET_REFERENCE.md). | Documentation verified; direct host DNS failed here. Repository includes smoke test; run it as a first test. Actual arrival quantity and old-date retrieval remain unverified. |
+| CEDA API | Swagger UI: `https://api.ceda.ashoka.edu.in/documentation/`; API root `https://api.ceda.ashoka.edu.in/`. | Official docs site identifies CEDA datasets and Agmarknet API; API root says register for an API key. Exact routes/fields must be obtained from interactive Swagger after registration. [API docs](https://api.ceda.ashoka.edu.in/documentation/), [portal](https://ceda.ashoka.edu.in/data-portal/). | Documentation verified; no request attempted successfully (DNS failure). Key-based response/schema not validated. |
+| OGD API | `GET https://api.data.gov.in/resource/{resource_id}?api-key={key}&format=json&limit=1`; exact resource ID and filters must be copied from the individual catalog resource page. | OGD catalog pages show resources and API options, but resource-specific schema/IDs differ. No placeholder API key is valid. | API host DNS failed here; no payload/schema verified. Catalog documentation only. |
+| CFPP reports | Browser pages under `/cfppui/reports/`; report selector/page and season are part of the interface, not a stable public JSON contract established here. | Opened page exposed state wheat estimate, daily/progressive procurement fields and position date; reports menu lists other report types. | **Verified:** page body inspected. No API/bulk endpoint claimed. Capture/export is manual pending an observed machine-readable link. |
+| CHIRPS ERDDAP | `https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.html` for daily; data URL convention `.../griddap/{datasetID}.{fileType}?precip[(time)][(lat)][(lon)]`, using dimension values and date bounds from its metadata. | The browsed pentad dataset documents dimensions/variable (`precip`, mm per 5 days), 0.05-degree coordinates and 1981 start. A daily dataset exists separately; do not use pentad units/IDs for a daily request. [pentad metadata](https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalPentadP05_Lon0360.html), [daily dataset form](https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.html). | Documentation verified from metadata form; no subset was downloaded. |
+
+Do not scrape login-protected Anaaj Kharid pages or republish farmer-level personal data. If a required market or procurement API requires a key, register under its public policy; never place keys in source control.
+
+## Statistical model comparison and recommendation
+
+| Task/method | Data requirements and practical fit | Strengths | Risks/cost |
+|---|---|---|---|
+| Annual production: historical median / linear trend by district-crop | Ideally 10+ consistent years per district/crop; official area/yield definitions harmonized | Transparent and robust first benchmark; easily show baseline vs current official estimate | Structural changes, boundary changes and revised estimates; annual series may be too short or discontinuous |
+| Production: area × yield regression with weather/remote-sensing covariates | Matched district-year data, crop area, weather; satellite labels for classifier | Decomposes area and yield; can represent weather shock | Sparse annual sample, non-stationarity, remote sensing requires field truth; risk of false precision |
+| Arrivals: seasonal-naive same crop-week/day previous year(s) | Daily market arrivals across seasons; market/crop and date/calendar | Strong low-cost benchmark; intuitive; captures season | Calendar shifts and reporting gaps; prior year shock can poison baseline |
+| Arrivals: same-week robust median + MAD, weekday/harvest calendar strata | Multiple years daily arrivals with complete/missing flags; ideally 3-5 seasons minimum | Interpretable, resistant to outliers, easy to explain | At least 3 years; sparse markets and missing reports make intervals unstable; MAD=0 edge case needs fallback scale |
+| Arrivals: SARIMA/ETS with exogenous covariates | Prefer multiple years daily/weekly series; event calendar, price/weather/procurement features | Forecast intervals and autocorrelation modeling | Parameters brittle with short, interrupted or strongly seasonal series; tuning and diagnostics needed |
+| Multivariate ML (Isolation Forest, gradient boosted residuals) | Many validated markets/features, quality missingness, several seasons | Can capture interactions and rank contributors | Unsupervised Isolation Forest scores lack causal interpretation; high false-alert risk and opaque calibration; not suitable as first detector |
+| Price: seasonal baseline / forecast residual | Daily same market, grade, variety, price definition | Available alongside arrivals; useful context | Price not quantity; quality mix and grade changes confound |
+
+**Recommended primary detector:** per market × commodity, align date to crop-season phase and weekday, build historical seasonal expectation as the median of comparable prior-season observations, estimate a robust residual scale from MAD (fallback to IQR or pooled market/season scale when MAD is zero), and flag observations outside calibrated empirical prediction bounds. Include data completeness and freshness in the alert score. For annual production, use a district/crop robust trend or rolling median of area × yield, with a prediction interval and official forecast shown as separate reference. **Benchmark:** prior-year same-season day/week plus a simple district annual median. Require 3 complete prior seasons before market-level statistical flags; with less history, show descriptive comparisons only. Evaluate forecast residuals on walk-forward time splits before alerting.
+
+Forecasting accuracy does not imply anomaly or cause accuracy. A peer-reviewed agricultural sales study reports gains from external calendar/weather features but uses well-resourced business data; it is motivation to test covariates, not evidence that it improves Punjab arrivals. [Study](https://doi.org/10.1016/j.eswa.2024.123438). Uncertainty intervals should be checked for actual coverage rather than treated as automatic confidence. [Agricultural forecast uncertainty study](https://doi.org/10.1002/ajae.12075). The recommendation above is a project design inference from the available series and constraints, not a claim of locally validated predictive performance.
+
+## Adversarial debate and decision
+
+| Debate point | Advocate | Sceptic / contrary evidence | Missing evidence and cost of error | Reviewer decision |
+|---|---|---|---|---|
+| Production-to-arrival discrepancy could reveal withheld grain | Punjab production and daily mandi reports could indicate unusual marketed supply | Production is annual/estimated, arrivals cover reporting mandis, and crop can be stored, self-consumed, sold privately, milled directly or move to other markets; procurement may overlap arrivals | Need farm-gate/alternate channel sales, private stocks, inter-state flows and inventory change; false attribution risks accusing legitimate actors | Keep as “observed supply anomaly,” never as hoarding inference |
+| Satellite can independently validate expected crop | Sentinel imagery can estimate area and crop phenology independently of official aggregates | No ready Punjab wheat/paddy area layer verified; classification requires field labels and ground truth, mixed pixels and cloud issues | Need labeled fields/crop cut validation; wrong classification biases baseline | Future version; imagery corroborates area/condition but does not replace official estimates |
+| Low arrivals signal concealed inventory | Persistent low arrivals plus high production and strong prices is suspicious enough to investigate | Prices can rise under demand, quality shifts, procurement delays, exports, logistics or neighboring-state effects; arrivals have reporting gaps and mandatory nonzero entry in SOP | Need stock inspection, verified location-specific inventory, shipment flows and causal comparison | Do not make actor-level claims; build context panel and escalation checklist only |
+| Public procurement is a usable reconciliation ledger | CFPP exposes state quantities and lists finer procurement/CMR reports | Verified page shows state wheat aggregate; Punjab operational portal requires login; report menus do not prove accessible rows | Need machine-readable historical daily district/centre records and definitions of procurement vs arrivals | State-level season context only until detailed reports are pulled and schema audited |
+| Complex anomaly ML improves expo value | Isolation Forest or deep models produce a visually attractive score | No trustworthy labels, short histories and irregular reporting make scores difficult to calibrate or explain | Unjustified false positives damage credibility | Start robust seasonal forecast residual + interval, retain model score as exploratory only after backtest |
+
+**Go/no-go:** **Go** for an explainable, non-accusatory agricultural supply anomaly monitor using production baselines, weather, verified mandi reports and procurement context. **No-go** for a system that claims to detect hoarding or identify responsible actors with present public data. This boundary changes only if independent stock, shipment, processing and alternative-market observations become legally available and a causal validation design supports the specific claim.
+
+## Architecture, data flow and operating plan
+
+`source registry → raw immutable files → schema/quality checks → normalized PostgreSQL facts → seasonal feature views → walk-forward baseline/intervals → explainable alert table → local dashboard/map`.
+
+- **Ingestion:** Python `requests` clients for tested public APIs, manual downloads for OGD/CFPP PDFs until a public machine-readable interface is confirmed. Store the raw bytes, request URL/parameters, retrieval time, HTTP status, checksum and source label. Make each import idempotent and retain source revisions.
+- **Processing:** pandas for tabular validation and normalization; GeoPandas/PostGIS only after trustworthy district boundaries/market coordinates are obtained. Rasterio/xarray for remote sensing/weather rasters if the team actually implements satellite features.
+- **Database:** PostgreSQL; PostGIS optional. Use dimensions and fact tables from `schema.sql`, unique source keys where confirmed, constraints for units and `record_class`; do not flatten all source tables into one spreadsheet.
+- **Modeling:** Python/scikit-learn or statsmodels only where justified. Establish descriptive seasonal reference first; store forecasts, bounds, model version and input source IDs in separate estimate/alert tables.
+- **Service/UI:** FastAPI only if separate frontend or API consumers are needed. For fastest local expo, Streamlit or a static Plotly Dash screen can query precomputed PostgreSQL views; Folium/Plotly map only after boundary sources are validated. Run everything locally with Docker Compose or native PostgreSQL; no paid cloud dependency.
+- **Reproducibility:** pinned Python dependencies, config file for source endpoints, `.env` for secrets, `make ingest/check/model/dashboard` or documented commands, dated raw files, and a small public-data fixture for offline demo. Synthetic fixtures use `data/synthetic/` and cannot share a chart without a visible synthetic badge.
+
+**Data quality gates:** schema drift, invalid date/unit, duplicate source key, impossible negative quantity, stale update, missing market-day density, unknown crop/market alias and coverage gaps. A “zero” is not imputed for unreported values. API success means valid status plus expected JSON fields and a nonempty plausible sample—not merely HTTP 200.
+
+## Validation plan
+
+1. Freeze the source snapshot and document revision dates before constructing features. Split by time, never randomly. Walk forward by crop year/season, keeping the last full season as a final holdout where sample length permits.
+2. Forecast accuracy: report MAE and RMSE in tonnes (with market-size stratification); use seasonal MASE only when the seasonal-naive denominator is valid. Compare with seasonal-naive. For price report MAE in source currency/unit.
+3. Interval quality: empirical 80/90/95% coverage, interval width and calibration by market/crop/season. If actual coverage is below nominal, widen/recalibrate or suppress alert confidence.
+4. Alert quality without hoarding labels: count alert days per market/season; inspect sampled normal and extreme periods with an agronomist or documented records; compare alerts against known reporting gaps, procurement starts, holidays and documented weather/disaster periods. Report candidate-alert review rate, not precision/recall for hoarding.
+5. Missingness sensitivity: rerun after dropping markets/days, simulate missing reporting blocks (synthetic only), and compare alert movement. Separate true zeros from missing records. Test district aggregation with and without markets lacking stable location mapping.
+6. Synthetic anomaly injection: inject controlled dips/spikes, delayed season peaks and missing blocks into a copy of observed series, label the altered copy synthetic, and verify the pipeline detects injected deviations. This tests code behavior only, not real-world sensitivity or crime detection.
+7. Leakage audit: weather availability timestamp, crop estimates publication date, procurement report revisions, and future arrivals must be unavailable to historical forecast features if they would not have been known at prediction time.
+
+## Expo roadmap and decision log
+
+**Minimum viable (2–3 weeks):** load 5–10 years of annual wheat/rice production if resource download confirms; get live POWER small sample; manually select one CFPP state report; validate AGMARKNET or CEDA on a few Punjab mandi/crop/date queries; plot raw daily arrival/price with coverage; no anomaly badge until at least three seasons of arrivals and calendar controls are available.
+
+**Strong expo (4–8 weeks):** normalize several markets and two crop seasons, train walk-forward robust seasonal medians/intervals, show district production context/weather and procurement overlay, document data freshness and missingness, and create a synthetic-only “what if arrivals fell” demo panel. Add district map only after canonical joins are sourced.
+
+**Future research:** Sentinel-2 crop-area classification with documented labels and accuracy assessment; estimate/compare district-level harvest and arrivals with uncertainty; obtain authorized historical procurement-centre/CMR data; legal/request-based access to stock and shipment aggregates; causal event studies only with independently observed exogenous events and adequate controls.
+
+**Decision log:** (1) Use OGD/DES rather than scraped secondary crop tables because official metadata is discoverable; switch if current records are stale or inconsistent. (2) Test AGMARKNET and CEDA in parallel because their public docs differ from working payload proof; prioritize whichever returns reproducible dated arrival quantities with terms/schema. (3) No e-way bill/toll scraping due restricted/private records and lack of commodity identification. (4) Do not make “hoarding detection” the product claim; rename to “Punjab grain supply anomaly monitoring.” (5) Keep deep ML and automated accusation features out; change only after sufficient validated history and independent outcomes exist.
+
+## First five student actions
+
+1. Download the Punjab OGD district crop resource and record the actual resource CSV/API URL, columns, units, years, crop aliases and district scheme in `source_registry`.
+2. Run the provided NASA POWER probe from a normal network and save the raw response plus retrieval metadata; verify parameters and units from NASA metadata.
+3. Clone/run the `makrand999` smoke test, then query one actual wheat/paddy market/date with an observed request body; capture response schema, arrival units, date range and error states. If it fails, register/test CEDA key access and compare output.
+4. Open CFPP's other-season and district/CMR report selectors; save only public reports and write down actual row schema/geography before integrating. Do not use Anaaj Kharid credentials unless authorized.
+5. Build a single-market completeness table and a production-vs-arrival visualization with labeled observed/model layers. Decide whether data coverage is sufficient before adding anomaly detection.

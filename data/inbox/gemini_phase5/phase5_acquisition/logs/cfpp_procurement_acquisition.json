@@ -1,0 +1,15 @@
+{
+  "source": "Central Food Grains Procurement Portal (CFPP)",
+  "url": "https://cfpp.nic.in/cfppui/reports/reportsdata.html",
+  "method": "GET",
+  "retrieved_utc": "20261021T191516Z",
+  "tls_verification": "enabled",
+  "status": "SUCCESS",
+  "http_status": 200,
+  "raw_file": "raw\\procurement\\cfpp_reportsdata_20261021T191516Z.html",
+  "processed_file": "processed\\cfpp_punjab_wheat_procurement_2025_26.csv",
+  "sha256": "a73f24cdb7ca47ee1a8a28adc69798f5bce2e7924c24b47b128d1f3082cc43c6",
+  "position_date": "2025-05-15",
+  "season_estimate_lmt": 124.0,
+  "progressive_procurement_mt": 11919510.1
+}

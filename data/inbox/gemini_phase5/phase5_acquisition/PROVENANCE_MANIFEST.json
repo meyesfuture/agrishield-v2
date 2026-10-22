@@ -1,0 +1,275 @@
+{
+  "mission": "Punjab Grain Hoarding Intelligence - Phase Five Acquisition & Evidence Audit",
+  "timestamp_utc": "20261021T191658Z",
+  "investigator": "Antigravity Senior Data Acquisition Engineer & Evidence Auditor",
+  "root_directory": "B:\\partial_farm_agychat\\phase5_acquisition",
+  "total_datasets_inventoried": 10,
+  "total_sources_audited": 10,
+  "supply_flow_dimensions_evaluated": 8,
+  "files": [
+    {
+      "relative_path": "ARRIVALS_PANEL.csv",
+      "bytes": 1359489,
+      "sha256": "eaa8eaaca0880bc634c4cf6d50b671802bf0c750dc53aeb22049450dc779d561",
+      "modified_utc": "2026-10-21T19:15:54.547165+00:00"
+    },
+    {
+      "relative_path": "DATA_INVENTORY.csv",
+      "bytes": 7065,
+      "sha256": "32111c4ba518b01f28362aedc9d9882705947ab7e21497d6cb17f226c9dc527d",
+      "modified_utc": "2026-10-21T19:16:59.197803+00:00"
+    },
+    {
+      "relative_path": "DATA_INVENTORY.json",
+      "bytes": 11171,
+      "sha256": "fc6bb157913b7dec3696448d30f922984dcd9a593961c3996fdccdaaed4d30ea",
+      "modified_utc": "2026-10-21T19:16:59.198797+00:00"
+    },
+    {
+      "relative_path": "SOURCE_STATUS.csv",
+      "bytes": 3738,
+      "sha256": "14cb6869822350f41745c7183e5cfb4d80afb2817440a66ce4880952d881b352",
+      "modified_utc": "2026-10-21T19:16:59.199798+00:00"
+    },
+    {
+      "relative_path": "SUPPLY_FLOW_COVERAGE_MATRIX.csv",
+      "bytes": 3803,
+      "sha256": "c457aa74f7c35ba7a62b0242c30b2d35520d108f80ce485467f3ab11ad87e9b2",
+      "modified_utc": "2026-10-21T19:16:59.199798+00:00"
+    },
+    {
+      "relative_path": "logs\\agmarknet_metadata_acquisition.json",
+      "bytes": 546,
+      "sha256": "22ce09f6e444ec6f85125569ad455032befcc2ca29936c8f605586fa76c00437",
+      "modified_utc": "2026-10-21T19:12:29.026961+00:00"
+    },
+    {
+      "relative_path": "logs\\agmarknet_price_acquisition.json",
+      "bytes": 534,
+      "sha256": "cdbc4030b200aaaae91ccea1d74e28883c9de6259d8883cec2dc2932ce8a3694",
+      "modified_utc": "2026-10-21T19:14:02.686578+00:00"
+    },
+    {
+      "relative_path": "logs\\cfpp_procurement_acquisition.json",
+      "bytes": 616,
+      "sha256": "35bbea40cd1d87e27f921b8456c3cb19a49a9469eb23137ebc75100693b69a86",
+      "modified_utc": "2026-10-21T19:15:17.312942+00:00"
+    },
+    {
+      "relative_path": "logs\\integrated_baseline_manifest.json",
+      "bytes": 3065,
+      "sha256": "027e2628ddaa09ad4dcaa7544d8c57fc9bc2722193e245558c92c8c76ce526da",
+      "modified_utc": "2026-10-21T19:15:37.564928+00:00"
+    },
+    {
+      "relative_path": "logs\\nasa_power_multi_zone_acquisition.json",
+      "bytes": 2001,
+      "sha256": "062ae711f881e84e3e8375813d5cb4ff38f2095b2f2409d0e499f7b24e1b1f4f",
+      "modified_utc": "2026-10-21T19:14:42.311224+00:00"
+    },
+    {
+      "relative_path": "logs\\punjab_mandi_arrivals_acquisition.json",
+      "bytes": 1093,
+      "sha256": "9030624d09968e77abd067bd8ea0853dcf2da72580e7e14bce143608cd1dfb58",
+      "modified_utc": "2026-10-21T19:14:19.635473+00:00"
+    },
+    {
+      "relative_path": "processed\\agmarknet_punjab_daily_prices.csv",
+      "bytes": 10561,
+      "sha256": "29c5c159d1a7dc9ca8b0380e7af61e6dc7251281bbb3a4b903beee06d2bb0623",
+      "modified_utc": "2026-10-21T19:14:02.684322+00:00"
+    },
+    {
+      "relative_path": "processed\\agmarknet_punjab_districts.csv",
+      "bytes": 418,
+      "sha256": "e255d77b3963e583679d8617b05e08552e1968cec04497566088c1fa10a03721",
+      "modified_utc": "2026-10-21T19:12:29.023751+00:00"
+    },
+    {
+      "relative_path": "processed\\agmarknet_punjab_markets.csv",
+      "bytes": 7863,
+      "sha256": "61f8d0aff0a36f5e743e4c7c5da1fcf55d1f87220daac3ed99a047f7404bf9fc",
+      "modified_utc": "2026-10-21T19:12:29.023751+00:00"
+    },
+    {
+      "relative_path": "processed\\agmarknet_target_commodities.csv",
+      "bytes": 219,
+      "sha256": "5e3c54384c3ed644787ed59448d6d329e5151d88250680ae01ccd96f82c68a06",
+      "modified_utc": "2026-10-21T19:12:29.025945+00:00"
+    },
+    {
+      "relative_path": "processed\\cfpp_punjab_wheat_procurement_2025_26.csv",
+      "bytes": 996,
+      "sha256": "7731bc98a8d734b4aed73d31cc0b37e72328dc469d7e9f972a4a4816df113a6a",
+      "modified_utc": "2026-10-21T19:15:17.310934+00:00"
+    },
+    {
+      "relative_path": "processed\\district_crop_production.csv",
+      "bytes": 100088,
+      "sha256": "bd545ff36267379976423d5a9f551a7d942aa87785cc304ef50e5b5adc5cc7bd",
+      "modified_utc": "2026-10-21T19:15:37.432730+00:00"
+    },
+    {
+      "relative_path": "processed\\district_crop_yield.csv",
+      "bytes": 834355,
+      "sha256": "09f170bb37617ca642e032d94ce0e96473f719bb36d2d65fc3bbe8e661ea8f36",
+      "modified_utc": "2026-10-21T19:15:37.444743+00:00"
+    },
+    {
+      "relative_path": "processed\\punjab_mandi_arrivals_oct2026.csv",
+      "bytes": 1359489,
+      "sha256": "eaa8eaaca0880bc634c4cf6d50b671802bf0c750dc53aeb22049450dc779d561",
+      "modified_utc": "2026-10-21T19:14:19.627500+00:00"
+    },
+    {
+      "relative_path": "processed\\punjab_multi_zone_daily_weather_2024_2025.csv",
+      "bytes": 1132183,
+      "sha256": "ef7e77faa87ab15bc866b474cddcf3e4e6c110c105b1b95a8d7808280a42c3fa",
+      "modified_utc": "2026-10-21T19:14:42.309223+00:00"
+    },
+    {
+      "relative_path": "scripts\\acquire_agmarknet_metadata.py",
+      "bytes": 5222,
+      "sha256": "459c0766848298bfa29cdf9f022f07cd73943d48407bd27b832189a64f221ecb",
+      "modified_utc": "2026-10-21T19:12:18.032127+00:00"
+    },
+    {
+      "relative_path": "scripts\\acquire_agmarknet_prices.py",
+      "bytes": 6799,
+      "sha256": "3b0a1eecec81e209523fb22816d4d2325db93a63fab5ac3eb71c55ef13a993f9",
+      "modified_utc": "2026-10-21T19:12:46.204661+00:00"
+    },
+    {
+      "relative_path": "scripts\\acquire_multi_zone_weather.py",
+      "bytes": 6777,
+      "sha256": "7524235d6da8c2d30f9e04d2aee1ea412817eb6d63641213c1a77bfdcefbcfe1",
+      "modified_utc": "2026-10-21T19:14:08.256494+00:00"
+    },
+    {
+      "relative_path": "scripts\\acquire_procurement_cfpp.py",
+      "bytes": 6349,
+      "sha256": "ad6b63a44b0b5a6fb9c4373e808b732823d368ab116d490608630f42b31c7ca6",
+      "modified_utc": "2026-10-21T19:15:00.862356+00:00"
+    },
+    {
+      "relative_path": "scripts\\acquire_punjab_mandi_arrivals.py",
+      "bytes": 6343,
+      "sha256": "85babef0f23b96fb5f3f5cc7d58fec402a534a729caf92fca68bfa46e699714b",
+      "modified_utc": "2026-10-21T19:13:26.707379+00:00"
+    },
+    {
+      "relative_path": "scripts\\build_phase5_inventory_and_manifests.py",
+      "bytes": 27826,
+      "sha256": "181febd11e2c37b49737ca22101549d5710445ce02a638fdd20589a9c8695897",
+      "modified_utc": "2026-10-21T19:16:49.459697+00:00"
+    },
+    {
+      "relative_path": "scripts\\integrate_verified_baseline.py",
+      "bytes": 3484,
+      "sha256": "753b43ee542f21c295c6322e65fd731bd347126372b465dd280a044e38459ea0",
+      "modified_utc": "2026-10-21T19:15:32.080967+00:00"
+    },
+    {
+      "relative_path": "raw\\agmarknet\\agmarknet_filters_20261021T191228Z.json",
+      "bytes": 525555,
+      "sha256": "b9fa7fdaea201da5037708e3acebfec163e06f1dd634dd814c964b0088582683",
+      "modified_utc": "2026-10-21T19:12:28.979724+00:00"
+    },
+    {
+      "relative_path": "raw\\agmarknet\\agmarknet_market_prices_raw_20261021T191254Z.json",
+      "bytes": 96046,
+      "sha256": "9a0a9dad75903a07b3d8d13b5daf5c9f09a01cad566fffb3759d600f7577869b",
+      "modified_utc": "2026-10-21T19:14:02.657746+00:00"
+    },
+    {
+      "relative_path": "raw\\emandikaran\\punjab_mandi_arrivals_01-10-2026_to_21-10-2026_20261021T191417Z.json",
+      "bytes": 826175,
+      "sha256": "5191cf30d4cba662f3ecda9907b4b813c77f4e90e5a82f86f49acb85a492dee9",
+      "modified_utc": "2026-10-21T19:14:19.120836+00:00"
+    },
+    {
+      "relative_path": "raw\\ogd\\des_apy_phase3_browser_table_extracts.json",
+      "bytes": 12850,
+      "sha256": "50ef03c0f7d72783d2803baba3b43255af292bc81a4dadae916897a0817edeaf",
+      "modified_utc": "2026-10-21T19:15:37.562923+00:00"
+    },
+    {
+      "relative_path": "raw\\ogd\\ogd_punjab_rice_yield.csv",
+      "bytes": 6164,
+      "sha256": "b42efba747a17cfe6895f9c129c93453f44c32218d54b2c3353d3fbc9caa6504",
+      "modified_utc": "2026-10-21T19:15:37.561932+00:00"
+    },
+    {
+      "relative_path": "raw\\ogd\\ogd_punjab_wheat_yield.csv",
+      "bytes": 6171,
+      "sha256": "958fe37e224aae18ee2f37b34879f228a7ec46a402a06bdb966968a8765bcb84",
+      "modified_utc": "2026-10-21T19:15:37.559935+00:00"
+    },
+    {
+      "relative_path": "raw\\procurement\\cfpp_reportsdata_20261021T191516Z.html",
+      "bytes": 28025,
+      "sha256": "a73f24cdb7ca47ee1a8a28adc69798f5bce2e7924c24b47b128d1f3082cc43c6",
+      "modified_utc": "2026-10-21T19:15:17.201191+00:00"
+    },
+    {
+      "relative_path": "raw\\weather\\nasa_power_amritsar_20240101_20251231_20261021T191429Z.json",
+      "bytes": 36671,
+      "sha256": "c851d6d77f612f5058bfdb386a4f3147759d32d00322a6cfa30c7f60d42cc8c7",
+      "modified_utc": "2026-10-21T19:14:36.605049+00:00"
+    },
+    {
+      "relative_path": "raw\\weather\\nasa_power_bathinda_20240101_20251231_20261021T191429Z.json",
+      "bytes": 36621,
+      "sha256": "4f523733ce8e3e1c3af1b964eb70fd160328cc013985edb68b8cb15d9c668a33",
+      "modified_utc": "2026-10-21T19:14:33.938778+00:00"
+    },
+    {
+      "relative_path": "raw\\weather\\nasa_power_hoshiarpur_20240101_20251231_20261021T191429Z.json",
+      "bytes": 36716,
+      "sha256": "de658ccfd7ee86e3bfe2d01fb76fd07699ab752a7b7ee27231a16eb9eb4a7d7b",
+      "modified_utc": "2026-10-21T19:14:41.120097+00:00"
+    },
+    {
+      "relative_path": "raw\\weather\\nasa_power_ludhiana_20240101_20251231_20261021T191429Z.json",
+      "bytes": 36687,
+      "sha256": "851ff3475c71a65953b5121d86dee7be40b96aafd60a4a8d197aa9b198ad81f3",
+      "modified_utc": "2026-10-21T19:14:31.143654+00:00"
+    },
+    {
+      "relative_path": "raw\\weather\\nasa_power_patiala_20240101_20251231_20261021T191429Z.json",
+      "bytes": 36684,
+      "sha256": "16d8fe22f776cf5cabc237403a7c29733a0a33eb195a962c9a310ad7512a7cd5",
+      "modified_utc": "2026-10-21T19:14:38.387419+00:00"
+    },
+    {
+      "relative_path": "processed\\geospatial\\district_crosswalk.csv",
+      "bytes": 3824,
+      "sha256": "a9f9ffc21602d69c265a3e9149e0696cee8e6bba27bf38e1270ba6e3c10b3103",
+      "modified_utc": "2026-10-21T19:15:37.450735+00:00"
+    },
+    {
+      "relative_path": "processed\\geospatial\\punjab_district_boundaries.geojson",
+      "bytes": 3974131,
+      "sha256": "97909ce2ff857f1a88268db33784c22c27782a25dac082de6a80db17d5c5bd5d",
+      "modified_utc": "2026-10-21T19:15:37.516508+00:00"
+    },
+    {
+      "relative_path": "processed\\satellite\\S2B_43REP_20241005_B04_512px_window.tif",
+      "bytes": 376834,
+      "sha256": "24351bafc218809bc11ddec921504bb46f47fb7598593529454c6eb7a38832aa",
+      "modified_utc": "2026-10-21T19:15:37.556930+00:00"
+    },
+    {
+      "relative_path": "processed\\stocks\\dfpd_stock_position_2020_2026_extracted.txt",
+      "bytes": 2643,
+      "sha256": "6c8037dd5f29c5bbf3e160fd8ff4a006cf88e7637bac39568d359722a69e957e",
+      "modified_utc": "2026-10-21T19:15:37.542929+00:00"
+    },
+    {
+      "relative_path": "processed\\stocks\\stock_observations_national_dfpd.csv",
+      "bytes": 42031,
+      "sha256": "21c173141c3ae576f455abbe22e00843a6d21d8163b2d88f4ace9c2b91a2d17f",
+      "modified_utc": "2026-10-21T19:15:37.543925+00:00"
+    }
+  ]
+}

@@ -25,6 +25,7 @@ from .api.routes import (
     sources,
     methodology,
     analytics,
+    decision,
 )
 
 
@@ -88,6 +89,7 @@ app.include_router(coverage.router)
 app.include_router(sources.router)
 app.include_router(methodology.router)
 app.include_router(analytics.router)
+app.include_router(decision.router)
 
 
 @app.get("/", summary="Root API welcome & pointer")
@@ -117,7 +119,11 @@ def read_root():
             "analytics_eligibility": "/api/v1/analytics/eligibility-gate",
             "readiness_metrics": "/api/v1/analytics/readiness-metrics",
             "synthetic_scenario": "/api/v1/analytics/synthetic-scenario",
+            "decision_scenarios": "/api/v1/decision/scenarios",
+            "decision_assess": "/api/v1/decision/assess",
+            "decision_methodology": "/api/v1/decision/methodology",
         },
         "evidence_standard": "Strict empirical evidence; no simulated hoarding scores or fabricated grain arrivals."
     }
+
 

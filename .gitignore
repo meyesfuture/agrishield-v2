@@ -14,3 +14,4 @@ build/
 coverage/
 # Local temporary exports (keep source drop under version control only intentionally)
 logs/*.log
+scratch/

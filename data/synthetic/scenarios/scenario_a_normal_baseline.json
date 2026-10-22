@@ -1,0 +1,422 @@
+{
+  "scenario_id": "scenario_a_normal_baseline",
+  "title": "Scenario A: Normal Market Baseline",
+  "description": "Consistent historical price and arrival series with ordinary seasonal variation. All criteria satisfied without anomaly.",
+  "expected_decision_status": "NO_MATERIAL_ANOMALY",
+  "location_name": "Ludhiana Central Mandi (Synthetic)",
+  "commodity_name": "Wheat (Common Foodgrain)",
+  "unit_price": "Rs./Quintal",
+  "unit_arrival": "Quintals",
+  "baseline_window": "2026-09-01 to 2026-10-15 (45 days)",
+  "anomaly_window": null,
+  "is_synthetic": true,
+  "data_mode": "SYNTHETIC_DEMO",
+  "synthetic_watermark": "SYNTHETIC DEMO \u2014 NOT LIVE MARKET EVIDENCE",
+  "observations": [
+    {
+      "date": "2026-09-01",
+      "modal_price": 2165.6,
+      "arrival_quantity": 2391.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-02",
+      "modal_price": 2142.2,
+      "arrival_quantity": 2520.3,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-03",
+      "modal_price": 2126.4,
+      "arrival_quantity": 2662.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-04",
+      "modal_price": 2092.4,
+      "arrival_quantity": 2504.1,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-05",
+      "modal_price": 2127.5,
+      "arrival_quantity": 2367.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-06",
+      "modal_price": 2131.2,
+      "arrival_quantity": 2461.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-07",
+      "modal_price": 2075.7,
+      "arrival_quantity": 2342.2,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-08",
+      "modal_price": 2117.0,
+      "arrival_quantity": 2462.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-09",
+      "modal_price": 2168.5,
+      "arrival_quantity": 2301.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-10",
+      "modal_price": 2118.0,
+      "arrival_quantity": 2607.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-11",
+      "modal_price": 2115.1,
+      "arrival_quantity": 2519.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-12",
+      "modal_price": 2108.0,
+      "arrival_quantity": 2444.3,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-13",
+      "modal_price": 2137.0,
+      "arrival_quantity": 2634.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-14",
+      "modal_price": 2144.5,
+      "arrival_quantity": 2389.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-15",
+      "modal_price": 2130.8,
+      "arrival_quantity": 2349.1,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-16",
+      "modal_price": 2064.0,
+      "arrival_quantity": 2483.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-17",
+      "modal_price": 2130.5,
+      "arrival_quantity": 2371.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-18",
+      "modal_price": 2113.0,
+      "arrival_quantity": 2562.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-19",
+      "modal_price": 2161.2,
+      "arrival_quantity": 2433.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-20",
+      "modal_price": 2117.6,
+      "arrival_quantity": 2544.2,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-21",
+      "modal_price": 2115.2,
+      "arrival_quantity": 2499.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-22",
+      "modal_price": 2146.2,
+      "arrival_quantity": 2566.2,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-23",
+      "modal_price": 2171.7,
+      "arrival_quantity": 2524.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-24",
+      "modal_price": 2157.8,
+      "arrival_quantity": 2701.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-25",
+      "modal_price": 2120.5,
+      "arrival_quantity": 2491.3,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-26",
+      "modal_price": 2121.7,
+      "arrival_quantity": 2475.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-27",
+      "modal_price": 2153.8,
+      "arrival_quantity": 2517.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-28",
+      "modal_price": 2093.6,
+      "arrival_quantity": 2487.3,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-29",
+      "modal_price": 2128.5,
+      "arrival_quantity": 2432.1,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-09-30",
+      "modal_price": 2083.2,
+      "arrival_quantity": 2561.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-01",
+      "modal_price": 2152.3,
+      "arrival_quantity": 2439.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-02",
+      "modal_price": 2059.4,
+      "arrival_quantity": 2514.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-03",
+      "modal_price": 2165.4,
+      "arrival_quantity": 2501.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-04",
+      "modal_price": 2131.6,
+      "arrival_quantity": 2433.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-05",
+      "modal_price": 2147.2,
+      "arrival_quantity": 2512.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-06",
+      "modal_price": 2054.7,
+      "arrival_quantity": 2682.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-07",
+      "modal_price": 2112.7,
+      "arrival_quantity": 2492.3,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-08",
+      "modal_price": 2113.1,
+      "arrival_quantity": 2453.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-09",
+      "modal_price": 2119.0,
+      "arrival_quantity": 2418.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-10",
+      "modal_price": 2157.5,
+      "arrival_quantity": 2484.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-11",
+      "modal_price": 2121.0,
+      "arrival_quantity": 2428.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-12",
+      "modal_price": 2116.5,
+      "arrival_quantity": 2303.2,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-13",
+      "modal_price": 2118.2,
+      "arrival_quantity": 2536.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-14",
+      "modal_price": 2122.9,
+      "arrival_quantity": 2416.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    },
+    {
+      "date": "2026-10-15",
+      "modal_price": 2140.9,
+      "arrival_quantity": 2263.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Expected seasonal variation within baseline IQR."
+    }
+  ]
+}

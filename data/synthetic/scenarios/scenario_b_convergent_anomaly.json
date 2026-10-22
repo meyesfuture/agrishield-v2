@@ -1,0 +1,422 @@
+{
+  "scenario_id": "scenario_b_convergent_anomaly",
+  "title": "Scenario B: Planted Convergent Supply Anomaly",
+  "description": "Deliberately engineered divergence: significant price increase (+48%) paired with severe arrival collapse (-64%) across matching market dates.",
+  "expected_decision_status": "CONVERGENT_SUPPLY_ANOMALY",
+  "location_name": "Khanna Grain Mandi (Synthetic)",
+  "commodity_name": "Wheat (Common Foodgrain)",
+  "unit_price": "Rs./Quintal",
+  "unit_arrival": "Quintals",
+  "baseline_window": "2026-09-01 to 2026-09-30 (30 days)",
+  "anomaly_window": "2026-10-01 to 2026-10-15 (15 days)",
+  "is_synthetic": true,
+  "data_mode": "SYNTHETIC_DEMO",
+  "synthetic_watermark": "SYNTHETIC DEMO \u2014 NOT LIVE MARKET EVIDENCE",
+  "observations": [
+    {
+      "date": "2026-09-01",
+      "modal_price": 2098.9,
+      "arrival_quantity": 2535.2,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-02",
+      "modal_price": 2162.6,
+      "arrival_quantity": 2445.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-03",
+      "modal_price": 2129.0,
+      "arrival_quantity": 2459.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-04",
+      "modal_price": 2096.9,
+      "arrival_quantity": 2571.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-05",
+      "modal_price": 2111.9,
+      "arrival_quantity": 2511.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-06",
+      "modal_price": 2100.4,
+      "arrival_quantity": 2554.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-07",
+      "modal_price": 2172.4,
+      "arrival_quantity": 2406.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-08",
+      "modal_price": 2123.3,
+      "arrival_quantity": 2664.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-09",
+      "modal_price": 2123.5,
+      "arrival_quantity": 2600.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-10",
+      "modal_price": 2144.9,
+      "arrival_quantity": 2547.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-11",
+      "modal_price": 2096.7,
+      "arrival_quantity": 2389.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-12",
+      "modal_price": 2089.9,
+      "arrival_quantity": 2401.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-13",
+      "modal_price": 2087.2,
+      "arrival_quantity": 2558.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-14",
+      "modal_price": 2130.5,
+      "arrival_quantity": 2558.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-15",
+      "modal_price": 2088.7,
+      "arrival_quantity": 2611.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-16",
+      "modal_price": 2122.8,
+      "arrival_quantity": 2664.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-17",
+      "modal_price": 2118.4,
+      "arrival_quantity": 2520.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-18",
+      "modal_price": 2120.9,
+      "arrival_quantity": 2623.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-19",
+      "modal_price": 2126.6,
+      "arrival_quantity": 2568.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-20",
+      "modal_price": 2146.9,
+      "arrival_quantity": 2421.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-21",
+      "modal_price": 2114.9,
+      "arrival_quantity": 2592.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-22",
+      "modal_price": 2136.7,
+      "arrival_quantity": 2636.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-23",
+      "modal_price": 2105.8,
+      "arrival_quantity": 2574.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-24",
+      "modal_price": 2140.7,
+      "arrival_quantity": 2588.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-25",
+      "modal_price": 2137.7,
+      "arrival_quantity": 2526.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-26",
+      "modal_price": 2101.9,
+      "arrival_quantity": 2414.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-27",
+      "modal_price": 2096.1,
+      "arrival_quantity": 2468.2,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-28",
+      "modal_price": 2116.5,
+      "arrival_quantity": 2461.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-29",
+      "modal_price": 2173.2,
+      "arrival_quantity": 2430.2,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-09-30",
+      "modal_price": 2151.4,
+      "arrival_quantity": 2542.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": false,
+      "notes": "Normal pre-divergence baseline."
+    },
+    {
+      "date": "2026-10-01",
+      "modal_price": 2884.0,
+      "arrival_quantity": 1179.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-02",
+      "modal_price": 2932.2,
+      "arrival_quantity": 1238.1,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-03",
+      "modal_price": 2913.6,
+      "arrival_quantity": 1219.0,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-04",
+      "modal_price": 2945.6,
+      "arrival_quantity": 1219.1,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-05",
+      "modal_price": 2939.0,
+      "arrival_quantity": 1101.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-06",
+      "modal_price": 3013.4,
+      "arrival_quantity": 1127.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-07",
+      "modal_price": 3009.5,
+      "arrival_quantity": 1085.9,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-08",
+      "modal_price": 3010.2,
+      "arrival_quantity": 1090.3,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-09",
+      "modal_price": 3032.4,
+      "arrival_quantity": 1041.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-10",
+      "modal_price": 3104.8,
+      "arrival_quantity": 1036.8,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-11",
+      "modal_price": 3092.2,
+      "arrival_quantity": 1002.6,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-12",
+      "modal_price": 3120.2,
+      "arrival_quantity": 966.5,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-13",
+      "modal_price": 3154.2,
+      "arrival_quantity": 954.4,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-14",
+      "modal_price": 3208.1,
+      "arrival_quantity": 859.1,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    },
+    {
+      "date": "2026-10-15",
+      "modal_price": 3174.2,
+      "arrival_quantity": 874.7,
+      "unit_price": "Rs./Quintal",
+      "unit_arrival": "Quintals",
+      "is_anomaly_candidate": true,
+      "notes": "Planted convergent supply shock: simultaneous price spike and arrival collapse."
+    }
+  ]
+}

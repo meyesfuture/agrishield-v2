@@ -62,6 +62,65 @@ interface MandiLocation {
   observationDate: string;
 }
 
+interface ObservationPoint {
+  date: string;
+  modal_price: number | null;
+  arrival_quantity: number | null;
+  unit_price?: string;
+  unit_arrival?: string;
+  is_anomaly_candidate?: boolean;
+  notes?: string;
+}
+
+interface DecisionAssessment {
+  assessment_id: string;
+  assessment_timestamp_utc: string;
+  evidence_mode: 'REAL' | 'SYNTHETIC_DEMO';
+  scenario_id?: string;
+  location_id: string;
+  location_name: string;
+  geographic_granularity: string;
+  canonical_commodity: string;
+  observation_date: string;
+  baseline_interval: string;
+  decision_status: 'INSUFFICIENT_DATA' | 'NO_MATERIAL_ANOMALY' | 'PRICE_SIGNAL' | 'ARRIVAL_SIGNAL' | 'CONVERGENT_SUPPLY_ANOMALY';
+  status_label: string;
+  human_explanation: string;
+  anomaly_intensity_score: number | null;
+  signals: {
+    [key: string]: {
+      signal_type: string;
+      status: string;
+      observed_value: number | null;
+      baseline_median: number | null;
+      deviation_pct: number | null;
+      robust_z_score: number | null;
+      unit: string;
+      contribution_pct: number;
+      explanation: string;
+    };
+  };
+  evidence_coverage: {
+    required_streams: string[];
+    verified_streams: string[];
+    sufficiency_pct: number;
+  };
+  unavailable_signals: string[];
+  data_quality_warnings: string[];
+  eligibility_gate_passed: boolean;
+  recommended_action: string;
+  legal_caveat: string;
+}
+
+interface ScenarioItem {
+  scenario_id: string;
+  title: string;
+  description: string;
+  expected_decision_status: string;
+  location_name: string;
+  commodity_name: string;
+}
+
 export default function DashboardView() {
   const [features, setFeatures] = useState<GeoFeature[]>([]);
   const [crosswalk, setCrosswalk] = useState<CrosswalkItem[]>([]);
@@ -71,7 +130,17 @@ export default function DashboardView() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // User Interactive Filters & Modes
+  // Application Mode: REAL vs. SYNTHETIC_DEMO
+  const [appMode, setAppMode] = useState<'REAL' | 'SYNTHETIC_DEMO'>('REAL');
+
+  // Synthetic Scenario Lab State
+  const [availableScenarios, setAvailableScenarios] = useState<ScenarioItem[]>([]);
+  const [selectedScenarioId, setSelectedScenarioId] = useState<string>('scenario_b_convergent_anomaly');
+  const [scenarioObservations, setScenarioObservations] = useState<ObservationPoint[]>([]);
+  const [scenarioAssessment, setScenarioAssessment] = useState<DecisionAssessment | null>(null);
+  const [isEvaluatingScenario, setIsEvaluatingScenario] = useState<boolean>(false);
+
+  // Real Mode Interactive Filters & Modes
   const [selectedDistrict, setSelectedDistrict] = useState<string>('Ludhiana');
   const [selectedMandiId, setSelectedMandiId] = useState<string | null>(null);
   const [commodityFilter, setCommodityFilter] = useState<'all' | 'wheat' | 'rice'>('all');
@@ -79,6 +148,17 @@ export default function DashboardView() {
   const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
   const [activeChartTab, setActiveChartTab] = useState<'trend' | 'compare' | 'evidence' | 'coverage'>('trend');
 
+  // Check URL query parameters for mode=synthetic
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('mode') === 'synthetic') {
+        setAppMode('SYNTHETIC_DEMO');
+      }
+    }
+  }, []);
+
+  // Load Real Datasets
   useEffect(() => {
     async function loadAllData() {
       try {
@@ -121,267 +201,208 @@ export default function DashboardView() {
         let priceRes = await fetch('http://127.0.0.1:8000/api/v1/markets/prices?limit=100').catch(() => null);
         if (!priceRes || !priceRes.ok) priceRes = await fetch('/data/prices.json');
         if (priceRes && priceRes.ok) {
-          const priceData = await priceRes.json();
-          setPrices(priceData.items || []);
+          const prData = await priceRes.json();
+          setPrices(prData.items || []);
+        }
+
+        // 6. Fetch Available Synthetic Scenarios from backend
+        const scenRes = await fetch('http://127.0.0.1:8000/api/v1/decision/scenarios').catch(() => null);
+        if (scenRes && scenRes.ok) {
+          const scenData = await scenRes.json();
+          setAvailableScenarios(scenData || []);
         }
       } catch (err: any) {
-        console.error('Error loading dashboard data:', err);
-        setError('Failed to load geospatial or market data. Please refresh or retry.');
+        setError(err.message || 'Error communicating with backend service.');
       } finally {
         setLoading(false);
       }
     }
+
     loadAllData();
   }, []);
 
-  // Compute bounding box across all geometries for SVG projection
-  const bounds = useMemo(() => {
-    let minLon = 180, maxLon = -180, minLat = 90, maxLat = -90;
+  // Fetch and Execute Synthetic Scenario when scenario changes or in Demo Mode
+  useEffect(() => {
+    if (appMode !== 'SYNTHETIC_DEMO') return;
 
-    function processCoords(coords: any[]) {
-      if (typeof coords[0] === 'number') {
-        const [lon, lat] = coords;
-        if (lon < minLon) minLon = lon;
-        if (lon > maxLon) maxLon = lon;
-        if (lat < minLat) minLat = lat;
-        if (lat > maxLat) maxLat = lat;
-      } else {
-        coords.forEach(processCoords);
-      }
-    }
-
-    features.forEach((f) => processCoords(f.geometry.coordinates));
-    return { minLon, maxLon, minLat, maxLat };
-  }, [features]);
-
-  // Project longitude/latitude to SVG coordinates (width: 540, height: 560)
-  const project = useMemo(() => {
-    const width = 540;
-    const height = 560;
-    const padding = 24;
-
-    const lonSpan = bounds.maxLon - bounds.minLon || 1;
-    const latSpan = bounds.maxLat - bounds.minLat || 1;
-
-    return (lon: number, lat: number): [number, number] => {
-      const x = padding + ((lon - bounds.minLon) / lonSpan) * (width - 2 * padding);
-      const y = height - padding - ((lat - bounds.minLat) / latSpan) * (height - 2 * padding);
-      return [x, y];
-    };
-  }, [bounds]);
-
-  // Compute centroid for each district polygon
-  const districtCentroids = useMemo(() => {
-    const map = new Map<string, [number, number]>();
-
-    features.forEach((feat) => {
-      let sumX = 0;
-      let sumY = 0;
-      let count = 0;
-
-      function collectPoints(coords: any[]) {
-        if (typeof coords[0] === 'number') {
-          const [x, y] = project(coords[0], coords[1]);
-          sumX += x;
-          sumY += y;
-          count++;
-        } else {
-          coords.forEach(collectPoints);
-        }
-      }
-
-      collectPoints(feat.geometry.coordinates);
-      if (count > 0) {
-        map.set(feat.properties.dtname.toLowerCase(), [sumX / count, sumY / count]);
-      }
-    });
-
-    return map;
-  }, [features, project]);
-
-  // Convert GeoJSON geometry to SVG path `d` string
-  function getPathD(geometry: any): string {
-    const { type, coordinates } = geometry;
-    if (type === 'Polygon') {
-      return coordinates.map((ring: any[]) => {
-        return ring.map((pt: any[], i: number) => {
-          const [x, y] = project(pt[0], pt[1]);
-          return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
-        }).join(' ') + ' Z';
-      }).join(' ');
-    } else if (type === 'MultiPolygon') {
-      return coordinates.map((poly: any[]) => {
-        return poly.map((ring: any[]) => {
-          return ring.map((pt: any[], i: number) => {
-            const [x, y] = project(pt[0], pt[1]);
-            return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
-          }).join(' ') + ' Z';
-        }).join(' ');
-      }).join(' ');
-    }
-    return '';
-  }
-
-  // Derive unique APMC mandi locations from prices feed with mapped district centroids
-  const mandiLocations = useMemo<MandiLocation[]>(() => {
-    const seen = new Set<string>();
-    const mandis: MandiLocation[] = [];
-
-    const mandiDistrictMap: Record<string, string> = {
-      'abohar apmc': 'Fazilka',
-      'adampur apmc': 'Jalandhar',
-      'ajnala apmc': 'Amritsar',
-      'amritsar apmc': 'Amritsar',
-      'anandpur sahib apmc': 'Rupnagar',
-      'barnala apmc': 'Barnala',
-      'bathinda apmc': 'Bathinda',
-      'faridkot apmc': 'Faridkot',
-      'fatehgarh sahib apmc': 'Fatehgarh Sahib',
-      'fazilka apmc': 'Fazilka',
-      'firozepur apmc': 'Firozepur',
-      'gurdaspur apmc': 'Gurdaspur',
-      'hoshiarpur apmc': 'Hoshiarpur',
-      'jalandhar apmc': 'Jalandhar',
-      'kapurthala apmc': 'Kapurthala',
-      'ludhiana apmc': 'Ludhiana',
-      'mansa apmc': 'Mansa',
-      'moga apmc': 'Moga',
-      'muktsar apmc': 'Sri Muktsar Sahib',
-      'pathankot apmc': 'Pathankot',
-      'patiala apmc': 'Patiala',
-      'rupnagar apmc': 'Rupnagar',
-      'sangrur apmc': 'Sangrur',
-      'tarn taran apmc': 'Tarn Taran',
-    };
-
-    prices.forEach((p, idx) => {
-      const lower = p.market_name.toLowerCase();
-      if (!seen.has(lower)) {
-        seen.add(lower);
-        let dist = mandiDistrictMap[lower] || 'Ludhiana';
-        if (!mandiDistrictMap[lower]) {
-          for (const [key, val] of Object.entries(mandiDistrictMap)) {
-            if (lower.includes(key.replace(' apmc', '')) || key.includes(lower)) {
-              dist = val;
-              break;
-            }
-          }
+    let isMounted = true;
+    async function executeScenario() {
+      try {
+        setIsEvaluatingScenario(true);
+        // 1. Fetch details & time series
+        const detailRes = await fetch(`http://127.0.0.1:8000/api/v1/decision/scenarios/${selectedScenarioId}`);
+        if (detailRes.ok) {
+          const detailData = await detailRes.json();
+          if (isMounted) setScenarioObservations(detailData.observations || []);
         }
 
-        mandis.push({
-          id: `mandi-${idx}`,
-          name: p.market_name,
-          district: dist,
-          commodity: p.commodity_name,
-          modalPrice: p.modal_price,
-          priceUnit: p.price_unit,
-          observationDate: p.observation_date,
+        // 2. Execute decision engine algorithm on backend
+        const runRes = await fetch(`http://127.0.0.1:8000/api/v1/decision/scenarios/${selectedScenarioId}/run`, {
+          method: 'POST',
         });
+        if (runRes.ok) {
+          const assessData = await runRes.json();
+          if (isMounted) setScenarioAssessment(assessData);
+        }
+      } catch (err) {
+        console.error('Failed to run synthetic scenario:', err);
+      } finally {
+        if (isMounted) setIsEvaluatingScenario(false);
       }
-    });
+    }
 
-    return mandis;
-  }, [prices]);
+    executeScenario();
+    return () => {
+      isMounted = false;
+    };
+  }, [appMode, selectedScenarioId]);
 
-  // All district names sorted
+  // Derived: District list from features
   const districtList = useMemo(() => {
-    return features.map((f) => f.properties.dtname).sort();
+    const set = new Set<string>();
+    features.forEach((f) => {
+      if (f.properties?.dtname) set.add(f.properties.dtname);
+    });
+    return Array.from(set).sort();
   }, [features]);
 
-  // District 2022-23 Wheat Production Map for choropleth calculation
+  // Derived: Wheat Production map for shading
   const districtWheatProduction = useMemo(() => {
     const map = new Map<string, number>();
-    production.forEach((p) => {
-      if (p.crop_standard.toLowerCase() === 'wheat' && p.agricultural_year === '2022-23' && p.production_value !== null) {
-        map.set(p.district_original.toLowerCase(), p.production_value);
-      }
-    });
+    production
+      .filter((p) => p.crop_standard.toLowerCase() === 'wheat' && p.agricultural_year === '2022-23')
+      .forEach((p) => {
+        if (p.production_value !== null) {
+          map.set(p.district_original.toLowerCase(), p.production_value);
+        }
+      });
     return map;
   }, [production]);
 
-  // Maximum production for color scaling
-  const maxWheatProd = useMemo(() => {
-    let max = 0;
-    districtWheatProduction.forEach((val) => {
-      if (val > max) max = val;
+  // Derived: Mandi locations
+  const mandiLocations: MandiLocation[] = useMemo(() => {
+    const list: MandiLocation[] = [];
+    prices.forEach((p, idx) => {
+      list.push({
+        id: `mandi-${idx}`,
+        name: p.market_name,
+        district: p.market_name.split(' ')[0],
+        commodity: p.commodity_name,
+        modalPrice: p.modal_price,
+        priceUnit: p.price_unit,
+        observationDate: p.observation_date,
+      });
     });
-    return max || 1280000;
-  }, [districtWheatProduction]);
+    return list;
+  }, [prices]);
 
-  // Choropleth Fill Generator
-  function getDistrictFill(districtName: string): string {
-    if (shadingMode === 'status') {
-      // 23/23 districts are classified as Insufficient Data under 7-Point Gate
-      return '#fef3c7'; // Light warm amber tint
-    }
-    // Production Mode: Light Green (#dcfce7) to Deep Agricultural Green (#15803d)
-    const prod = districtWheatProduction.get(districtName.toLowerCase()) || 0;
-    const ratio = Math.min(Math.max(prod / maxWheatProd, 0.1), 1);
-    if (ratio < 0.25) return '#dcfce7';
-    if (ratio < 0.5) return '#86efac';
-    if (ratio < 0.75) return '#22c55e';
-    return '#15803d';
+  // District SVG Bounding Box projection
+  const bounds = { minX: 73.8, maxX: 76.95, minY: 29.5, maxY: 32.55 };
+
+  function projectCoord(lon: number, lat: number): [number, number] {
+    const width = 520;
+    const height = 540;
+    const x = ((lon - bounds.minX) / (bounds.maxX - bounds.minX)) * width + 10;
+    const y = height - ((lat - bounds.minY) / (bounds.maxY - bounds.minY)) * height + 10;
+    return [x, y];
   }
 
-  // Selected district metadata & records
-  const activeDetail = useMemo(() => {
-    const feat = features.find((f) => f.properties.dtname.toLowerCase() === selectedDistrict.toLowerCase());
-    const crw = crosswalk.find((c) => c.district_name_boundary.toLowerCase() === selectedDistrict.toLowerCase());
-    const prodItems = production.filter((p) => p.district_original.toLowerCase() === selectedDistrict.toLowerCase());
-    const districtMandis = mandiLocations.filter((m) => m.district.toLowerCase() === selectedDistrict.toLowerCase());
+  function getPathD(geometry: any): string {
+    if (!geometry) return '';
+    const rings = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+    let d = '';
+    rings.forEach((polygonRings: any[]) => {
+      polygonRings.forEach((ring: any[]) => {
+        ring.forEach((coord: [number, number], index: number) => {
+          const [px, py] = projectCoord(coord[0], coord[1]);
+          if (index === 0) d += `M ${px.toFixed(1)} ${py.toFixed(1)} `;
+          else d += `L ${px.toFixed(1)} ${py.toFixed(1)} `;
+        });
+        d += 'Z ';
+      });
+    });
+    return d;
+  }
 
-    const latestWheat = prodItems.find((p) => p.crop_standard.toLowerCase() === 'wheat' && p.agricultural_year === '2022-23');
-    const latestRice = prodItems.find((p) => p.crop_standard.toLowerCase().includes('paddy') && p.agricultural_year === '2022-23');
+  const districtCentroids = useMemo(() => {
+    const map = new Map<string, [number, number]>();
+    features.forEach((feat) => {
+      const geom = feat.geometry;
+      let totalX = 0;
+      let totalY = 0;
+      let count = 0;
+      const rings = geom.type === 'Polygon' ? [geom.coordinates] : geom.coordinates;
+      rings.forEach((poly: any[]) => {
+        poly.forEach((ring: any[]) => {
+          ring.forEach((c: [number, number]) => {
+            const [px, py] = projectCoord(c[0], c[1]);
+            totalX += px;
+            totalY += py;
+            count += 1;
+          });
+        });
+      });
+      if (count > 0) {
+        map.set(feat.properties.dtname.toLowerCase(), [totalX / count, totalY / count]);
+      }
+    });
+    return map;
+  }, [features]);
+
+  // Map Color calculation
+  function getDistrictFill(dtname: string): string {
+    if (shadingMode === 'status') {
+      return '#fef3c7'; // Soft Amber tint representing Insufficient Evidence
+    }
+
+    const prod = districtWheatProduction.get(dtname.toLowerCase());
+    if (prod === undefined || prod === 0) return '#f1f5f9';
+    if (prod > 800000) return '#15803d'; // High production dark green
+    if (prod > 400000) return '#4ade80'; // Medium production green
+    return '#bbf7d0'; // Moderate production light green
+  }
+
+  // Active detail computation
+  const activeDetail = useMemo(() => {
+    const distKey = selectedDistrict.toLowerCase();
+    const feat = features.find((f) => f.properties.dtname.toLowerCase() === distKey);
+    const cw = crosswalk.find((c) => c.district_source_name_apy.toLowerCase() === distKey);
+    const prodWheat = production.find(
+      (p) => p.district_original.toLowerCase() === distKey && p.crop_standard.toLowerCase() === 'wheat' && p.agricultural_year === '2022-23'
+    );
+    const prodRice = production.find(
+      (p) => p.district_original.toLowerCase() === distKey && p.crop_standard.toLowerCase() === 'rice' && p.agricultural_year === '2022-23'
+    );
+    const mandiMatches = mandiLocations.filter(
+      (m) => m.district.toLowerCase().includes(distKey) || distKey.includes(m.district.toLowerCase())
+    );
 
     return {
       name: feat?.properties.dtname || selectedDistrict,
-      lgdCode: feat?.properties.dist_lgd || feat?.properties.district_id || 'N/A',
-      vintage: feat?.properties.year_stat || feat?.properties.boundary_vintage_feature || '2011_c',
-      temporalNote: crw?.temporal_note || 'Standard boundary vintage 2011_c',
-      wheatProd: latestWheat?.production_value ?? null,
-      wheatYield: latestWheat?.yield_value ?? null,
-      riceProd: latestRice?.production_value ?? null,
-      riceYield: latestRice?.yield_value ?? null,
-      mandis: districtMandis,
+      lgdCode: feat?.properties.dist_lgd || cw?.district_id_candidate_lgd || 'Not Matched',
+      wheatProd: prodWheat?.production_value ?? null,
+      wheatYield: prodWheat?.yield_value ?? null,
+      riceProd: prodRice?.production_value ?? null,
+      riceYield: prodRice?.yield_value ?? null,
+      mandis: mandiMatches,
     };
-  }, [features, crosswalk, production, mandiLocations, selectedDistrict]);
+  }, [selectedDistrict, features, crosswalk, production, mandiLocations]);
 
   const activeMandi = useMemo(() => {
     if (!selectedMandiId) return null;
     return mandiLocations.find((m) => m.id === selectedMandiId) || null;
-  }, [mandiLocations, selectedMandiId]);
+  }, [selectedMandiId, mandiLocations]);
 
-  // Chart 1 Data: Historical Yield Trend for Selected District (or State Avg)
-  const historicalTrendData = useMemo(() => {
+  // Chart 1 Data: Historical Wheat Productivity (1968–2023)
+  const historicalYieldData = useMemo(() => {
+    const distKey = selectedDistrict.toLowerCase();
     const filtered = yields
-      .filter((y) => y.district_original.toLowerCase() === selectedDistrict.toLowerCase() && y.crop_standard === 'wheat')
-      .map((y) => ({
-        year: parseInt(y.effective_year, 10),
-        yearLabel: y.effective_year,
-        yieldVal: y.yield_value || 0,
-        source: y.source_id,
-      }))
-      .filter((d) => !isNaN(d.year) && d.yieldVal > 0)
-      .sort((a, b) => a.year - b.year);
-
-    if (filtered.length === 0) {
-      // Fallback to Punjab state historical sample if district series has pre-split gaps
-      return [
-        { year: 1970, yearLabel: '1970', yieldVal: 2238, source: 'ogd_punjab' },
-        { year: 1980, yearLabel: '1980', yieldVal: 2730, source: 'ogd_punjab' },
-        { year: 1990, yearLabel: '1990', yieldVal: 3715, source: 'ogd_punjab' },
-        { year: 2000, yearLabel: '2000', yieldVal: 4563, source: 'ogd_punjab' },
-        { year: 2010, yearLabel: '2010', yieldVal: 4693, source: 'ogd_punjab' },
-        { year: 2018, yearLabel: '2018', yieldVal: 5077, source: 'des_apy' },
-        { year: 2020, yearLabel: '2020', yieldVal: 5004, source: 'des_apy' },
-        { year: 2022, yearLabel: '2022', yieldVal: 5190, source: 'des_apy' },
-      ];
-    }
-    // Return evenly spaced subset for readable chart rendering
+      .filter((y) => y.district_original.toLowerCase() === distKey && y.crop_standard.toLowerCase() === 'wheat')
+      .sort((a, b) => parseInt(a.effective_year, 10) - parseInt(b.effective_year, 10));
     return filtered.slice(-8);
   }, [yields, selectedDistrict]);
 
-  // Chart 2 Data: Top Wheat Producing Basins Comparison (2022-23 DES APY)
+  // Chart 2 Data: Top Wheat Basins Comparison
   const districtComparisonData = useMemo(() => {
     const list: { district: string; prodMT: number; isSelected: boolean }[] = [];
     districtWheatProduction.forEach((prod, distKey) => {
@@ -392,9 +413,7 @@ export default function DashboardView() {
         isSelected: properName.toLowerCase() === selectedDistrict.toLowerCase(),
       });
     });
-
     list.sort((a, b) => b.prodMT - a.prodMT);
-    // Include top 6 plus the selected district if not already in top 6
     const top6 = list.slice(0, 6);
     if (!top6.some((d) => d.isSelected)) {
       const foundSelected = list.find((d) => d.isSelected);
@@ -403,7 +422,7 @@ export default function DashboardView() {
     return top6;
   }, [districtWheatProduction, features, selectedDistrict]);
 
-  // Chart 4 Data: Supply Chain Coverage Matrix (from empirical coverage)
+  // Chart 4 Data: Coverage Matrix
   const coverageDimensions = [
     { name: '1. Crop Yield History', coverage: 100, status: 'VERIFIED', source: 'OGD Punjab (2,754 rows)' },
     { name: '2. Production Estimates', coverage: 100, status: 'VERIFIED', source: 'DES APY (230 rows)' },
@@ -417,6 +436,96 @@ export default function DashboardView() {
 
   return (
     <div className="dashboard-container">
+      {/* MODE SWITCHER: Real Evidence vs. Synthetic Demo Mode */}
+      <section className="app-mode-banner" aria-label="Application Operating Mode">
+        <div className="mode-selector-wrap">
+          <span className="mode-heading">System Operating Mode:</span>
+          <div className="mode-toggle-group" role="tablist" aria-label="Evidence vs Demo Mode Toggle">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={appMode === 'REAL'}
+              className={`mode-toggle-btn ${appMode === 'REAL' ? 'active real-active' : ''}`}
+              onClick={() => setAppMode('REAL')}
+              id="mode-toggle-real"
+            >
+              <span className="mode-dot green"></span>
+              <strong>Real Evidence Mode</strong> (Audited Government Feeds)
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={appMode === 'SYNTHETIC_DEMO'}
+              className={`mode-toggle-btn ${appMode === 'SYNTHETIC_DEMO' ? 'active demo-active' : ''}`}
+              onClick={() => setAppMode('SYNTHETIC_DEMO')}
+              id="mode-toggle-synthetic"
+            >
+              <span className="mode-dot amber"></span>
+              <strong>Synthetic Demo Mode</strong> (Algorithm & Anomaly Lab)
+            </button>
+          </div>
+        </div>
+
+        {appMode === 'SYNTHETIC_DEMO' ? (
+          <div className="synthetic-watermark-pill" role="alert">
+            <span className="pill-tag">OFFLINE SIMULATION</span>
+            <span>SYNTHETIC DEMO — NOT LIVE MARKET EVIDENCE</span>
+          </div>
+        ) : (
+          <div className="real-watermark-pill">
+            <span className="pill-tag green">EMPIRICAL GOVERNANCE</span>
+            <span>Real Datasets Audited • AGENTS.md Rule 6 Strict Compliance</span>
+          </div>
+        )}
+      </section>
+
+      {/* SYNTHETIC DEMO CONTROLS (Rendered in Demo Mode) */}
+      {appMode === 'SYNTHETIC_DEMO' && (
+        <section className="scenario-lab-panel" aria-label="Synthetic Scenario Selection">
+          <div className="scenario-header">
+            <div>
+              <h2 className="scenario-title">Interactive Anomaly Detection & Scenario Lab</h2>
+              <p className="scenario-subtitle">
+                Select an isolated scenario to test the backend decision engine algorithm against planted anomalies,
+                isolated signals, or corrupted evidence. Results are calculated dynamically by the server.
+              </p>
+            </div>
+            <div className="algorithm-badge">
+              <span>Engine: Robust MAD (v2.1.0)</span>
+            </div>
+          </div>
+
+          <div className="scenario-chips-row" role="radiogroup" aria-label="Select Test Scenario">
+            {(availableScenarios.length > 0
+              ? availableScenarios.map((s) => ({
+                  id: s.scenario_id,
+                  label: s.title,
+                  tag: s.expected_decision_status.replace(/_/g, ' '),
+                }))
+              : [
+                  { id: 'scenario_b_convergent_anomaly', label: 'Scenario B: Planted Convergent Anomaly', tag: 'Divergence' },
+                  { id: 'scenario_a_normal_baseline', label: 'Scenario A: Normal Baseline', tag: 'Normal' },
+                  { id: 'scenario_c_price_spike_only', label: 'Scenario C: Price-Only Spike', tag: 'Price Signal' },
+                  { id: 'scenario_d_arrival_drop_only', label: 'Scenario D: Arrival-Only Drop', tag: 'Arrival Signal' },
+                  { id: 'scenario_e_insufficient_evidence', label: 'Scenario E: Insufficient / Corrupted', tag: 'Data Gap' },
+                ]
+            ).map((scen) => (
+              <button
+                key={scen.id}
+                type="button"
+                className={`scenario-chip ${selectedScenarioId === scen.id ? 'active' : ''}`}
+                onClick={() => setSelectedScenarioId(scen.id)}
+                role="radio"
+                aria-checked={selectedScenarioId === scen.id}
+              >
+                <span className="chip-tag">{scen.tag}</span>
+                <span className="chip-label">{scen.label}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* A. Meaningful Google Material Summary Metrics Cards */}
       <section className="summary-metrics-grid" aria-label="Punjab GrainWatch Operational Metrics">
         <div className="metric-card-mat">
@@ -435,9 +544,17 @@ export default function DashboardView() {
             <span className="metric-label">Locations Flagged for Investigation</span>
             <span className="metric-badge amber">Rule 6 Invariant</span>
           </div>
-          <div className="metric-number">0 Flagged (0 Eligible)</div>
+          <div className="metric-number">
+            {appMode === 'SYNTHETIC_DEMO' && scenarioAssessment?.decision_status === 'CONVERGENT_SUPPLY_ANOMALY'
+              ? '1 Scenario Flagged (Demo)'
+              : '0 Flagged (0 Eligible)'}
+          </div>
           <div className="metric-footer">
-            <span>7-Point Gate: Ineligible due to missing staple arrival volumes</span>
+            <span>
+              {appMode === 'SYNTHETIC_DEMO'
+                ? 'Deterministic backend simulation detection active'
+                : '7-Point Gate: Ineligible due to missing staple arrival volumes'}
+            </span>
           </div>
         </div>
 
@@ -464,78 +581,80 @@ export default function DashboardView() {
         </div>
       </section>
 
-      {/* Top Filter and Context Controls Bar */}
-      <div className="dashboard-toolbar" role="region" aria-label="Dashboard Controls">
-        <div className="toolbar-left">
-          <label htmlFor="district-select" className="filter-label">
-            <strong>Select District:</strong>
-          </label>
-          <select
-            id="district-select"
-            className="filter-select"
-            value={selectedDistrict}
-            onChange={(e) => {
-              setSelectedDistrict(e.target.value);
-              setSelectedMandiId(null);
-            }}
-          >
-            {districtList.map((d) => (
-              <option key={d} value={d}>
-                {d}
-              </option>
-            ))}
-          </select>
-        </div>
+      {/* Top Filter and Context Controls Bar (Real Mode) */}
+      {appMode === 'REAL' && (
+        <div className="dashboard-toolbar" role="region" aria-label="Dashboard Controls">
+          <div className="toolbar-left">
+            <label htmlFor="district-select" className="filter-label">
+              <strong>Select District:</strong>
+            </label>
+            <select
+              id="district-select"
+              className="filter-select"
+              value={selectedDistrict}
+              onChange={(e) => {
+                setSelectedDistrict(e.target.value);
+                setSelectedMandiId(null);
+              }}
+            >
+              {districtList.map((d) => (
+                <option key={d} value={d}>
+                  {d}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="toolbar-center">
-          <span className="filter-label"><strong>Commodity:</strong></span>
-          <div className="filter-button-group" role="group" aria-label="Commodity Filter">
-            <button
-              type="button"
-              className={`filter-btn ${commodityFilter === 'all' ? 'active' : ''}`}
-              onClick={() => setCommodityFilter('all')}
-            >
-              All Crops
-            </button>
-            <button
-              type="button"
-              className={`filter-btn ${commodityFilter === 'wheat' ? 'active' : ''}`}
-              onClick={() => setCommodityFilter('wheat')}
-            >
-              Wheat (Rabi)
-            </button>
-            <button
-              type="button"
-              className={`filter-btn ${commodityFilter === 'rice' ? 'active' : ''}`}
-              onClick={() => setCommodityFilter('rice')}
-            >
-              Paddy/Rice (Kharif)
-            </button>
+          <div className="toolbar-center">
+            <span className="filter-label"><strong>Commodity:</strong></span>
+            <div className="filter-button-group" role="group" aria-label="Commodity Filter">
+              <button
+                type="button"
+                className={`filter-btn ${commodityFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setCommodityFilter('all')}
+              >
+                All Crops
+              </button>
+              <button
+                type="button"
+                className={`filter-btn ${commodityFilter === 'wheat' ? 'active' : ''}`}
+                onClick={() => setCommodityFilter('wheat')}
+              >
+                Wheat (Rabi)
+              </button>
+              <button
+                type="button"
+                className={`filter-btn ${commodityFilter === 'rice' ? 'active' : ''}`}
+                onClick={() => setCommodityFilter('rice')}
+              >
+                Paddy/Rice (Kharif)
+              </button>
+            </div>
+          </div>
+
+          <div className="toolbar-right">
+            <span className="filter-label"><strong>Map Shading:</strong></span>
+            <div className="filter-button-group" role="group" aria-label="Map Shading Mode">
+              <button
+                type="button"
+                className={`filter-btn ${shadingMode === 'production' ? 'active' : ''}`}
+                onClick={() => setShadingMode('production')}
+                title="Shade districts by verified Wheat Production (Metric Tonnes)"
+              >
+                Wheat Production (MT)
+              </button>
+              <button
+                type="button"
+                className={`filter-btn ${shadingMode === 'status' ? 'active' : ''}`}
+                onClick={() => setShadingMode('status')}
+                title="Shade districts by Evidence Sufficiency Screening Status"
+              >
+                Evidence Status
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className="toolbar-right">
-          <span className="filter-label"><strong>Map Shading:</strong></span>
-          <div className="filter-button-group" role="group" aria-label="Map Shading Mode">
-            <button
-              type="button"
-              className={`filter-btn ${shadingMode === 'production' ? 'active' : ''}`}
-              onClick={() => setShadingMode('production')}
-              title="Shade districts by verified Wheat Production (Metric Tonnes)"
-            >
-              Wheat Production (MT)
-            </button>
-            <button
-              type="button"
-              className={`filter-btn ${shadingMode === 'status' ? 'active' : ''}`}
-              onClick={() => setShadingMode('status')}
-              title="Shade districts by Evidence Sufficiency Screening Status"
-            >
-              Evidence Status
-            </button>
-          </div>
-        </div>
-      </div>
+      )}
 
       {/* Error Banner */}
       {error && (
@@ -555,7 +674,9 @@ export default function DashboardView() {
             <div>
               <h2 className="panel-title">Interactive Punjab Map</h2>
               <span className="panel-subtitle">
-                {shadingMode === 'production'
+                {appMode === 'SYNTHETIC_DEMO'
+                  ? `Simulated Market Jurisdiction: ${scenarioAssessment?.location_name || 'Khanna Grain Mandi'} (Illustrative Location)`
+                  : shadingMode === 'production'
                   ? 'Shaded by 2022-23 Wheat Production (MT). Click any district or APMC pin to inspect evidence.'
                   : 'All 23 districts shaded in Insufficient Evidence tint under 7-Point Screening Gate.'}
               </span>
@@ -704,115 +825,223 @@ export default function DashboardView() {
         <div className="assessment-panel">
           <div className="panel-header">
             <div>
-              <span className="eyebrow-tag">Location Assessment</span>
+              <span className="eyebrow-tag">
+                {appMode === 'SYNTHETIC_DEMO' ? 'Synthetic Engine Output' : 'Location Assessment'}
+              </span>
               <h2 className="panel-title">
-                {activeMandi ? `${activeMandi.name} (${activeMandi.district})` : `${activeDetail.name} District`}
+                {appMode === 'SYNTHETIC_DEMO'
+                  ? scenarioAssessment?.location_name || 'Simulation Catchment'
+                  : activeMandi
+                  ? `${activeMandi.name} (${activeMandi.district})`
+                  : `${activeDetail.name} District`}
               </h2>
             </div>
             <div className="lgd-badge" title="Local Government Directory Code">
-              LGD: {activeDetail.lgdCode}
+              {appMode === 'SYNTHETIC_DEMO' ? 'SIM-DEMO' : `LGD: ${activeDetail.lgdCode}`}
             </div>
           </div>
 
-          {/* RISK ASSESSMENT CARD */}
-          <div className="risk-assessment-card">
-            <div className="risk-header">
-              <span className="risk-title">Hoarding Risk Evaluation</span>
-              <span className="risk-badge neutral">INSUFFICIENT DATA TO ASSESS RISK</span>
-            </div>
-            <p className="risk-summary">
-              There is currently <strong>insufficient empirical data</strong> to compute an objective grain-hoarding risk score or rank for {activeDetail.name}.
-            </p>
-            <div className="risk-reasons-box">
-              <h4 className="box-title">Why risk cannot be calculated from current evidence:</h4>
-              <ul className="reasons-list">
-                <li>
-                  <strong>Zero Wheat/Paddy Market Arrivals:</strong> The acquired daily arrival panel contains 3,892 produce rows (vegetables/fruits) and exactly 0 staple foodgrain records.
-                </li>
-                <li>
-                  <strong>100% Null Arrival Volumes:</strong> AGMARKNET daily price feeds report wholesale price quotes only; arrival volumes are unexposed (null).
-                </li>
-                <li>
-                  <strong>Unmeasured Private Warehousing:</strong> No verified private silo inventories or inter-state grain movement records exist.
-                </li>
-                <li>
-                  <strong>AGENTS.md Rule 6:</strong> Statistical anomalies are investigation prompts only and never proof of intent or illegal hoarding.
-                </li>
-              </ul>
-            </div>
+          {/* DYNAMIC DECISION ENGINE ASSESSMENT CARD */}
+          {appMode === 'SYNTHETIC_DEMO' ? (
+            <div className={`risk-assessment-card demo-card ${scenarioAssessment?.decision_status.toLowerCase()}`}>
+              <div className="risk-header">
+                <span className="risk-title">Backend Decision Engine Assessment</span>
+                <span className={`risk-badge badge-${scenarioAssessment?.decision_status.toLowerCase()}`}>
+                  {isEvaluatingScenario ? 'EVALUATING MODEL...' : (scenarioAssessment?.status_label || 'PROCESSING...')}
+                </span>
+              </div>
 
-            <div className="evidence-sufficiency-gauge">
-              <div className="gauge-header">
-                <span>Evidence Sufficiency Level</span>
-                <span className="gauge-val">Low / Incomplete</span>
+              {/* Anomaly Intensity Gauge (when available) */}
+              {scenarioAssessment?.anomaly_intensity_score !== null && scenarioAssessment?.anomaly_intensity_score !== undefined && (
+                <div className="anomaly-score-box">
+                  <div className="score-top">
+                    <span className="score-label">Anomaly Intensity Score</span>
+                    <span className="score-value">{scenarioAssessment.anomaly_intensity_score} / 100</span>
+                  </div>
+                  <div className="score-bar">
+                    <div
+                      className={`score-bar-fill fill-${scenarioAssessment.decision_status.toLowerCase()}`}
+                      style={{ width: `${Math.min(100, Math.max(5, scenarioAssessment.anomaly_intensity_score))}%` }}
+                    ></div>
+                  </div>
+                </div>
+              )}
+
+              <p className="risk-summary">
+                {scenarioAssessment?.human_explanation}
+              </p>
+
+              {/* Per-Signal Breakdown Cards */}
+              {scenarioAssessment?.signals && (
+                <div className="signals-breakdown-grid">
+                  <div className="signal-box">
+                    <div className="sig-header">
+                      <span className="sig-title">Price Signal</span>
+                      <span className={`sig-tag ${scenarioAssessment.signals.price?.status.toLowerCase()}`}>
+                        {scenarioAssessment.signals.price?.status}
+                      </span>
+                    </div>
+                    <div className="sig-metric">
+                      {scenarioAssessment.signals.price?.observed_value
+                        ? `Rs. ${scenarioAssessment.signals.price.observed_value} / Qtl`
+                        : 'Unobserved'}
+                    </div>
+                    <div className="sig-sub">
+                      Deviation: {scenarioAssessment.signals.price?.deviation_pct !== null && scenarioAssessment.signals.price?.deviation_pct !== undefined
+                        ? `${scenarioAssessment.signals.price.deviation_pct > 0 ? '+' : ''}${scenarioAssessment.signals.price.deviation_pct}%`
+                        : 'N/A'} (Z = {scenarioAssessment.signals.price?.robust_z_score ?? 'N/A'})
+                    </div>
+                  </div>
+
+                  <div className="signal-box">
+                    <div className="sig-header">
+                      <span className="sig-title">Arrival Signal</span>
+                      <span className={`sig-tag ${scenarioAssessment.signals.arrival?.status.toLowerCase()}`}>
+                        {scenarioAssessment.signals.arrival?.status}
+                      </span>
+                    </div>
+                    <div className="sig-metric">
+                      {scenarioAssessment.signals.arrival?.observed_value !== null && scenarioAssessment.signals.arrival?.observed_value !== undefined
+                        ? `${scenarioAssessment.signals.arrival.observed_value} Qtl`
+                        : 'Unobserved'}
+                    </div>
+                    <div className="sig-sub">
+                      Deviation: {scenarioAssessment.signals.arrival?.deviation_pct !== null && scenarioAssessment.signals.arrival?.deviation_pct !== undefined
+                        ? `${scenarioAssessment.signals.arrival.deviation_pct > 0 ? '+' : ''}${scenarioAssessment.signals.arrival.deviation_pct}%`
+                        : 'N/A'} (Z = {scenarioAssessment.signals.arrival?.robust_z_score ?? 'N/A'})
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Recommended Action */}
+              <div className="risk-reasons-box">
+                <h4 className="box-title">Recommended Next Step:</h4>
+                <p className="recommended-action-text">{scenarioAssessment?.recommended_action}</p>
               </div>
-              <div className="gauge-bar">
-                <div className="gauge-fill" style={{ width: '28%' }}></div>
+
+              {/* Legal Caveat */}
+              <div className="legal-caveat-box">
+                <span className="caveat-icon">⚖️</span>
+                <span>{scenarioAssessment?.legal_caveat}</span>
               </div>
-              <span className="gauge-note">2 of 7 essential screening streams verified</span>
             </div>
-          </div>
+          ) : (
+            /* REAL MODE ASSESSMENT CARD */
+            <div className="risk-assessment-card">
+              <div className="risk-header">
+                <span className="risk-title">Hoarding Risk Evaluation</span>
+                <span className="risk-badge neutral">INSUFFICIENT DATA TO ASSESS RISK</span>
+              </div>
+              <p className="risk-summary">
+                There is currently <strong>insufficient empirical data</strong> to compute an objective grain-hoarding risk score or rank for {activeDetail.name}.
+              </p>
+              <div className="risk-reasons-box">
+                <h4 className="box-title">Why risk cannot be calculated from current evidence:</h4>
+                <ul className="reasons-list">
+                  <li>
+                    <strong>Zero Wheat/Paddy Market Arrivals:</strong> The acquired daily arrival panel contains 3,892 produce rows (vegetables/fruits) and exactly 0 staple foodgrain records.
+                  </li>
+                  <li>
+                    <strong>100% Null Arrival Volumes:</strong> AGMARKNET daily price feeds report wholesale price quotes only; arrival volumes are unexposed (null).
+                  </li>
+                  <li>
+                    <strong>Unmeasured Private Warehousing:</strong> No verified private silo inventories or inter-state grain movement records exist.
+                  </li>
+                  <li>
+                    <strong>AGENTS.md Rule 6:</strong> Statistical anomalies are investigation prompts only and never proof of intent or illegal hoarding.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="evidence-sufficiency-gauge">
+                <div className="gauge-header">
+                  <span>Evidence Sufficiency Level</span>
+                  <span className="gauge-val">Low / Incomplete</span>
+                </div>
+                <div className="gauge-bar">
+                  <div className="gauge-fill" style={{ width: '28%' }}></div>
+                </div>
+                <span className="gauge-note">2 of 7 essential screening streams verified</span>
+              </div>
+            </div>
+          )}
 
           {/* AVAILABLE OBSERVATIONS SECTION */}
           <div className="observations-card">
-            <h3 className="section-title">Verified Observations at this Location</h3>
+            <h3 className="section-title">
+              {appMode === 'SYNTHETIC_DEMO' ? 'Scenario Observation Snapshot' : 'Verified Observations at this Location'}
+            </h3>
 
-            {(commodityFilter === 'all' || commodityFilter === 'wheat') && (
+            {appMode === 'SYNTHETIC_DEMO' ? (
               <div className="evidence-block">
-                <h4 className="evidence-subtitle">1. Agricultural Production & Yield (DES APY 2022-23)</h4>
-                <div className="stat-grid-duo">
-                  <div className="stat-card">
-                    <span className="stat-label">Wheat Production</span>
-                    <span className="stat-value">
-                      {activeDetail.wheatProd !== null ? `${activeDetail.wheatProd.toLocaleString()} MT` : 'Unreported'}
-                    </span>
-                    <span className="stat-sub">Yield: {activeDetail.wheatYield ? `${activeDetail.wheatYield.toLocaleString()} kg/ha` : 'N/A'}</span>
-                  </div>
-                  <div className="stat-card">
-                    <span className="stat-label">Rice / Paddy Production</span>
-                    <span className="stat-value">
-                      {activeDetail.riceProd !== null ? `${activeDetail.riceProd.toLocaleString()} MT` : 'Unreported'}
-                    </span>
-                    <span className="stat-sub">Yield: {activeDetail.riceYield ? `${activeDetail.riceYield.toLocaleString()} kg/ha` : 'N/A'}</span>
-                  </div>
-                </div>
+                <h4 className="evidence-subtitle">Synthetic Observation Stream (45-Day Sequence)</h4>
+                <p className="weather-summary">
+                  Latest observed daily quote: <strong>Rs. {scenarioObservations.slice(-1)[0]?.modal_price ?? 'N/A'} / Qtl</strong>,
+                  Arrival Volume: <strong>{scenarioObservations.slice(-1)[0]?.arrival_quantity ?? 'N/A'} Quintals</strong>.
+                  All generated values are strictly isolated in <code>data/synthetic/</code>.
+                </p>
               </div>
-            )}
-
-            <div className="evidence-block">
-              <h4 className="evidence-subtitle">2. Wholesale APMC Mandi Market Prices (AGMARKNET)</h4>
-              {activeDetail.mandis.length > 0 ? (
-                <div className="mandi-list">
-                  {activeDetail.mandis.map((m) => (
-                    <div key={m.id} className="mandi-item">
-                      <div>
-                        <strong>{m.name}</strong> — {m.commodity}
-                        <div className="mandi-date">Observation: {m.observationDate}</div>
+            ) : (
+              <>
+                {(commodityFilter === 'all' || commodityFilter === 'wheat') && (
+                  <div className="evidence-block">
+                    <h4 className="evidence-subtitle">1. Agricultural Production & Yield (DES APY 2022-23)</h4>
+                    <div className="stat-grid-duo">
+                      <div className="stat-card">
+                        <span className="stat-label">Wheat Production</span>
+                        <span className="stat-value">
+                          {activeDetail.wheatProd !== null ? `${activeDetail.wheatProd.toLocaleString()} MT` : 'Unreported'}
+                        </span>
+                        <span className="stat-sub">Yield: {activeDetail.wheatYield ? `${activeDetail.wheatYield.toLocaleString()} kg/ha` : 'N/A'}</span>
                       </div>
-                      <div className="mandi-price">
-                        {m.modalPrice ? `Rs. ${m.modalPrice.toLocaleString()} / Qtl` : 'Price unlisted'}
+                      <div className="stat-card">
+                        <span className="stat-label">Rice / Paddy Production</span>
+                        <span className="stat-value">
+                          {activeDetail.riceProd !== null ? `${activeDetail.riceProd.toLocaleString()} MT` : 'Unreported'}
+                        </span>
+                        <span className="stat-sub">Yield: {activeDetail.riceYield ? `${activeDetail.riceYield.toLocaleString()} kg/ha` : 'N/A'}</span>
                       </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="no-mandi-text">
-                  No active AGMARKNET price reporting mandis in the current weekly slice for {activeDetail.name}.
-                </p>
-              )}
-            </div>
+                  </div>
+                )}
 
-            <div className="evidence-block">
-              <h4 className="evidence-subtitle">3. Agrometeorological Monitoring (NASA POWER)</h4>
-              <p className="weather-summary">
-                Daily temperature, precipitation, and relative humidity monitored via nearest meteorological station. No anomalous localized weather shocks recorded.
-              </p>
-            </div>
+                <div className="evidence-block">
+                  <h4 className="evidence-subtitle">2. Wholesale APMC Mandi Market Prices (AGMARKNET)</h4>
+                  {activeDetail.mandis.length > 0 ? (
+                    <div className="mandi-list">
+                      {activeDetail.mandis.map((m) => (
+                        <div key={m.id} className="mandi-item">
+                          <div>
+                            <strong>{m.name}</strong> — {m.commodity}
+                            <div className="mandi-date">Observation: {m.observationDate}</div>
+                          </div>
+                          <div className="mandi-price">
+                            {m.modalPrice ? `Rs. ${m.modalPrice.toLocaleString()} / Qtl` : 'Price unlisted'}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="no-mandi-text">
+                      No active AGMARKNET price reporting mandis in the current weekly slice for {activeDetail.name}.
+                    </p>
+                  )}
+                </div>
+
+                <div className="evidence-block">
+                  <h4 className="evidence-subtitle">3. Agrometeorological Monitoring (NASA POWER)</h4>
+                  <p className="weather-summary">
+                    Daily temperature, precipitation, and relative humidity monitored via nearest meteorological station. No anomalous localized weather shocks recorded.
+                  </p>
+                </div>
+              </>
+            )}
           </div>
 
           {/* DATA LIMITATIONS BOX */}
           <div className="limitations-footer-box">
-            <strong>Data Boundary Notice:</strong> All statistics shown are empirical observations from verified government portals. No proxy data is used, and zero arrival values are never assumed from absence of reports.
+            <strong>Data Boundary Notice:</strong> All real statistics shown are empirical observations from verified government portals. No proxy data is used, and zero arrival values are never assumed from absence of reports.
           </div>
         </div>
       </div>
@@ -821,9 +1050,13 @@ export default function DashboardView() {
       <section className="analytics-charts-section" aria-labelledby="charts-section-title">
         <div className="section-header-row">
           <div>
-            <h2 id="charts-section-title" className="section-heading">Analytical Evidence & Integrity Visualizations</h2>
+            <h2 id="charts-section-title" className="section-heading">
+              {appMode === 'SYNTHETIC_DEMO' ? 'Synthetic Scenario Analytical Trajectory' : 'Analytical Evidence & Integrity Visualizations'}
+            </h2>
             <p className="section-subheading">
-              Four verified, purpose-built visualizations answering specific questions with documented provenance.
+              {appMode === 'SYNTHETIC_DEMO'
+                ? 'Time-series curve showing the baseline median against observed values with highlighted anomaly window.'
+                : 'Four verified, purpose-built visualizations answering specific questions with documented provenance.'}
             </p>
           </div>
 
@@ -853,7 +1086,7 @@ export default function DashboardView() {
               className={`chart-tab-btn ${activeChartTab === 'evidence' ? 'active' : ''}`}
               onClick={() => setActiveChartTab('evidence')}
             >
-              3. Evidence Breakdown
+              3. Screening Evidence
             </button>
             <button
               type="button"
@@ -867,275 +1100,274 @@ export default function DashboardView() {
           </div>
         </div>
 
-        {/* CHART 1: HISTORICAL TREND */}
+        {/* Tab 1: Historical Trend (or Synthetic Trajectory in Demo Mode) */}
         {activeChartTab === 'trend' && (
-          <div className="chart-card-mat" role="tabpanel" aria-label="Chart 1: Historical Trend">
-            <div className="chart-header">
+          <div className="chart-card-container">
+            <div className="chart-card-header">
               <div>
-                <h3 className="chart-title">Historical Wheat Productivity Series ({selectedDistrict})</h3>
-                <span className="chart-desc">
-                  Wheat crop yield trajectory (kg/ha) across historical agricultural years.
+                <h3 className="chart-card-title">
+                  {appMode === 'SYNTHETIC_DEMO'
+                    ? `Synthetic Price & Arrival Trajectory: ${scenarioAssessment?.location_name || 'Simulation'}`
+                    : `Historical Wheat Productivity Series (1968–2023) — ${activeDetail.name}`}
+                </h3>
+                <span className="chart-card-sub">
+                  {appMode === 'SYNTHETIC_DEMO'
+                    ? '45-Day Daily Time-Series: Baseline Median vs. Observed Curve'
+                    : 'Source: Open Government Data (OGD) Punjab & DES APY • Unit: kg/ha'}
                 </span>
               </div>
-              <span className="chart-unit-badge">Unit: kg/ha • Source: OGD Punjab & DES APY</span>
             </div>
 
-            <div className="svg-chart-container">
-              <svg viewBox="0 0 720 240" className="trend-svg" role="img" aria-label="Historical yield chart">
-                {/* Horizontal Grid lines */}
-                <line x1="60" y1="40" x2="680" y2="40" stroke="#e2e8f0" strokeDasharray="3,3" />
-                <line x1="60" y1="90" x2="680" y2="90" stroke="#e2e8f0" strokeDasharray="3,3" />
-                <line x1="60" y1="140" x2="680" y2="140" stroke="#e2e8f0" strokeDasharray="3,3" />
-                <line x1="60" y1="190" x2="680" y2="190" stroke="#cbd5e1" />
+            {appMode === 'SYNTHETIC_DEMO' ? (
+              <div className="scenario-chart-display">
+                <svg viewBox="0 0 760 220" className="chart-svg" role="img" aria-label="Synthetic price and arrival time series chart">
+                  <line x1="50" y1="180" x2="740" y2="180" stroke="#cbd5e1" strokeWidth="1" />
+                  <line x1="50" y1="30" x2="50" y2="180" stroke="#cbd5e1" strokeWidth="1" />
 
-                {/* Y-Axis Labels */}
-                <text x="50" y="45" textAnchor="end" fontSize="10" fill="#64748b">6,000</text>
-                <text x="50" y="95" textAnchor="end" fontSize="10" fill="#64748b">4,500</text>
-                <text x="50" y="145" textAnchor="end" fontSize="10" fill="#64748b">3,000</text>
-                <text x="50" y="195" textAnchor="end" fontSize="10" fill="#64748b">1,500</text>
+                  {/* Shaded Anomaly Window (Days 31-45) */}
+                  {selectedScenarioId !== 'scenario_a_normal_baseline' && selectedScenarioId !== 'scenario_e_insufficient_evidence' && (
+                    <rect x="520" y="20" width="220" height="160" fill="#fef2f2" opacity="0.6" />
+                  )}
 
-                {/* Bars & Connecting Polyline */}
-                {historicalTrendData.map((d, i) => {
-                  const x = 90 + i * 80;
-                  const maxVal = 6000;
-                  const y = 190 - (d.yieldVal / maxVal) * 150;
-                  const barHeight = (d.yieldVal / maxVal) * 150;
+                  {/* Draw points & line for Price */}
+                  {scenarioObservations.length > 1 && (
+                    <path
+                      d={scenarioObservations
+                        .map((obs, i) => {
+                          const x = 60 + (i / (scenarioObservations.length - 1)) * 670;
+                          const normPrice = obs.modal_price ? Math.max(0, Math.min(1, (obs.modal_price - 1800) / 1600)) : 0.5;
+                          const y = 170 - normPrice * 130;
+                          return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
+                        })
+                        .join(' ')}
+                      fill="none"
+                      stroke="#0b57d0"
+                      strokeWidth="2.5"
+                    />
+                  )}
 
-                  return (
-                    <g key={d.year} className="trend-bar-group">
-                      <rect
-                        x={x - 18}
-                        y={y}
-                        width="36"
-                        height={barHeight}
-                        rx="4"
-                        fill="#15803d"
-                        opacity="0.85"
-                        className="trend-bar"
-                      >
-                        <title>{`${d.yearLabel}: ${d.yieldVal.toLocaleString()} kg/ha (${d.source})`}</title>
-                      </rect>
-                      <text x={x} y={y - 8} textAnchor="middle" fontSize="11" fontWeight="700" fill="#0f172a">
-                        {Math.round(d.yieldVal)}
-                      </text>
-                      <text x={x} y="210" textAnchor="middle" fontSize="11" fill="#475569">
-                        {d.yearLabel}
-                      </text>
-                    </g>
-                  );
-                })}
-              </svg>
-            </div>
+                  {/* Draw points & line for Arrivals */}
+                  {scenarioObservations.length > 1 && (
+                    <path
+                      d={scenarioObservations
+                        .map((obs, i) => {
+                          const x = 60 + (i / (scenarioObservations.length - 1)) * 670;
+                          const normArr = obs.arrival_quantity ? Math.max(0, Math.min(1, (obs.arrival_quantity - 200) / 2800)) : 0.5;
+                          const y = 170 - normArr * 130;
+                          return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
+                        })
+                        .join(' ')}
+                      fill="none"
+                      stroke="#d97706"
+                      strokeWidth="2"
+                      strokeDasharray="4 2"
+                    />
+                  )}
 
-            {/* Chart 1 Methodology & Provenance Disclosure */}
-            <div className="chart-provenance-box">
-              <h4 className="prov-title">Chart 1 Quality & Provenance Disclosure</h4>
-              <div className="prov-grid">
-                <div>
-                  <strong>Question Answered:</strong> How has crop productivity evolved over time, and what is the baseline output capacity of {selectedDistrict}?
-                </div>
-                <div>
-                  <strong>Source Datasets:</strong> OGD Punjab Historical Yields (1968–2022) combined with DES APY (2018–2023).
-                </div>
-                <div>
-                  <strong>Calculation:</strong> District-level mean yield in kilograms per hectare (kg/ha) across reported seasons.
-                </div>
-                <div>
-                  <strong>Handling of Gaps:</strong> Pre-split jurisdictions (such as Malerkotla) remain discrete points; zero values are never imputed.
-                </div>
-                <div>
-                  <strong>Supported Conclusion:</strong> Validates long-term harvest trends and productivity baseline.
-                </div>
-                <div>
-                  <strong>Unsupported Conclusion:</strong> Does NOT measure daily market grain flow or current warehouse stocks.
-                </div>
+                  {/* Legend inside SVG */}
+                  <g transform="translate(60, 20)">
+                    <line x1="0" y1="5" x2="20" y2="5" stroke="#0b57d0" strokeWidth="2.5" />
+                    <text x="25" y="9" fontSize="11" fill="#1e293b">Wholesale Price (Rs./Qtl)</text>
+                    <line x1="180" y1="5" x2="200" y2="5" stroke="#d97706" strokeWidth="2" strokeDasharray="4 2" />
+                    <text x="205" y="9" fontSize="11" fill="#1e293b">Arrival Volume (Qtl)</text>
+                    {selectedScenarioId !== 'scenario_a_normal_baseline' && selectedScenarioId !== 'scenario_e_insufficient_evidence' && (
+                      <text x="460" y="9" fontSize="11" fill="#b91c1c" fontWeight="bold">Divergence Event Window</text>
+                    )}
+                  </g>
+                </svg>
+              </div>
+            ) : (
+              <div className="chart-svg-wrapper">
+                <svg viewBox="0 0 760 220" className="chart-svg" role="img" aria-label={`Historical wheat productivity chart for ${activeDetail.name}`}>
+                  <line x1="50" y1="180" x2="740" y2="180" stroke="#cbd5e1" strokeWidth="1" />
+                  <line x1="50" y1="30" x2="50" y2="180" stroke="#cbd5e1" strokeWidth="1" />
+
+                  {historicalYieldData.map((d, idx) => {
+                    const x = 80 + idx * 85;
+                    const val = d.yield_value || 0;
+                    const maxVal = 5500;
+                    const barHeight = (val / maxVal) * 140;
+                    const y = 180 - barHeight;
+
+                    return (
+                      <g key={d.effective_year}>
+                        <rect x={x - 20} y={y} width="40" height={barHeight} fill="#15803d" rx="3" opacity="0.85" />
+                        <text x={x} y={y - 8} textAnchor="middle" fontSize="11" fontWeight="bold" fill="#0f172a">
+                          {val.toLocaleString()}
+                        </text>
+                        <text x={x} y="196" textAnchor="middle" fontSize="11" fill="#64748b">
+                          {d.effective_year}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+            )}
+
+            {/* 6-Point Provenance & Methodology Disclosure */}
+            <div className="methodology-disclosure-box">
+              <h4 className="disclosure-heading">Chart 1 Quality & Provenance Disclosure</h4>
+              <div className="disclosure-grid">
+                <div><strong>Question Answered:</strong> How has long-term agricultural grain productivity trended over time?</div>
+                <div><strong>Source Dataset:</strong> {appMode === 'SYNTHETIC_DEMO' ? 'Synthetic Scenario Generator (Offline Fixture)' : 'Open Government Data (OGD) Punjab & DES APY'}</div>
+                <div><strong>Calculation:</strong> {appMode === 'SYNTHETIC_DEMO' ? 'Daily Price vs. Arrival series' : 'Annual district production (MT) / harvested area (ha) * 1000'}</div>
+                <div><strong>Units & Scale:</strong> {appMode === 'SYNTHETIC_DEMO' ? 'Price (Rs./Qtl) & Arrivals (Qtl)' : 'kg/ha (Empirical range: 1,500 – 5,400 kg/ha)'}</div>
+                <div><strong>Supported Conclusion:</strong> {appMode === 'SYNTHETIC_DEMO' ? 'Algorithm accurately flags co-occurring divergence' : 'Long-term yield expansion following Green Revolution adoption'}</div>
+                <div><strong>Unsupported Conclusion:</strong> This trend does NOT proxy intra-seasonal daily market withholding or trader behavior.</div>
               </div>
             </div>
           </div>
         )}
 
-        {/* CHART 2: LOCATION COMPARISON */}
+        {/* Tab 2: Basin Comparison */}
         {activeChartTab === 'compare' && (
-          <div className="chart-card-mat" role="tabpanel" aria-label="Chart 2: Basin Comparison">
-            <div className="chart-header">
+          <div className="chart-card-container">
+            <div className="chart-card-header">
               <div>
-                <h3 className="chart-title">Cross-District Wheat Production Comparison (2022-23)</h3>
-                <span className="chart-desc">
-                  Wheat harvest volume (Metric Tonnes) across top producing agricultural basins in Punjab.
-                </span>
+                <h3 className="chart-card-title">Cross-District Wheat Production Comparison (Top Basins)</h3>
+                <span className="chart-card-sub">Agricultural Year 2022–23 • Unit: Metric Tonnes (MT)</span>
               </div>
-              <span className="chart-unit-badge">Unit: Metric Tonnes (MT) • Source: DES APY</span>
             </div>
 
-            <div className="compare-bars-list">
-              {districtComparisonData.map((d) => {
-                const max = 1300000;
-                const pct = Math.min((d.prodMT / max) * 100, 100);
+            <div className="chart-bars-horizontal">
+              {districtComparisonData.map((item) => {
+                const maxProd = 1100000;
+                const widthPct = Math.min(100, (item.prodMT / maxProd) * 100);
 
                 return (
-                  <div key={d.district} className={`compare-bar-row ${d.isSelected ? 'highlight-row' : ''}`}>
-                    <div className="compare-label">
-                      <strong>{d.district}</strong>
-                      {d.isSelected && <span className="selected-tag">Selected</span>}
+                  <div key={item.district} className={`horiz-bar-row ${item.isSelected ? 'selected-row' : ''}`}>
+                    <div className="bar-label-col">
+                      <strong>{item.district}</strong>
+                      {item.isSelected && <span className="selected-tag">Selected</span>}
                     </div>
-                    <div className="compare-track">
+                    <div className="bar-track-col">
                       <div
-                        className={`compare-fill ${d.isSelected ? 'highlight-fill' : ''}`}
-                        style={{ width: `${pct}%` }}
+                        className={`bar-fill ${item.isSelected ? 'fill-selected' : ''}`}
+                        style={{ width: `${widthPct}%` }}
                       ></div>
                     </div>
-                    <div className="compare-value">
-                      {d.prodMT.toLocaleString()} MT
+                    <div className="bar-val-col">
+                      {item.prodMT.toLocaleString()} MT
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            {/* Chart 2 Provenance Disclosure */}
-            <div className="chart-provenance-box">
-              <h4 className="prov-title">Chart 2 Quality & Provenance Disclosure</h4>
-              <div className="prov-grid">
-                <div>
-                  <strong>Question Answered:</strong> Which districts represent primary grain supply basins, and how does the selected location rank in physical output?
-                </div>
-                <div>
-                  <strong>Source Dataset:</strong> Directorate of Economics & Statistics (DES) APY 2022-23 final harvest series.
-                </div>
-                <div>
-                  <strong>Calculation:</strong> Total district wheat production aggregated from official crop-cutting survey reports.
-                </div>
-                <div>
-                  <strong>Supported Conclusion:</strong> Identifies macro geographic supply concentration across Punjab.
-                </div>
-                <div>
-                  <strong>Unsupported Conclusion:</strong> Higher production volume does NOT equate to higher hoarding risk or illegal stockholding.
-                </div>
+            <div className="methodology-disclosure-box">
+              <h4 className="disclosure-heading">Chart 2 Quality & Provenance Disclosure</h4>
+              <div className="disclosure-grid">
+                <div><strong>Question Answered:</strong> Which Punjab district basins contribute the largest physical wheat supply?</div>
+                <div><strong>Source Dataset:</strong> Directorate of Economics & Statistics (DES APY 2022-23)</div>
+                <div><strong>Calculation:</strong> District aggregate reported production value in Metric Tonnes</div>
+                <div><strong>Units & Scale:</strong> Metric Tonnes (MT)</div>
+                <div><strong>Supported Conclusion:</strong> Sangrur, Ludhiana, and Patiala form the primary grain production belt</div>
+                <div><strong>Unsupported Conclusion:</strong> High production basin status does NOT imply high local hoarding risk.</div>
               </div>
             </div>
           </div>
         )}
 
-        {/* CHART 3: EVIDENCE BREAKDOWN */}
+        {/* Tab 3: Screening Evidence Breakdown */}
         {activeChartTab === 'evidence' && (
-          <div className="chart-card-mat" role="tabpanel" aria-label="Chart 3: Evidence Breakdown">
-            <div className="chart-header">
+          <div className="chart-card-container">
+            <div className="chart-card-header">
               <div>
-                <h3 className="chart-title">Screening Evidence Breakdown ({selectedDistrict})</h3>
-                <span className="chart-desc">
-                  Verification status of required supply chain indicators for automated risk screening.
-                </span>
-              </div>
-              <span className="chart-unit-badge">Evaluation: 7-Point Eligibility Gate</span>
-            </div>
-
-            <div className="evidence-matrix-grid">
-              <div className="evidence-stream-card verified">
-                <div className="stream-badge green">AVAILABLE</div>
-                <h4 className="stream-name">1. Agricultural Production</h4>
-                <p className="stream-detail">DES APY 2022-23 reports {activeDetail.wheatProd?.toLocaleString() || 'Unreported'} MT wheat.</p>
-              </div>
-
-              <div className="evidence-stream-card verified">
-                <div className="stream-badge green">AVAILABLE</div>
-                <h4 className="stream-name">2. APMC Mandi Modal Prices</h4>
-                <p className="stream-detail">AGMARKNET reporting weekly modal price quotes for wholesale paddy.</p>
-              </div>
-
-              <div className="evidence-stream-card missing">
-                <div className="stream-badge red">MISSING (0 ROWS)</div>
-                <h4 className="stream-name">3. Daily Foodgrain Arrivals</h4>
-                <p className="stream-detail">Mandi Board e-Mandikaran acquired feed covers produce only; zero staple grain rows.</p>
-              </div>
-
-              <div className="evidence-stream-card missing">
-                <div className="stream-badge amber">NATIONAL ONLY</div>
-                <h4 className="stream-name">4. Public Buffer Stocks</h4>
-                <p className="stream-detail">Central pool buffer stocks aggregated nationally; state disaggregation null.</p>
-              </div>
-
-              <div className="evidence-stream-card missing">
-                <div className="stream-badge red">NOT OPEN DATA</div>
-                <h4 className="stream-name">5. Private Silo Inventories</h4>
-                <p className="stream-detail">No open telemetry exists for commercial private storage and mill holdings.</p>
-              </div>
-
-              <div className="evidence-stream-card verified">
-                <div className="stream-badge green">AVAILABLE</div>
-                <h4 className="stream-name">6. Agrometeorology</h4>
-                <p className="stream-detail">NASA POWER daily temperature, precipitation, and moisture baseline verified.</p>
+                <h3 className="chart-card-title">Screening Evidence Breakdown & Invariant Evaluation</h3>
+                <span className="chart-card-sub">Compliance with 7-Point Eligibility Gate & AGENTS.md Rule 6</span>
               </div>
             </div>
 
-            {/* Chart 3 Provenance Disclosure */}
-            <div className="chart-provenance-box">
-              <h4 className="prov-title">Chart 3 Quality & Provenance Disclosure</h4>
-              <div className="prov-grid">
-                <div>
-                  <strong>Question Answered:</strong> Why is an automated risk score mathematically and ethically blocked for this location?
-                </div>
-                <div>
-                  <strong>Calculation:</strong> Systematic 7-point screening criteria verification across 6 required data streams.
-                </div>
-                <div>
-                  <strong>Missing Value Handling:</strong> Missing streams are explicitly flagged as blocked barriers; never imputed as 0.0.
-                </div>
-                <div>
-                  <strong>Supported Conclusion:</strong> Confirms that missing arrivals and stocks prevent honest hoarding evaluation.
-                </div>
+            <div className="evidence-streams-table">
+              <div className="table-header-row">
+                <span>Required Supply Stream</span>
+                <span>Audit Status</span>
+                <span>Verified Observations</span>
+                <span>Hoarding Inference Policy</span>
+              </div>
+              <div className="table-data-row">
+                <strong>1. Staple Foodgrain Arrivals</strong>
+                <span className="status-tag red">Zero Grain Rows</span>
+                <span>3,892 produce rows (62 crops)</span>
+                <span>BLOCKED (Cannot proxy grains from produce)</span>
+              </div>
+              <div className="table-data-row">
+                <strong>2. Mandi Wholesale Prices</strong>
+                <span className="status-tag yellow">Verified (Prices Only)</span>
+                <span>53 Paddy price quotes</span>
+                <span>PARTIAL (Arrival volume 100% null)</span>
+              </div>
+              <div className="table-data-row">
+                <strong>3. District Wheat Production</strong>
+                <span className="status-tag green">100% Verified</span>
+                <span>230 district-year rows</span>
+                <span>ANNUAL MACRO CONTEXT ONLY</span>
+              </div>
+              <div className="table-data-row">
+                <strong>4. Agrometeorology</strong>
+                <span className="status-tag green">100% Verified</span>
+                <span>3,655 station-days (0% nulls)</span>
+                <span>WEATHER BASELINE ONLY</span>
+              </div>
+              <div className="table-data-row">
+                <strong>5. Private Warehouse Stocks</strong>
+                <span className="status-tag red">Zero Public Data</span>
+                <span>0 private silo readings</span>
+                <span>BLOCKED (No commercial holding records)</span>
+              </div>
+            </div>
+
+            <div className="methodology-disclosure-box">
+              <h4 className="disclosure-heading">Chart 3 Quality & Provenance Disclosure</h4>
+              <div className="disclosure-grid">
+                <div><strong>Question Answered:</strong> Are required evidence streams present to substantiate supply anomaly investigation?</div>
+                <div><strong>Source Datasets:</strong> PSAMB e-Mandikaran, AGMARKNET, DES APY, NASA POWER</div>
+                <div><strong>Calculation:</strong> Evaluation against the 7-Point Eligibility Gate rules</div>
+                <div><strong>Units & Scale:</strong> Binary verification status (Verified vs Critical Gap)</div>
+                <div><strong>Supported Conclusion:</strong> Critical volume and stock gaps prevent honest hoarding assessment</div>
+                <div><strong>Unsupported Conclusion:</strong> Data absence does NOT prove illegal behavior or guilt.</div>
               </div>
             </div>
           </div>
         )}
 
-        {/* CHART 4: SUPPLY CHAIN COVERAGE MATRIX */}
+        {/* Tab 4: Supply Coverage Matrix */}
         {activeChartTab === 'coverage' && (
-          <div className="chart-card-mat" role="tabpanel" aria-label="Chart 4: Supply Coverage">
-            <div className="chart-header">
+          <div className="chart-card-container">
+            <div className="chart-card-header">
               <div>
-                <h3 className="chart-title">Institutional Data Coverage & Freshness Matrix</h3>
-                <span className="chart-desc">
-                  Supply chain data readiness across the 8 key agricultural intelligence dimensions.
-                </span>
+                <h3 className="chart-card-title">Institutional Data Coverage & Freshness Matrix</h3>
+                <span className="chart-card-sub">Audit across 8 Dimensions of Agricultural Supply Intelligence</span>
               </div>
-              <span className="chart-unit-badge">Coverage Audit Matrix • 8 Dimensions</span>
             </div>
 
-            <div className="coverage-bars-list">
+            <div className="coverage-matrix-grid">
               {coverageDimensions.map((dim) => (
-                <div key={dim.name} className="coverage-row">
-                  <div className="coverage-info">
-                    <strong>{dim.name}</strong>
-                    <span className="coverage-source">{dim.source}</span>
-                  </div>
-                  <div className="coverage-track">
-                    <div
-                      className={`coverage-fill ${dim.coverage === 100 ? 'full' : dim.coverage > 0 ? 'partial' : 'empty'}`}
-                      style={{ width: `${Math.max(dim.coverage, 4)}%` }}
-                    ></div>
-                  </div>
-                  <div className="coverage-badge-col">
-                    <span className={`status-pill ${dim.coverage === 100 ? 'green' : dim.coverage > 0 ? 'amber' : 'red'}`}>
-                      {dim.status} ({dim.coverage}%)
+                <div key={dim.name} className="coverage-card">
+                  <div className="cov-card-header">
+                    <span className="cov-name">{dim.name}</span>
+                    <span className={`cov-status ${dim.status.toLowerCase().replace(/\s+/g, '-')}`}>
+                      {dim.status}
                     </span>
                   </div>
+                  <div className="cov-bar">
+                    <div className="cov-bar-fill" style={{ width: `${dim.coverage}%` }}></div>
+                  </div>
+                  <div className="cov-source">Source: {dim.source}</div>
                 </div>
               ))}
             </div>
 
-            {/* Chart 4 Provenance Disclosure */}
-            <div className="chart-provenance-box">
-              <h4 className="prov-title">Chart 4 Quality & Provenance Disclosure</h4>
-              <div className="prov-grid">
-                <div>
-                  <strong>Question Answered:</strong> Where are the critical structural data gaps in Punjab's open agricultural reporting infrastructure?
-                </div>
-                <div>
-                  <strong>Source:</strong> Comprehensive catalog audit of 49 files and 10 external API endpoints.
-                </div>
-                <div>
-                  <strong>Supported Conclusion:</strong> Proves that institutional reporting separates open produce from closed foodgrain data.
-                </div>
+            <div className="methodology-disclosure-box">
+              <h4 className="disclosure-heading">Chart 4 Quality & Provenance Disclosure</h4>
+              <div className="disclosure-grid">
+                <div><strong>Question Answered:</strong> What proportion of the required supply chain dimensions are empirically verified?</div>
+                <div><strong>Source Datasets:</strong> 8 Institutional Source Registries</div>
+                <div><strong>Calculation:</strong> Verified non-null record completeness across spatial and temporal dimensions</div>
+                <div><strong>Units & Scale:</strong> Percentage completeness (0% to 100%)</div>
+                <div><strong>Supported Conclusion:</strong> Production and yield history are 100% complete; daily arrivals and stock data are 0%</div>
+                <div><strong>Unsupported Conclusion:</strong> Incomplete coverage cannot be smoothed using machine learning proxies.</div>
               </div>
             </div>
           </div>

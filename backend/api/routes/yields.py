@@ -16,7 +16,7 @@ def get_yields(
     crop: Optional[str] = Query(default=None, description="Filter by standardized crop name (wheat, rice)"),
     year_from: Optional[str] = Query(default=None, description="Earliest effective year (e.g. 2010)"),
     year_to: Optional[str] = Query(default=None, description="Latest effective year (e.g. 2022)"),
-    limit: int = Query(default=50, ge=1, le=500, description="Page limit (1-500)"),
+    limit: int = Query(default=50, ge=1, le=5000, description="Page limit (1-5000)"),
     offset: int = Query(default=0, ge=0, description="Page offset"),
 ):
     """

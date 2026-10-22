@@ -23,11 +23,41 @@ class TestGoogleMaterialLightDesign:
         assert "--color-green-800: #166534" in tokens
         assert "--color-wheat" in tokens
         assert "--color-amber" in tokens
+        # Material Design 3 Core Roles
+        assert "--md-sys-color-primary: #0b57d0" in tokens
+        assert "--md-sys-color-primary-container: #d3e3fd" in tokens
+        assert "--md-sys-color-surface: #fdfcff" in tokens
+        assert "--md-sys-elevation-1" in tokens
+        assert "--md-sys-shape-full: 9999px" in tokens
 
     def test_accessible_focus_and_reduced_motion(self):
         css = DASHBOARD_CSS.read_text(encoding="utf-8")
         assert ":focus-visible" in css
         assert "prefers-reduced-motion" in css
+        assert "var(--md-sys-color-primary)" in css
+
+
+class TestMaterialDesign3Specification:
+    """Verifies that design.md adheres strictly to Material Design 3 Light Mode rules."""
+
+    def test_design_docs_exist_and_contain_m3_tokens(self):
+        root = Path(__file__).resolve().parent.parent
+        design_md = root / "design.md"
+        assert design_md.exists(), "design.md must exist in repository root"
+        content = design_md.read_text(encoding="utf-8")
+
+        # Key M3 Sections
+        assert "Material Design 3" in content
+        assert "Light Mode" in content
+        assert "#0b57d0" in content  # Google Blue primary
+        assert "#d3e3fd" in content  # Primary container
+        assert "#fdfcff" in content  # Surface
+        assert "M3 Elevation Levels" in content
+        assert "M3 Corner Radii" in content
+        assert "Typography Hierarchy" in content
+        assert "Interactive Map" in content
+
+
 
 
 class TestCompactTopBarAndSummaryMetrics:

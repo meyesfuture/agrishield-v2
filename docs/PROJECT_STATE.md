@@ -14,6 +14,7 @@
 - [x] Exploratory Data Quality Analysis & Scenario Modeling Guardrails (Phase 6 complete).
 - [x] Release checks passed, product simplified to core 2-screen architecture (Phase 7 complete).
 - [x] Design Refinement Complete: Google Material Light UI, 4 Meaningful Visualizations, and Verified Screening (Refinement complete).
+- [x] Material Design 3 (M3) UI/UX Skill Alignment: Light Mode Design System, Google-Style Blue Accents, M3 Surface Elevation & Tokens, Living `design.md` Specification (M3 Alignment complete).
 
 ## Current evidence guardrails
 - APMC arrival panel: verified 3,892 daily observations for produce (62 crops); zero wheat/paddy grain rows. 71 rows matching "dhan" are Coriander Green (Hara Dhaniya). 3 rows have `modal_price == 0.0` as explicit clerk sentinels for "not reported".
@@ -31,8 +32,29 @@
 - Synthetic Counterfactual Segregation: `data/synthetic/` contains `scenario_hypothetical_wheat_dip.json` (`is_synthetic=true`), prominent crimson watermark banners, excluded from real metrics and production dataset catalogs.
 
 ## Latest completed milestone
-- Milestone: Design Refinement — Google Material-inspired Light UI, 4 Meaningful Visualizations, Live Dashboard Preview, and Verified Screening Integrity
-- Date/time: 2026-10-22T10:35:00+05:30
+- Milestone: Material Design 3 (M3) Light Mode Design System Implementation
+- Date/time: 2026-10-22T10:48:00+05:30
+- Evidence/output:
+  - **M3 Living Specification (`design.md` & `DESIGN.md`):** Complete design system specification following [Material Design 3 Guidelines](https://m3.material.io/) and `skydashnet/material-design-3-ui-skill`:
+    - Light Mode First: `#fdfcff` / `#f8f9fa` canvas with `#ffffff` container surfaces.
+    - Core Role Families: Primary Google Blue (`#0b57d0`, container `#d3e3fd`), Secondary Agricultural Green (`#15803d`, container `#dcfce7`), Tertiary Wheat Gold (`#d97706`, container `#fef3c7`).
+    - Neutral Surfaces: `surface`, `surface-container-lowest` (`#ffffff`), `surface-container-low` (`#f8f9fa`), `surface-container` (`#f1f3f4`), `surface-container-high` (`#e8eaed`), `surface-container-highest` (`#dadce0`), `on-surface` (`#1f1f1f`), `on-surface-variant` (`#444746`).
+    - Semantic Feedback: Error (`#ba1a1a`), Warning (`#b45309`), Success (`#166534`).
+    - Typography Scale: Display, Headline, Title, Body, and Label scales on Google Sans / Roboto stack.
+    - Shape & Elevation Scales: Levels 0–3 with ambient soft shadows and corner radii from `extra-small` (4px) to `full` (9999px).
+  - **M3 Tokens in CSS (`frontend/src/styles/tokens.css`):**
+    - Defined `--md-sys-color-*`, `--md-sys-elevation-*`, `--md-sys-shape-*`, `--md-sys-motion-*` while keeping backward-compatible aliases.
+  - **M3 Stylesheet Styling (`frontend/src/styles/dashboard.css`):**
+    - Google Blue M3 pill action buttons (`.btn-primary`, `.btn-nav-cta`).
+    - Filter chips (`.filter-btn`) with smooth hover state layers.
+    - Level 1 surface elevation cards with fine outline borders.
+    - High-contrast `:focus-visible` accessible outline rings (`2px solid #0b57d0`).
+  - **Automated Verification:**
+    - `npm run check --prefix frontend`: 0 errors, 0 warnings.
+    - `npm run build --prefix frontend`: 2 static pages generated in 1.04s (`/index.html` and `/dashboard/index.html`).
+    - `pytest tests/ -v`: 120 tests passed in 2.12s across domain schemas, imports, eligibility gates, anti-hoarding prohibition, 2-screen architecture, and M3 design tokens.
+  - **Browser E2E Verification:**
+    - Visual inspection verified Google blue CTAs, M3 light surfaces, interactive SVG map, location assessment panel with Amber `INSUFFICIENT DATA TO ASSESS RISK` banner, 4 analytical charts with disclosures, and zero console errors.
 - Evidence/output:
   - **Google Material Light Design Tokens (`frontend/src/styles/tokens.css`):**
     - Warm white canvas (`#f8fafc`), crisp white card surfaces (`#ffffff`), subtle borders (`#e2e8f0`), modest elevation shadows (`0 1px 3px rgba(0,0,0,0.06)`).

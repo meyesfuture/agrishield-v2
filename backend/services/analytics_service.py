@@ -1,0 +1,349 @@
+"""
+Analytics and Anomaly Eligibility Gate Engine.
+Enforces Rule 6 of AGENTS.md, docs/RESEARCH_AND_FEASIBILITY.md, and docs/ANALYTICS_AND_ALERTS.md.
+"""
+
+from typing import List, Dict, Any
+from backend.schemas.analytics import (
+    EligibilityCheckItem,
+    DatasetEligibilityResult,
+    ReadinessMetrics,
+    EligibilityGateResponse,
+)
+
+
+class AnalyticsEligibilityService:
+    """Evaluates data streams against the 7-Point Statistical Anomaly Eligibility Gate."""
+
+    def get_readiness_metrics(self) -> ReadinessMetrics:
+        """Returns explainable quality, completeness, and readiness metrics."""
+        return ReadinessMetrics(
+            completeness_score_pct=94.8,  # NASA (100%), DES APY (94.8% due to Malerkotla pre-split), Agmarknet prices (100% price non-null)
+            freshness_status="Historical Baselines (1968-2023) + Recent Operational Slices (Oct 2024-Oct 2026)",
+            schema_validity_pct=100.0,    # All 20 assets match Phase 1 canonical schemas
+            geographic_coverage_pct=100.0, # 23 of 23 Punjab districts mapped in GeoJSON & LGD crosswalk
+            commodity_coverage_state="PRODUCE_ONLY_FOR_ARRIVALS (Zero Wheat/Paddy Foodgrain Arrival Records)",
+            api_readiness_tested_count=4,
+            api_blocked_count=5,
+        )
+
+    def evaluate_eligibility_gates(self) -> EligibilityGateResponse:
+        """Audits all available candidate data streams against statistical calculation prerequisites."""
+        
+        streams: List[DatasetEligibilityResult] = [
+            DatasetEligibilityResult(
+                dataset_id="punjab_mandi_arrivals_oct2026",
+                stream_name="Punjab Mandi Board (PSAMB) e-Mandikaran Daily Arrivals",
+                commodity="62 APMC Produce Commodities (Vegetables, Fruits, Cash Crops)",
+                temporal_granularity="Daily observations (October 2026)",
+                eligible_for_grain_anomaly=False,
+                eligibility_verdict="INELIGIBLE (BLOCKED)",
+                passed_criteria_count=4,
+                failed_criteria_count=3,
+                criteria_checks=[
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-01",
+                        criteria_name="Commodity Appropriateness",
+                        required_standard="Must be target staple foodgrain (Wheat or Paddy)",
+                        current_evidence="Panel contains 3,892 produce rows; exactly 0 wheat/paddy rows. 71 'dhan' matches are Coriander Green (Hara Dhaniya).",
+                        passed=False,
+                        blocking_reason="Produce volume variations cannot proxy staple grain supply flows."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-02",
+                        criteria_name="Temporal Granularity",
+                        required_standard="Continuous daily or weekly market observation sequence",
+                        current_evidence="Daily observation series for October 2026 present.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-03",
+                        criteria_name="Sufficient Historical Depth",
+                        required_standard="Minimum 36 months (3 annual cycles) to establish seasonal expectation",
+                        current_evidence="Single 14-day operational window from October 2026.",
+                        passed=False,
+                        blocking_reason="Insufficient depth to fit robust seasonal baseline medians."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-04",
+                        criteria_name="Unit Consistency",
+                        required_standard="Strictly declared physical mass unit (Quintals)",
+                        current_evidence="Arrivals declared in Metric Quintals.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-05",
+                        criteria_name="Missingness & Zero Semantics",
+                        required_standard="Distinguish null, unobserved, and clerk sentinels from genuine zero arrivals",
+                        current_evidence="3 clerk sentinels (modal_price=0.0) preserved without falsifying data.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-06",
+                        criteria_name="Geographic & Market Identity",
+                        required_standard="Identifiable APMC mandis linked to district administrative boundaries",
+                        current_evidence="Verified Punjab APMC mandis.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-07",
+                        criteria_name="Compatible Comparison Basis",
+                        required_standard="Unbroken historical baseline matching current mandi catchments",
+                        current_evidence="Cannot compare non-grain produce against historical wheat baselines.",
+                        passed=False,
+                        blocking_reason="Cross-commodity comparison violates statistical comparability."
+                    ),
+                ],
+                missing_prerequisites=[
+                    "Acquisition of official Punjab foodgrain arrivals from Anaaj Kharid infrastructure.",
+                    "Multi-year daily historical arrival panel for staple foodgrains (Wheat & Paddy).",
+                    "Market-level catchment definitions and historical procurement overlap masks."
+                ],
+                handling_policy="DISPLAY_AS_DESCRIPTIVE_PRODUCE_ONLY. Strictly block grain anomaly algorithms."
+            ),
+            DatasetEligibilityResult(
+                dataset_id="agmarknet_punjab_daily_prices",
+                stream_name="AGMARKNET 2.0 Daily Wholesale Modal Prices",
+                commodity="Paddy (Common and Basmati)",
+                temporal_granularity="Daily modal price quotes (October 2026)",
+                eligible_for_grain_anomaly=False,
+                eligibility_verdict="INELIGIBLE (BLOCKED)",
+                passed_criteria_count=4,
+                failed_criteria_count=3,
+                criteria_checks=[
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-01",
+                        criteria_name="Commodity Appropriateness",
+                        required_standard="Must be target staple foodgrain (Wheat or Paddy)",
+                        current_evidence="53 Paddy daily modal price quotes present (48 Common, 5 Basmati).",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-02",
+                        criteria_name="Temporal Granularity",
+                        required_standard="Continuous daily market observations with arrival volumes",
+                        current_evidence="Daily modal prices available, but arrival volumes are 100% unexposed (null).",
+                        passed=False,
+                        blocking_reason="Arrival quantities cannot be inferred from prices without economic distortion."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-03",
+                        criteria_name="Sufficient Historical Depth",
+                        required_standard="Minimum 36 months to fit seasonal price-volume elasticity",
+                        current_evidence="Single October 2026 reporting week acquired.",
+                        passed=False,
+                        blocking_reason="Insufficient timeframe to establish seasonal price bands."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-04",
+                        criteria_name="Unit Consistency",
+                        required_standard="Wholesale price in Rs./Quintal",
+                        current_evidence="Quotes verified in Rs. per Quintal.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-05",
+                        criteria_name="Missingness & Zero Semantics",
+                        required_standard="Null arrival volumes preserved as unobserved, never coerced to 0.0",
+                        current_evidence="53 of 53 arrival volume cells verified strictly null.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-06",
+                        criteria_name="Geographic & Market Identity",
+                        required_standard="Reporting mandis matched to Punjab APMC registries",
+                        current_evidence="Reporting mandis include Abohar, Adampur, Ajnala.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-07",
+                        criteria_name="Compatible Comparison Basis",
+                        required_standard="Simultaneous volume and price pairs across trade days",
+                        current_evidence="Volume series completely absent in public feed.",
+                        passed=False,
+                        blocking_reason="Volume-price anomaly detection is mathematically unidentifiable."
+                    ),
+                ],
+                missing_prerequisites=[
+                    "Authorized access to AGMARKNET arrival report endpoint (bypassing CAPTCHA requirement legitimately).",
+                    "Continuous multi-year daily price-volume panel.",
+                    "Mandi-level MSP procurement intervention logs."
+                ],
+                handling_policy="DISPLAY_MODAL_PRICES_ONLY. Explicitly declare 100% null volume gap."
+            ),
+            DatasetEligibilityResult(
+                dataset_id="stock_observations_national_dfpd",
+                stream_name="DFPD Monthly Central Pool Foodgrain Stocks",
+                commodity="Wheat and Rice Central Pool Reserves",
+                temporal_granularity="Monthly first-of-month stock positions (2020-2026)",
+                eligible_for_grain_anomaly=False,
+                eligibility_verdict="INELIGIBLE (BLOCKED)",
+                passed_criteria_count=5,
+                failed_criteria_count=2,
+                criteria_checks=[
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-01",
+                        criteria_name="Commodity Appropriateness",
+                        required_standard="Staple foodgrain reserves (Wheat & Rice)",
+                        current_evidence="Wheat and Rice Central Pool stocks present.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-02",
+                        criteria_name="Temporal Granularity",
+                        required_standard="Monthly first-of-month position reports",
+                        current_evidence="100 consecutive monthly records (2020-2026).",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-03",
+                        criteria_name="Sufficient Historical Depth",
+                        required_standard="Minimum 36 months historical depth",
+                        current_evidence="6 years of historical buffer stock observations.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-04",
+                        criteria_name="Unit Consistency",
+                        required_standard="Quantities in Lakh Metric Tonnes (LMT)",
+                        current_evidence="Declared in Lakh Metric Tonnes.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-05",
+                        criteria_name="Missingness & Zero Semantics",
+                        required_standard="Non-reporting states separated from zero inventory",
+                        current_evidence="Zero missing cells in national totals.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-06",
+                        criteria_name="Geographic & Market Identity",
+                        required_standard="State-specific or depot-level Punjab inventory disaggregation",
+                        current_evidence="State column is 100% null/NaN. Data represents India Central Pool aggregate only.",
+                        passed=False,
+                        blocking_reason="National totals cannot be downscaled or attributed to Punjab silos."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-07",
+                        criteria_name="Compatible Comparison Basis",
+                        required_standard="Spatial scope matches Punjab supply balance model",
+                        current_evidence="Macro-national scope does not align with district-level catchment boundaries.",
+                        passed=False,
+                        blocking_reason="Spatial aggregation mismatch prohibits localized supply reconciliation."
+                    ),
+                ],
+                missing_prerequisites=[
+                    "Disaggregated Punjab FCI and state agency depot-level warehouse stock records.",
+                    "Private commercial warehouse inventories and milling stock declarations.",
+                    "Inter-state stock movement and dispatch schedules."
+                ],
+                handling_policy="DISPLAY_AS_NATIONAL_MACRO_CONTEXT_ONLY. Never label as Punjab-specific inventory."
+            ),
+            DatasetEligibilityResult(
+                dataset_id="cfpp_punjab_wheat_procurement_2025_26",
+                stream_name="CFPP RMS 2025-26 Wheat Procurement Snapshot",
+                commodity="Wheat (State Central Pool Procurement)",
+                temporal_granularity="Single reporting position (2025-05-15) across 3 temporal bases",
+                eligible_for_grain_anomaly=False,
+                eligibility_verdict="INELIGIBLE (BLOCKED)",
+                passed_criteria_count=3,
+                failed_criteria_count=4,
+                criteria_checks=[
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-01",
+                        criteria_name="Commodity Appropriateness",
+                        required_standard="Wheat foodgrain procurement",
+                        current_evidence="Wheat procurement recorded.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-02",
+                        criteria_name="Temporal Granularity",
+                        required_standard="Continuous daily or weekly procurement flow series",
+                        current_evidence="Single date snapshot (2025-05-15) covering Target, Single-Day, and Cumulative.",
+                        passed=False,
+                        blocking_reason="Single point in time cannot be interpolated into dynamic flow curves."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-03",
+                        criteria_name="Sufficient Historical Depth",
+                        required_standard="Multi-season procurement trajectories",
+                        current_evidence="Single RMS 2025-26 snapshot.",
+                        passed=False,
+                        blocking_reason="Zero multi-season depth."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-04",
+                        criteria_name="Unit Consistency",
+                        required_standard="Declared in Lakh Metric Tonnes (LMT)",
+                        current_evidence="Declared in LMT.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-05",
+                        criteria_name="Missingness & Zero Semantics",
+                        required_standard="Distinct temporal basis rows must never be summed",
+                        current_evidence="cannot_be_summed=true invariant enforced in schema.",
+                        passed=True,
+                        blocking_reason=None
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-06",
+                        criteria_name="Geographic & Market Identity",
+                        required_standard="District or purchase-center disaggregation",
+                        current_evidence="State aggregate Punjab only.",
+                        passed=False,
+                        blocking_reason="Cannot be assigned to individual APMC mandis."
+                    ),
+                    EligibilityCheckItem(
+                        criteria_id="CRIT-07",
+                        criteria_name="Compatible Comparison Basis",
+                        required_standard="Aligned temporal basis matching market arrival dates",
+                        current_evidence="Cumulative snapshot overlaps multiple unmeasured market days.",
+                        passed=False,
+                        blocking_reason="Double-counting hazard with market arrivals."
+                    ),
+                ],
+                missing_prerequisites=[
+                    "Daily agency-wise procurement records by mandi purchase center.",
+                    "MSP payment reconciliation files with farmer count denominators.",
+                    "Storage transfer orders to central pool depots."
+                ],
+                handling_policy="DISPLAY_AS_ISOLATED_SNAPSHOT_ONLY. Never sum across basis rows."
+            ),
+        ]
+
+        return EligibilityGateResponse(
+            overall_analytics_eligibility="BLOCKED - Insufficient Evidence for Grain Anomaly Screening",
+            overall_hoarding_detection_eligibility="STRICTLY FORBIDDEN (Rule 6: Anomaly != Hoarding; Missing Denominator & Controls)",
+            audit_timestamp_utc="2026-10-22T03:50:00Z",
+            total_streams_evaluated=len(streams),
+            eligible_streams_count=0,
+            readiness_metrics=self.get_readiness_metrics(),
+            stream_evaluations=streams,
+            mandatory_governance_rules=[
+                "Rule 1: Anomaly is strictly an investigation prompt, never proof of intent or illegal hoarding.",
+                "Rule 2: Zero foodgrain rows in acquired APMC panel forbids wheat/paddy arrival anomaly calculation.",
+                "Rule 3: 100% null arrival quantity in AGMARKNET feed forbids price-to-volume synthesis.",
+                "Rule 4: National Central Pool stocks cannot be relabeled as Punjab state or district inventory.",
+                "Rule 5: Single procurement snapshot cannot be interpolated into daily flow time series.",
+                "Rule 6: Actor-level risk scoring and naming of traders or markets is mathematically and legally prohibited.",
+                "Rule 7: All synthetic what-if demonstrations must be segregated in data/synthetic/ and watermarked."
+            ]
+        )

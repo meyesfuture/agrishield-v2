@@ -11,7 +11,7 @@
 - [x] Data Layer & Domain Endpoints implemented (Phase 3 complete).
 - [x] Core usable dashboard implemented with 9 dedicated views, real data, and interactive filters (Phase 4 complete).
 - [x] UI & Motion Polish, Accessible Focus Rings, 3D Agricultural Silo & Field Hero Visualizer (Phase 5 complete).
-- [ ] Exploratory Data Quality Analysis & Scenario Modeling Guardrails (Phase 6).
+- [x] Exploratory Data Quality Analysis & Scenario Modeling Guardrails (Phase 6 complete).
 - [ ] Release checks passed (Phase 7).
 
 ## Current evidence guardrails
@@ -25,19 +25,24 @@
 - Stocks: national Central Pool dataset (100 rows, 2020–2026), state is strictly null (100%); not Punjab-specific. `geographic_scope="National Central Pool only"`.
 - Geography: 23 Punjab district boundary polygons in EPSG:4326; administrative crosswalk linking statistical names to LGD identifiers.
 - API Registry: 10 external sources audited with evidence-based statuses (`working-tested`, `blocked-auth`, `blocked-captcha`, `metadata-only`, `unavailable`). Zero live provider requests during page load.
-- No independently adjudicated private hoarding dataset or negative controls. Statistical anomaly != hoarding.
+- 7-Point Eligibility Gate: Evaluated all 4 candidate streams (e-Mandikaran produce arrivals, Agmarknet paddy prices, DFPD buffer stocks, CFPP procurement snapshot); all 4 failed with `INELIGIBLE (BLOCKED)` and `INSUFFICIENT EVIDENCE`.
+- Anti-Hoarding Governance (Rule 6): Statistical anomaly is strictly an investigation prompt, never proof of intent. Hoarding detection is `STRICTLY FORBIDDEN`. No actor-level rankings or trader naming.
+- Synthetic Counterfactual Segregation: `data/synthetic/` contains `scenario_hypothetical_wheat_dip.json` (`is_synthetic=true`), prominent crimson watermark banners, excluded from real metrics and production dataset catalogs.
 
 ## Latest completed phase
-- Phase: 5 (Interface Polish: Apple-Inspired Restraint, Google Material Clarity, 3D Agricultural Silo & Field Hero, Code-Split Lazy Three.js, WCAG 2.2 AA Focus Rings, Reduced-Motion Overrides, and Zero Regressions)
-- Date/time: 2026-10-22T09:25:00+05:30
+- Phase: 6 (Transparent Analytics, 7-Point Anomaly Screening Eligibility Gates, Anti-Hoarding Governance, and Segregated Synthetic Lab)
+- Date/time: 2026-10-22T09:44:00+05:30
 - Evidence/output:
-  - `frontend/src/components/Hero3DScene.tsx`: Procedural 3D WebGL agricultural scene with stainless steel silos, undulating alluvium terrain, floating wheat chaff particles, mouse parallax, and accessible static SVG blueprint fallback
-  - `frontend/src/styles/dashboard.css`: Phase 5 design tokens, `.hero-grid`, `.hero-3d-wrapper`, high-contrast `:focus-visible` rings, and `@media (prefers-reduced-motion: reduce)` overrides
-  - `frontend/src/pages/index.astro`: Responsive two-column hero layout mounting `Hero3DScene` with client-side code splitting
-  - Code Splitting: `three.module.DB3egixL.js` is dynamically lazy-loaded; non-3D routes load in ~290 KB JS
-  - Automated tests: 93/93 tests passed across workspace (including 6 new tests in `tests/test_phase5_polish.py`)
-  - End-to-end browser subagent walkthrough: 3D scene rendering, Play/Pause motion toggle, keyboard focus rings, mobile 400px responsive stacking, and zero console errors verified
-  - `logs/phase_reports/PHASE_5_REPORT.md`
+  - `backend/schemas/analytics.py`: Pydantic domain models for `EligibilityCheckItem`, `DatasetEligibilityResult`, `ReadinessMetrics`, `EligibilityGateResponse`.
+  - `backend/services/analytics_service.py`: 7-point eligibility gate evaluator covering CRIT-01 through CRIT-07 across all 4 candidate streams, explainable readiness calculator, and anti-hoarding governance rules.
+  - `backend/api/routes/analytics.py`: FastAPI routes `/api/v1/analytics/eligibility-gate`, `/api/v1/analytics/readiness-metrics`, `/api/v1/analytics/synthetic-scenario`.
+  - `data/synthetic/scenario_hypothetical_wheat_dip.json`: Segregated synthetic counterfactual with `is_synthetic=true`, rolling 3-year median ±1.96 IQR bounds, and strict non-hoarding protocol.
+  - `frontend/src/components/AnalyticsGateView.tsx`: Interactive 7-point gate matrix, explainable readiness cards, candidate stream switcher, and watermarked Synthetic Demo Lab.
+  - `frontend/src/pages/analytics.astro`: Dedicated static route `/analytics`.
+  - `tests/test_phase6_analytics.py`: 15 automated unit and API tests verifying eligibility gates, missing prerequisites, synthetic isolation, and anti-hoarding prohibitions.
+  - `docs/ANALYTICS_AND_ALERTS.md`: Comprehensive mathematical specification of seasonal prediction intervals, accounting guardrails, and synthetic demo policies.
+  - Automated tests: 108/108 tests passing across the entire repository.
+  - `logs/phase_reports/PHASE_6_REPORT.md`
 
 ## Current blockers
 1. No daily wheat/paddy market arrival quantity panel (foodgrains routed to credentialed Anaaj Kharid).
@@ -46,7 +51,8 @@
 4. Four external source routes blocked (CAPTCHA, token, TLS root CA, or internal agency credentials).
 
 ## Next single action
-Execute Phase 6 from `prompts/PHASED_BUILD_PLAN.md`: Exploratory Data Quality Analysis & Scenario Modeling Guardrails. Build strictly segregated synthetic counterfactual models with mandatory non-hoarding disclaimers.
+Execute Phase 7: Hardening, Security, Accessibility, and Final Release Verification.
+
 
 ## Handoff template (update every session)
 - Last phase/status: Phase 5 COMPLETE (All 93/93 pytest tests passed in 2.05s; Astro static build 9/9 routes passed in 1.36s; Browser subagent E2E smoke test passed)

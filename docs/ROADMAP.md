@@ -45,9 +45,16 @@
 - Output: `frontend/src/components/Hero3DScene.tsx`, `frontend/src/styles/dashboard.css`, `frontend/src/pages/index.astro`, `tests/test_phase5_polish.py`, `logs/phase_reports/PHASE_5_REPORT.md`.
 - Gate: 93/93 pytest tests passed in 2.05s; 9/9 Astro static routes built cleanly in 1.36s; Browser subagent E2E smoke test passed with zero console errors.
 
-## Phase 6 — Data quality and exploratory analysis
-- Coverage matrix, missingness panels, unit checks, source readiness. Only implement anomaly candidates if evidence gates pass.
-- Output: clear conditional GO/NO-GO summary.
+## Phase 6 — Transparent analytics and anomaly eligibility gates [DONE]
+- Implemented explainable data completeness, freshness, schema validity, geographic coverage, and API-readiness metrics.
+- Added documented 7-point eligibility gate (`CRIT-01` through `CRIT-07`) evaluating candidate streams before any statistical anomaly calculation.
+- Verified and enforced strict zero grain arrival invariant (0 wheat/paddy rows), 100% null Agmarknet arrival quantities, national DFPD buffer stocks, and isolated procurement snapshots.
+- Implemented `INSUFFICIENT EVIDENCE (BLOCKED)` and `STRICTLY FORBIDDEN` for private hoarding claims, actor-level rankings, or trader naming under AGENTS.md Rule 6.
+- Created segregated Synthetic Demo Lab in `data/synthetic/` with prominent crimson watermarks, rolling 3-year median ±1.96 IQR bounds, and non-hoarding investigation protocols.
+- Built dedicated `/analytics` route and interactive `AnalyticsGateView.tsx` with stream switcher and synthetic lab toggle.
+- Output: `backend/schemas/analytics.py`, `backend/services/analytics_service.py`, `backend/api/routes/analytics.py`, `data/synthetic/scenario_hypothetical_wheat_dip.json`, `frontend/src/components/AnalyticsGateView.tsx`, `frontend/src/pages/analytics.astro`, `frontend/public/data/eligibility_gate.json`, `frontend/public/data/synthetic_scenario.json`, `tests/test_phase6_analytics.py`, `docs/ANALYTICS_AND_ALERTS.md`, `logs/phase_reports/PHASE_6_REPORT.md`.
+- Gate: 108/108 pytest tests passed in 3.88s; 10/10 Astro static routes built cleanly in 2.20s; Browser E2E verification confirmed error-free rendering.
+
 
 ## Phase 7 — Hardening and release
 - Tests, accessibility, security, performance, clean install, production build and presentation mode.

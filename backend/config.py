@@ -143,3 +143,9 @@ class Settings(BaseSettings):
 
 # Global cached settings instance
 settings = Settings()
+
+
+def get_settings() -> Settings:
+    """Return the global cached Settings instance."""
+    return settings
+

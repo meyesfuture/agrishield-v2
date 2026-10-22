@@ -5,7 +5,7 @@ import '../styles/dashboard.css';
 interface Props {
   title?: string;
   description?: string;
-  activeNav?: 'overview' | 'datasets' | 'production' | 'markets' | 'weather' | 'procurement' | 'map' | 'status' | 'methodology';
+  activeNav?: 'overview' | 'datasets' | 'production' | 'markets' | 'weather' | 'procurement' | 'map' | 'status' | 'analytics' | 'methodology';
 }
 
 const {
@@ -66,6 +66,9 @@ const {
           </a>
           <a href="/status" class={activeNav === 'status' ? 'nav-item active' : 'nav-item'}>
             Audit & Readiness
+          </a>
+          <a href="/analytics" class={activeNav === 'analytics' ? 'nav-item active' : 'nav-item'}>
+            Analytics & Gates
           </a>
           <a href="/methodology" class={activeNav === 'methodology' ? 'nav-item active' : 'nav-item'}>
             Methodology

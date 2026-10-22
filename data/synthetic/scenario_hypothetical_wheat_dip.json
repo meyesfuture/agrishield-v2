@@ -1,0 +1,175 @@
+{
+  "scenario_id": "SYNTH-WHEAT-2026-OCT-01",
+  "title": "Synthetic Demo: Hypothetical Mandi Arrival Deficit Simulation",
+  "evidence_level": "synthetic demo",
+  "is_synthetic": true,
+  "synthetic_warning": "SYNTHETIC EXAMPLE — NOT REAL DATA. Strictly excluded from official production metrics, real market watch, and default views under AGENTS.md Rule 4 & 5.",
+  "governance_notice": "Under AGENTS.md Rule 6, statistical anomalies are investigation prompts only. They never prove intent, concealment, or illegal hoarding. Actor-level rankings and market naming are strictly prohibited.",
+  "methodology": {
+    "model_name": "Rolling Seasonal Median with Interquartile Prediction Band",
+    "model_version": "v1.0.0-synthetic-demo",
+    "baseline_window_years": 3,
+    "confidence_interval": "95% Empirical Prediction Interval (±1.96 IQR)",
+    "target_commodity": "Wheat (Common Foodgrain)",
+    "unit": "Metric Quintals",
+    "investigation_prompt_threshold": "Observed arrival < -30% residual below rolling median for 3 consecutive days",
+    "candidate_disposition": "HUMAN_AUDIT_REQUIRED (Inspection Prompt Only)"
+  },
+  "market_context": {
+    "hypothetical_market": "Market-Alpha (Anonymized APMC)",
+    "district": "Ludhiana (Hypothetical Catchment)",
+    "timeframe": "2026-10-01 to 2026-10-14",
+    "simulated_cause": "Weather-related harvesting delay vs logistical transit backlog"
+  },
+  "time_series": [
+    {
+      "date": "2026-10-01",
+      "expected_median_qtl": 1420.0,
+      "lower_bound_95_qtl": 1180.0,
+      "upper_bound_95_qtl": 1660.0,
+      "observed_arrival_qtl": 1395.0,
+      "residual_pct": -1.76,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    },
+    {
+      "date": "2026-10-02",
+      "expected_median_qtl": 1550.0,
+      "lower_bound_95_qtl": 1290.0,
+      "upper_bound_95_qtl": 1810.0,
+      "observed_arrival_qtl": 1510.0,
+      "residual_pct": -2.58,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    },
+    {
+      "date": "2026-10-03",
+      "expected_median_qtl": 1720.0,
+      "lower_bound_95_qtl": 1440.0,
+      "upper_bound_95_qtl": 2000.0,
+      "observed_arrival_qtl": 1680.0,
+      "residual_pct": -2.33,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    },
+    {
+      "date": "2026-10-04",
+      "expected_median_qtl": 1900.0,
+      "lower_bound_95_qtl": 1590.0,
+      "upper_bound_95_qtl": 2210.0,
+      "observed_arrival_qtl": 1840.0,
+      "residual_pct": -3.16,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    },
+    {
+      "date": "2026-10-05",
+      "expected_median_qtl": 2150.0,
+      "lower_bound_95_qtl": 1810.0,
+      "upper_bound_95_qtl": 2490.0,
+      "observed_arrival_qtl": 2090.0,
+      "residual_pct": -2.79,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    },
+    {
+      "date": "2026-10-06",
+      "expected_median_qtl": 2400.0,
+      "lower_bound_95_qtl": 2020.0,
+      "upper_bound_95_qtl": 2780.0,
+      "observed_arrival_qtl": 2350.0,
+      "residual_pct": -2.08,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    },
+    {
+      "date": "2026-10-07",
+      "expected_median_qtl": 2680.0,
+      "lower_bound_95_qtl": 2260.0,
+      "upper_bound_95_qtl": 3100.0,
+      "observed_arrival_qtl": 2590.0,
+      "residual_pct": -3.36,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    },
+    {
+      "date": "2026-10-08",
+      "expected_median_qtl": 2950.0,
+      "lower_bound_95_qtl": 2490.0,
+      "upper_bound_95_qtl": 3410.0,
+      "observed_arrival_qtl": 2400.0,
+      "residual_pct": -18.64,
+      "is_anomaly_candidate": false,
+      "status_label": "MILD_BELOW_MEDIAN"
+    },
+    {
+      "date": "2026-10-09",
+      "expected_median_qtl": 3200.0,
+      "lower_bound_95_qtl": 2700.0,
+      "upper_bound_95_qtl": 3700.0,
+      "observed_arrival_qtl": 1950.0,
+      "residual_pct": -39.06,
+      "is_anomaly_candidate": true,
+      "status_label": "CANDIDATE_ANOMALY_DAY_1"
+    },
+    {
+      "date": "2026-10-10",
+      "expected_median_qtl": 3450.0,
+      "lower_bound_95_qtl": 2910.0,
+      "upper_bound_95_qtl": 3990.0,
+      "observed_arrival_qtl": 1820.0,
+      "residual_pct": -47.25,
+      "is_anomaly_candidate": true,
+      "status_label": "CANDIDATE_ANOMALY_DAY_2"
+    },
+    {
+      "date": "2026-10-11",
+      "expected_median_qtl": 3600.0,
+      "lower_bound_95_qtl": 3040.0,
+      "upper_bound_95_qtl": 4160.0,
+      "observed_arrival_qtl": 1780.0,
+      "residual_pct": -50.56,
+      "is_anomaly_candidate": true,
+      "status_label": "INVESTIGATION_PROMPT_TRIGGERED"
+    },
+    {
+      "date": "2026-10-12",
+      "expected_median_qtl": 3500.0,
+      "lower_bound_95_qtl": 2960.0,
+      "upper_bound_95_qtl": 4040.0,
+      "observed_arrival_qtl": 2100.0,
+      "residual_pct": -40.0,
+      "is_anomaly_candidate": true,
+      "status_label": "RECOVERY_BEGINNING"
+    },
+    {
+      "date": "2026-10-13",
+      "expected_median_qtl": 3300.0,
+      "lower_bound_95_qtl": 2790.0,
+      "upper_bound_95_qtl": 3810.0,
+      "observed_arrival_qtl": 2850.0,
+      "residual_pct": -13.64,
+      "is_anomaly_candidate": false,
+      "status_label": "WITHIN_PREDICTION_INTERVAL"
+    },
+    {
+      "date": "2026-10-14",
+      "expected_median_qtl": 3100.0,
+      "lower_bound_95_qtl": 2620.0,
+      "upper_bound_95_qtl": 3580.0,
+      "observed_arrival_qtl": 3020.0,
+      "residual_pct": -2.58,
+      "is_anomaly_candidate": false,
+      "status_label": "NORMAL_EXPECTED_RANGE"
+    }
+  ],
+  "investigation_protocol": {
+    "action_prompt": "Dispatch field investigator to check mandi queue delays, farmer holding in village kothis, and heavy rain event.",
+    "strictly_forbidden_actions": [
+      "Do NOT label any trader, mill, or commission agent as a hoarder.",
+      "Do NOT create actor-level risk or culpability rankings.",
+      "Do NOT compute criminal intent or financial penalties from statistical residuals.",
+      "Do NOT merge synthetic demo rows with physical historical APMC records."
+    ]
+  }
+}

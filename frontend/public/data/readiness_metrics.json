@@ -1,0 +1,9 @@
+{
+  "completeness_score_pct": 94.8,
+  "freshness_status": "Historical Baselines (1968-2023) + Recent Operational Slices (Oct 2024-Oct 2026)",
+  "schema_validity_pct": 100.0,
+  "geographic_coverage_pct": 100.0,
+  "commodity_coverage_state": "PRODUCE_ONLY_FOR_ARRIVALS (Zero Wheat/Paddy Foodgrain Arrival Records)",
+  "api_readiness_tested_count": 4,
+  "api_blocked_count": 5
+}

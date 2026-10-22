@@ -7,11 +7,11 @@
 - Output: `docs/research/PHASE0_RECONNAISSANCE.md`, `docs/research/SKILL_AUDIT.md`, `logs/phase_reports/PHASE_0_REPORT.md` and updated `PROJECT_STATE.md`.
 - Gate: passed without modifying raw source files.
 
-## Phase 1 — Data verification
+## Phase 1 — Data verification [DONE]
 - Compute counts and schemas for every CSV/JSON/GeoJSON/raster/HTML/PDF.
 - Recompute hash checks and coverage matrix; find contradictions between reports and files.
-- Output: machine-readable inventory, data-quality report and source registry.
-- Gate: no UI cards hardcoded to unverified counts.
+- Output: `data/manifests/dataset_catalog.csv`, `data/manifests/dataset_catalog.json`, `data/derived/quality_report.json`, `docs/research/DATA_QUALITY_REPORT.md`, `scripts/run_validation_pipeline.py`, `tests/test_data_integrity.py`.
+- Gate: 16/16 pytest checks passed, all 5 critical domain boundaries verified, raw files 100% immutable, single-command pipeline idempotent.
 
 ## Phase 2 — Product foundation
 - Set up app shell, design tokens, navigation, route skeleton and error/empty/loading states.

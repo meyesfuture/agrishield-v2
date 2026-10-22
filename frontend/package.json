@@ -1,7 +1,7 @@
 {
-  "name": "punjab-grainwatch-frontend",
+  "name": "agrishield-frontend",
   "version": "0.2.0",
-  "description": "Punjab GrainWatch Web Application Frontend",
+  "description": "AgriShield Web Application Frontend",
   "type": "module",
   "scripts": {
     "dev": "astro dev --port 4321 --host",

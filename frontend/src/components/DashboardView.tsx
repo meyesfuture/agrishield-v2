@@ -527,7 +527,7 @@ export default function DashboardView() {
       )}
 
       {/* A. Meaningful Google Material Summary Metrics Cards */}
-      <section className="summary-metrics-grid" aria-label="Punjab GrainWatch Operational Metrics">
+      <section className="summary-metrics-grid" aria-label="AgriShield Operational Metrics">
         <div className="metric-card-mat">
           <div className="card-top">
             <span className="metric-label">Usable Observation Basins</span>

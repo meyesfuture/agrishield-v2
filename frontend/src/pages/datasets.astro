@@ -1,0 +1,57 @@
+---
+import AppShell from '../layouts/AppShell.astro';
+import { DatasetExplorer } from '../components/DatasetExplorer';
+---
+
+<AppShell title="Punjab GrainWatch — Dataset Catalog Explorer" activeNav="datasets">
+  <div class="datasets-page">
+    <header class="page-header">
+      <div class="header-breadcrumbs">
+        <a href="/">Overview</a> / <span>Dataset Explorer</span>
+      </div>
+      <h1 class="page-title">Verified Dataset Catalog</h1>
+      <p class="page-subtitle">
+        Direct empirical catalog generated from actual disk inspection under Phase 1 protocol.
+        Every entry reflects physical byte sizes, SHA-256 checksums, and verified row counts.
+      </p>
+    </header>
+
+    <DatasetExplorer client:load />
+  </div>
+</AppShell>
+
+<style>
+  .datasets-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-2);
+  }
+
+  .header-breadcrumbs {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .header-breadcrumbs a {
+    color: var(--text-secondary);
+  }
+
+  .page-title {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .page-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    max-width: 800px;
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,314 @@
+---
+import AppShell from '../layouts/AppShell.astro';
+import MetricCard from '../components/MetricCard.astro';
+import GuardrailBanner from '../components/GuardrailBanner.astro';
+---
+
+<AppShell title="Punjab GrainWatch — Executive Overview" activeNav="overview">
+  <div class="overview-page">
+    <!-- Hero Header -->
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-badge">PHASE 2 APPLICATION FOUNDATION</div>
+      <h1 id="hero-title" class="hero-title">
+        Auditable Agricultural Intelligence for <span class="text-wheat">Punjab Supply Chains</span>
+      </h1>
+      <p class="hero-lead">
+        An honest, reproducible evidence platform built on verifiable physical datasets. Enforces strict provenance,
+        exact checksums, and zero simulated metrics.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/datasets" class="btn btn-primary">
+          <span>Explore Verified Catalog</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="/status" class="btn btn-secondary">
+          <span>View Audit & Integrity Matrix</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Guardrail Banner -->
+    <GuardrailBanner />
+
+    <!-- Executive KPI Grid -->
+    <section class="kpi-section" aria-labelledby="kpi-heading">
+      <h2 id="kpi-heading" class="section-heading">Verified Evidence Inventory (Phase 1 Baseline)</h2>
+
+      <div class="kpi-grid">
+        <MetricCard
+          title="Cryptographic Integrity"
+          value="49 / 49"
+          subtitle="All raw acquisition files match starter manifest SHA-256 digests."
+          badgeText="100% MATCH"
+          badgeType="observed"
+        />
+
+        <MetricCard
+          title="Cataloged Datasets"
+          value="20"
+          subtitle="Physical data assets across 8 supply chain dimensions."
+          badgeText="AUDITED"
+          badgeType="derived"
+        />
+
+        <MetricCard
+          title="Mandi Produce Arrivals"
+          value="3,892"
+          subtitle="Oct 2026 arrivals (62 APMC crops; 0 foodgrain records)."
+          badgeText="0 GRAIN ROWS"
+          badgeType="blocked"
+        />
+
+        <MetricCard
+          title="Paddy Price Quotes"
+          value="53"
+          subtitle="Oct 2026 daily modal prices (arrival quantities are 100% null)."
+          badgeText="NULL VOLUMES"
+          badgeType="blocked"
+        />
+
+        <MetricCard
+          title="Agro-Climatic Weather"
+          value="3,655"
+          subtitle="5 stations across 731 days (2024–2025) with zero missing cells."
+          badgeText="0% NULLS"
+          badgeType="observed"
+        />
+
+        <MetricCard
+          title="District Boundaries"
+          value="23"
+          subtitle="Punjab administrative polygons in EPSG:4326 with 1:1 crosswalk."
+          badgeText="23 DISTRICTS"
+          badgeType="observed"
+        />
+      </div>
+    </section>
+
+    <!-- Supply Chain Dimensions Breakdown -->
+    <section class="domains-section" aria-labelledby="domains-heading">
+      <h2 id="domains-heading" class="section-heading">Evidence Domains & Provenance Boundaries</h2>
+
+      <div class="domain-cards-grid">
+        <div class="domain-card">
+          <div class="domain-header">
+            <span class="domain-icon">🌾</span>
+            <h3>Mandi Arrivals & Market Prices</h3>
+          </div>
+          <p class="domain-desc">
+            Contains 3,892 produce records from Punjab Mandi Board (PSAMB) e-Mandikaran and 53 Paddy modal prices from AGMARKNET 2.0.
+          </p>
+          <div class="domain-status status-warning">
+            <strong>Limitation:</strong> Foodgrains are routed into credentialed state portals; open feeds lack daily wheat/paddy arrivals.
+          </div>
+        </div>
+
+        <div class="domain-card">
+          <div class="domain-header">
+            <span class="domain-icon">📊</span>
+            <h3>Historical Production & Yields</h3>
+          </div>
+          <p class="domain-desc">
+            Combines 2,530 historical OGD yield records (1968–2022) with 230 DES APY district production rows (2018–2023) across 23 districts.
+          </p>
+          <div class="domain-status status-success">
+            <strong>Verified:</strong> Complete coverage for Wheat and Paddy with 0 duplicate composite keys.
+          </div>
+        </div>
+
+        <div class="domain-card">
+          <div class="domain-header">
+            <span class="domain-icon">🏛️</span>
+            <h3>Procurement & Central Stocks</h3>
+          </div>
+          <p class="domain-desc">
+            Includes CFPP RMS 2025-26 state wheat procurement snapshot and 100 DFPD monthly buffer stock observations (2020–2026).
+          </p>
+          <div class="domain-status status-warning">
+            <strong>Limitation:</strong> Stocks are India Central Pool aggregates only (state=NaN); facility stocks are unpublished.
+          </div>
+        </div>
+
+        <div class="domain-card">
+          <div class="domain-header">
+            <span class="domain-icon">🛰️</span>
+            <h3>Weather & Geospatial Context</h3>
+          </div>
+          <p class="domain-desc">
+            Includes NASA POWER 2-year daily agroclimatology (3,655 records), 23-district Survey of India GeoJSON boundaries, and Sentinel-2B tile.
+          </p>
+          <div class="domain-status status-success">
+            <strong>Verified:</strong> Full spatial geometry and climatological context for agricultural analysis.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</AppShell>
+
+<style>
+  .overview-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .hero-section {
+    padding: var(--space-8) 0 var(--space-4) 0;
+    max-width: 900px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-wheat-500);
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    background: rgba(232, 200, 114, 0.1);
+    border: 1px solid rgba(232, 200, 114, 0.3);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .text-wheat {
+    color: var(--color-wheat-500);
+  }
+
+  .hero-lead {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+    max-width: 760px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0.65rem 1.4rem;
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--color-wheat-500);
+    color: var(--color-slate-950);
+    border: 1px solid var(--color-wheat-600);
+    box-shadow: 0 2px 8px rgba(232, 200, 114, 0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-wheat-400);
+    color: var(--color-slate-950);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-color: var(--border-strong);
+  }
+
+  .section-heading {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .domain-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .domain-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .domain-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .domain-icon {
+    font-size: 1.5rem;
+  }
+
+  .domain-header h3 {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .domain-desc {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .domain-status {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .status-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--color-amber-400);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .status-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-emerald-400);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+</style>

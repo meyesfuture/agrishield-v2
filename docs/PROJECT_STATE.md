@@ -7,7 +7,7 @@
 - [x] Standard product documentation drafted.
 - [x] Existing application repository inspected by coding agent (Phase 0 complete).
 - [x] All Phase 5 dataset row counts and hashes independently revalidated by implementation scripts (Phase 1 complete).
-- [ ] Application scaffold/build created (Phase 2).
+- [x] Application scaffold/build created (Phase 2 complete).
 - [ ] Core dashboard implemented (Phases 3–5).
 - [ ] Release checks passed (Phases 6–7).
 
@@ -24,16 +24,15 @@
 - No independently adjudicated private hoarding dataset or negative controls.
 
 ## Latest completed phase
-- Phase: 1 (Data Validation and Inventory, repeatable pipeline, pytest integrity suite)
-- Date/time: 2026-10-22T07:42:00+05:30
+- Phase: 2 (Application Foundation: FastAPI backend + Astro/React/TS frontend + AppShell + Dataset Explorer + Health Monitor + Methodology)
+- Date/time: 2026-10-22T08:00:00+05:30
 - Evidence/output:
-  - `data/manifests/dataset_catalog.csv` (20 dataset entries)
-  - `data/manifests/dataset_catalog.json`
-  - `data/derived/quality_report.json`
-  - `docs/research/DATA_QUALITY_REPORT.md`
-  - `scripts/run_validation_pipeline.py`
-  - `tests/test_data_integrity.py` (16/16 passed)
-  - `logs/phase_reports/PHASE_1_REPORT.md`
+  - `backend/`: FastAPI application (`main.py`, `config.py`, `logger.py`, `schemas/`, `services/`, `api/routes/`)
+  - `frontend/`: Astro 7 + React 19 + TypeScript application with `tokens.css`, `AppShell.astro`, `MetricCard.astro`, `GuardrailBanner.astro`, `StatusBadge.tsx`, `DatasetExplorer.tsx`, `SystemHealthMonitor.tsx`
+  - Routes verified live: `/` (Overview), `/datasets` (Dataset Explorer), `/status` (System Status), `/methodology` (Methodology & Governance)
+  - `scripts/run_dev.ps1`: Windows PowerShell local development runner
+  - `tests/test_backend_api.py`: 9 unit tests for FastAPI endpoints, configuration, and safe path traversal containment
+  - `logs/phase_reports/PHASE_2_REPORT.md`
 
 ## Current blockers
 1. No daily wheat/paddy market arrival quantity panel (foodgrains routed to credentialed Anaaj Kharid).
@@ -42,46 +41,63 @@
 4. Four external source routes blocked (CAPTCHA, token, TLS root CA, or internal agency credentials).
 
 ## Next single action
-Execute Phase 2 from `prompts/PHASED_BUILD_PLAN.md`: Application Foundation. Initialize project scaffold (FastAPI backend + modern responsive frontend), design tokens, layout hierarchy, and dataset registry endpoints bound strictly to validated catalog data.
+Execute Phase 3 from `prompts/PHASED_BUILD_PLAN.md`: Data Layer and Endpoints. Build normalized schema read adapters, fixture-based tests, and dedicated domain endpoints (`/api/v1/production`, `/api/v1/yields`, `/api/v1/markets/prices`, `/api/v1/weather`, `/api/v1/procurement`, `/api/v1/stocks`, `/api/v1/geo/districts`) bound to local validated files.
 
 ## Handoff template (update every session)
-- Last phase/status: Phase 1 COMPLETE (All 16/16 pytest tests passed; validation pipeline verified idempotent; raw inputs untouched)
+- Last phase/status: Phase 2 COMPLETE (All 25/25 pytest tests passed; frontend static build passed in 0.93s; browser smoke test verified zero console errors)
 - Files changed:
-  - Created `scripts/data_validation/config.py`
-  - Created `scripts/data_validation/integrity.py`
-  - Created `scripts/data_validation/validators.py`
-  - Created `scripts/data_validation/catalog_builder.py`
-  - Created `scripts/data_validation/quality_reporter.py`
-  - Created `scripts/data_validation/__init__.py`
-  - Created `scripts/run_validation_pipeline.py`
-  - Created `tests/conftest.py`
-  - Created `tests/test_data_integrity.py`
-  - Generated `data/manifests/dataset_catalog.csv`
-  - Generated `data/manifests/dataset_catalog.json`
-  - Generated `data/derived/quality_report.json`
-  - Generated `docs/research/DATA_QUALITY_REPORT.md`
-  - Updated `docs/DATA_DICTIONARY.md` (Incremented to v1.1.0; documented DECISION-20261022-01)
-  - Updated `docs/ROADMAP.md` (Marked Phase 1 `[DONE]`)
-  - Created `logs/phase_reports/PHASE_1_REPORT.md`
+  - Created `backend/config.py`
+  - Created `backend/logger.py`
+  - Created `backend/schemas/health.py`
+  - Created `backend/schemas/dataset.py`
+  - Created `backend/schemas/quality.py`
+  - Created `backend/schemas/__init__.py`
+  - Created `backend/services/catalog_service.py`
+  - Created `backend/services/quality_service.py`
+  - Created `backend/api/routes/health.py`
+  - Created `backend/api/routes/datasets.py`
+  - Created `backend/api/routes/quality.py`
+  - Created `backend/main.py`
+  - Created `backend/__init__.py`
+  - Created `frontend/astro.config.mjs`
+  - Created `frontend/tsconfig.json`
+  - Created `frontend/package.json`
+  - Created `frontend/public/favicon.svg`
+  - Created `frontend/public/data/dataset_catalog.json` & `quality_report.json`
+  - Created `frontend/src/styles/tokens.css`
+  - Created `frontend/src/layouts/AppShell.astro`
+  - Created `frontend/src/components/StatusBadge.tsx`
+  - Created `frontend/src/components/MetricCard.astro`
+  - Created `frontend/src/components/GuardrailBanner.astro`
+  - Created `frontend/src/components/DatasetExplorer.tsx`
+  - Created `frontend/src/components/SystemHealthMonitor.tsx`
+  - Created `frontend/src/pages/index.astro`
+  - Created `frontend/src/pages/datasets.astro`
+  - Created `frontend/src/pages/status.astro`
+  - Created `frontend/src/pages/methodology.astro`
+  - Created `scripts/run_dev.ps1`
+  - Created `pytest.ini`
+  - Created `tests/test_backend_api.py`
+  - Updated `README.md`
+  - Updated `docs/ROADMAP.md`
+  - Updated `docs/PROJECT_STATE.md`
+  - Created `logs/phase_reports/PHASE_2_REPORT.md`
 - Commands executed:
-  - `python scripts/run_validation_pipeline.py` (Rebuilt catalog and reports, verified idempotency, verified 49/49 raw files unchanged)
-  - `pytest tests/test_data_integrity.py -v` (16/16 passed in 0.25s)
+  - `python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000` (FastAPI backend started and verified)
+  - `npm run dev --prefix frontend` (Astro frontend started and verified)
+  - `npm run build --prefix frontend` (4 static routes generated in 0.93s)
+  - `pytest -v` (25/25 tests PASSED in 0.77s)
+  - `browser_subagent` (Visual smoke test: navigation, dataset modal inspection, live telemetry verified)
 - Tests executed and actual outputs:
-  - 16/16 tests PASSED.
-  - Checksums: 49/49 starter manifest files verified (100%); 44/44 provenance files verified (100%).
-  - Arrivals panel: 3,892 rows, 62 commodities, 0 grain records, 71 dhan matches confirmed Coriander Green, 3 modal_price=0.0 sentinels audited, candidate keys unique (0 duplicates).
-  - Paddy daily prices: 53 rows, arrival quantities 100% null (53/53 null), positive modal prices.
-  - National stocks: 100 rows, state is 100% null (100/100 null), India Central Pool only.
-  - Procurement snapshot: 3 rows, single date (2025-05-15), 3 temporal bases, cannot be summed as a time series.
-  - Satellite raster: exactly 1 file (376,834 bytes) from 2024-10-05.
-  - Weather: 3,655 rows, 5 stations, 731 days, 0% nulls.
-  - Production & yield: 230 rows and 2,754 rows, candidate keys unique with coalesced year.
-  - Legacy audit: malformed CSV files quarantined due to unquoted commas on lines 10/11; historical Codex folder confirmed absent.
+  - Backend API: 9/9 tests PASSED.
+  - Data Integrity: 16/16 tests PASSED.
+  - Frontend: 4/4 static pages generated cleanly; browser subagent verified zero console errors.
 - Decisions made and rationale:
-  - Consolidated dataset catalog into `data/manifests/dataset_catalog.csv` with 20 entries including missing and quarantined sources.
-  - Implemented single repeatable execution command `python scripts/run_validation_pipeline.py`.
-  - Upgraded data dictionary to v1.1.0 reflecting empirical physical schemas and constraints.
-- Blockers: None for Phase 2.
-- Next single action: Phase 2 — Application foundation.
-- Skills actually consulted: `gravitas`, `gravitas-python`, `ponytail`.
-- Last updated (UTC): 2026-10-22T02:15:00Z
+  - Followed greenfield stack specified in `docs/ARCHITECTURE.md`: Astro + React + TypeScript frontend and FastAPI backend.
+  - Used local verified JSON catalogs as static fallbacks so frontend operates seamlessly even if backend is offline.
+  - Set npm cache to Drive `B:\.npm-cache` to protect Drive C: disk budget.
+  - Implemented `pytest.ini` preventing pytest from executing or modifying `.pyc` files inside immutable `data/inbox/`.
+- Blockers: None for Phase 3.
+- Next single action: Phase 3 — Data layer and endpoints.
+- Skills actually consulted: `frontend-design`, `ui-ux-pro-max`, `gravitas`, `gravitas-python`, `ponytail`.
+- Last updated (UTC): 2026-10-22T02:35:00Z

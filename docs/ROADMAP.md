@@ -13,10 +13,12 @@
 - Output: `data/manifests/dataset_catalog.csv`, `data/manifests/dataset_catalog.json`, `data/derived/quality_report.json`, `docs/research/DATA_QUALITY_REPORT.md`, `scripts/run_validation_pipeline.py`, `tests/test_data_integrity.py`.
 - Gate: 16/16 pytest checks passed, all 5 critical domain boundaries verified, raw files 100% immutable, single-command pipeline idempotent.
 
-## Phase 2 — Product foundation
+## Phase 2 — Product foundation [DONE]
 - Set up app shell, design tokens, navigation, route skeleton and error/empty/loading states.
-- Build backend health/dataset registry routes or file mode.
-- Output: usable shell and verified local startup.
+- Built FastAPI backend with typed config, safe path containment, health/status/datasets/quality endpoints.
+- Built Astro + React + TypeScript frontend with AppShell, DatasetExplorer, SystemHealthMonitor, and Methodology.
+- Output: `backend/`, `frontend/`, `scripts/run_dev.ps1`, `tests/test_backend_api.py`.
+- Gate: 25/25 pytest tests passed; frontend built cleanly in 0.93s; browser smoke test verified live interaction with zero console errors.
 
 ## Phase 3 — Data layer and API adapters
 - Build normalized schema/read layer and fixture-based tests.

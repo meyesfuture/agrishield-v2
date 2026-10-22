@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Punjab GrainWatch — Modern Agricultural Design System Tokens
+   Aesthetic: Apple Restraint + Material Clarity + Agricultural Domain Identity
+   ========================================================================== */
+
+:root {
+  /* --- Primitive Color Tokens: Neutrals --- */
+  --color-slate-950: #0a0d12;
+  --color-slate-900: #0f141c;
+  --color-slate-850: #141b24;
+  --color-slate-800: #1a222e;
+  --color-slate-700: #253142;
+  --color-slate-600: #3b4b61;
+  --color-slate-400: #8899af;
+  --color-slate-300: #cbd5e1;
+  --color-slate-100: #f1f5f9;
+  --color-white: #ffffff;
+
+  /* --- Primitive Color Tokens: Agricultural & Semantic --- */
+  --color-wheat-500: #e8c872;
+  --color-wheat-600: #d4a849;
+  --color-wheat-400: #f5df9b;
+  --color-amber-500: #f59e0b;
+  --color-amber-400: #fbbf24;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-400: #34d399;
+  --color-sky-500: #0ea5e9;
+  --color-sky-400: #38bdf8;
+  --color-crimson-500: #ef4444;
+  --color-crimson-400: #f87171;
+  --color-purple-400: #c084fc;
+
+  /* --- Semantic Tokens: Surface & Backgrounds --- */
+  --bg-canvas: var(--color-slate-950);
+  --bg-surface: var(--color-slate-900);
+  --bg-surface-elevated: var(--color-slate-850);
+  --bg-surface-card: var(--color-slate-800);
+  --bg-surface-glass: rgba(15, 20, 28, 0.75);
+  --bg-surface-hover: rgba(255, 255, 255, 0.04);
+  --bg-surface-active: rgba(255, 255, 255, 0.08);
+
+  /* --- Semantic Tokens: Typography --- */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-accent: var(--color-wheat-500);
+  --text-inverse: var(--color-slate-950);
+
+  /* --- Semantic Tokens: Borders & Outlines --- */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --border-accent: rgba(232, 200, 114, 0.35);
+
+  /* --- Semantic Tokens: Statuses --- */
+  --status-observed-bg: rgba(16, 185, 129, 0.12);
+  --status-observed-text: var(--color-emerald-400);
+  --status-observed-border: rgba(16, 185, 129, 0.3);
+
+  --status-derived-bg: rgba(14, 165, 233, 0.12);
+  --status-derived-text: var(--color-sky-400);
+  --status-derived-border: rgba(14, 165, 233, 0.3);
+
+  --status-metadata-bg: rgba(192, 132, 252, 0.12);
+  --status-metadata-text: var(--color-purple-400);
+  --status-metadata-border: rgba(192, 132, 252, 0.3);
+
+  --status-blocked-bg: rgba(245, 158, 11, 0.12);
+  --status-blocked-text: var(--color-amber-400);
+  --status-blocked-border: rgba(245, 158, 11, 0.3);
+
+  --status-missing-bg: rgba(239, 68, 68, 0.12);
+  --status-missing-text: var(--color-crimson-400);
+  --status-missing-border: rgba(239, 68, 68, 0.3);
+
+  --status-stale-bg: rgba(100, 116, 139, 0.15);
+  --status-stale-text: #94a3b8;
+  --status-stale-border: rgba(100, 116, 139, 0.3);
+
+  /* --- Accessibility Focus Ring --- */
+  --focus-ring: 0 0 0 3px rgba(16, 185, 129, 0.45);
+  --focus-ring-offset: 2px;
+
+  /* --- Typography Scale --- */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+
+  /* --- Spacing Scale --- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* --- Elevation & Shadows --- */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+  --shadow-glow-amber: 0 0 20px -3px rgba(232, 200, 114, 0.25);
+  --shadow-glow-emerald: 0 0 20px -3px rgba(16, 185, 129, 0.25);
+
+  /* --- Border Radius --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* --- Motion Tokens --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduced Motion Override for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible Focus Styling */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 1rem;
+  background: var(--color-emerald-500);
+  color: var(--color-slate-950);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  z-index: 1000;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--color-wheat-500);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-wheat-400);
+  text-decoration: underline;
+}
+
+/* Code & Pre */
+code, pre {
+  font-family: var(--font-mono);
+}

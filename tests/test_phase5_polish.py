@@ -46,30 +46,27 @@ class TestPhase5DesignAndMotionPolish:
         assert ".motion-toggle-btn" in dashboard_css
 
 
-class TestPhase5Hero3DComponent:
-    """Verifies Hero3DScene component architecture and static fallback."""
+class TestPhase5HeroVisualComponent:
+    """Verifies Hero visualizer component architecture and interactive telemetry hub."""
 
     def test_hero_component_source_architecture(self):
-        hero_tsx = (FRONTEND_SRC / "components" / "Hero3DScene.tsx").read_text(encoding="utf-8")
-        # Dynamic import for client-side code splitting
-        assert "import('three')" in hero_tsx
-        # WebGL context verification
-        assert "webgl2" in hero_tsx or "webgl" in hero_tsx
-        # Reduced motion detection
-        assert "prefers-reduced-motion" in hero_tsx
-        # Pause / Play motion button
-        assert "aria-pressed" in hero_tsx
-        # Static fallback SVG with grain silos
-        assert "<svg" in hero_tsx
-        assert "Punjab Grain Silos" in hero_tsx
+        hero_tsx = (FRONTEND_SRC / "components" / "HeroTelemetryVisualizer.tsx").read_text(encoding="utf-8")
+        # Verified telemetry nodes
+        assert "NODES" in hero_tsx
+        # Interactive SVG flow radar
+        assert "telemetry-svg" in hero_tsx
+        # Live simulation toggle for divergence demonstration
+        assert "Simulate Divergence" in hero_tsx
+        assert "Normal Flow" in hero_tsx
+        # Accessible pause / resume button
+        assert "telemetry-pause-btn" in hero_tsx
 
-    def test_overview_page_mounts_hero_3d(self):
-        """Verifies index.html in dist mounts the 3D hero component."""
+    def test_overview_page_mounts_hero_visual(self):
+        """Verifies index.html in dist mounts the interactive hero telemetry visualizer component."""
         index_html = (FRONTEND_DIST / "index.html").read_text(encoding="utf-8")
-        assert "hero-3d-wrapper" in index_html
-        assert "3D Grain Infrastructure Visualizer" in index_html
-        assert "hero-3d-canvas" in index_html
-        assert "motion-toggle-btn" in index_html
+        assert "hero-visual" in index_html
+        assert "hero-telemetry-card" in index_html
+        assert "Agricultural Supply Telemetry Hub" in index_html
 
 
 class TestPhase5EvidenceCaveatPreservation:

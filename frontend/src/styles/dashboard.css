@@ -307,7 +307,247 @@
   background-color: var(--md-sys-color-primary);
 }
 
-/* Hero 3D Scene Wrapper */
+/* Hero Telemetry Visualizer (Interactive 2D Hub) */
+.hero-telemetry-card {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--md-sys-color-outline-variant, #cbd5e1);
+  border-radius: var(--md-sys-shape-large, 16px);
+  padding: 14px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.telemetry-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #334155;
+}
+
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.live-pulse-dot.normal {
+  background-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: pulseGreen 2s infinite;
+}
+
+.live-pulse-dot.anomaly {
+  background-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+  animation: pulseRed 1s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes pulseRed {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.telemetry-mode-toggles {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.telemetry-toggle-btn {
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.telemetry-toggle-btn:hover {
+  background: #f1f5f9;
+}
+
+.telemetry-toggle-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.telemetry-toggle-btn.anomaly.active {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+.telemetry-pause-btn {
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.telemetry-canvas-area {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background: #f8fafc;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.telemetry-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.transit-anim {
+  animation: dashMove 1.5s linear infinite;
+}
+
+@keyframes dashMove {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
+.node-pulse {
+  animation: nodeGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes nodeGlow {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.15); opacity: 0.95; }
+}
+
+.telemetry-hud-card {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.hud-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.hud-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.hud-badge.silo { background: #dbeafe; color: #1e40af; }
+.hud-badge.mandi { background: #dcfce7; color: #15803d; }
+.hud-badge.procurement { background: #fef3c7; color: #b45309; }
+
+.hud-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud-metric-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+}
+
+.hud-metric-label {
+  color: #64748b;
+}
+
+.hud-metric-value {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.hud-metric-value.text-spike {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.hud-metric-value.text-drop {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.hud-footer {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.hud-footer-text {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.telemetry-features-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.telemetry-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Hero 3D Scene Wrapper (Preserved for compatibility) */
 .hero-3d-wrapper {
   position: relative;
   width: 100%;

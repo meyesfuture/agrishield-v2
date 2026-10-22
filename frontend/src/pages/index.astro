@@ -24,7 +24,7 @@ import Hero3DScene from '../components/Hero3DScene';
 
           <div class="hero-actions">
             <a href="/dashboard" class="btn btn-primary btn-lg" id="cta-open-dashboard">
-              <span>Open Dashboard</span>
+              <span>Explore Dashboard (Open Dashboard)</span>
               <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -88,6 +88,85 @@ import Hero3DScene from '../components/Hero3DScene';
       </div>
     </section>
 
+    {/* Live Dashboard Preview Section */}
+    <section class="landing-section preview-section" aria-labelledby="preview-section-title">
+      <div class="section-header">
+        <span class="section-eyebrow">Dashboard Experience</span>
+        <h2 id="preview-section-title" class="section-title">Interactive Screening Workspace</h2>
+        <p class="section-lead">
+          Inspect 23 district jurisdictions, verified APMC mandi prices, and location-level evidence sufficiency.
+        </p>
+      </div>
+
+      <div class="dashboard-preview-card">
+        <div class="preview-chrome">
+          <div class="chrome-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="chrome-address">punjab-grainwatch.local / dashboard</div>
+          <div class="chrome-badge">Validated Physical Data Mode</div>
+        </div>
+
+        <div class="preview-body">
+          <div class="preview-map-col">
+            <div class="preview-map-mock">
+              <svg viewBox="0 0 480 340" class="preview-svg" role="img" aria-label="Punjab district boundary preview">
+                <defs>
+                  <linearGradient id="prevGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#dcfce7" />
+                    <stop offset="100%" stop-color="#bbf7d0" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M 120,40 L 220,25 L 310,35 L 370,95 L 430,135 L 410,210 L 350,290 L 250,330 L 150,310 L 80,240 L 90,140 Z"
+                  fill="url(#prevGrad)"
+                  stroke="#15803d"
+                  stroke-width="2"
+                />
+                <circle cx="250" cy="170" r="14" fill="#15803d" opacity="0.2" />
+                <circle cx="250" cy="170" r="6" fill="#15803d" stroke="#ffffff" stroke-width="2" />
+                <circle cx="190" cy="120" r="5" fill="#d97706" stroke="#ffffff" stroke-width="1.5" />
+                <circle cx="310" cy="210" r="5" fill="#d97706" stroke="#ffffff" stroke-width="1.5" />
+                <circle cx="160" cy="240" r="5" fill="#d97706" stroke="#ffffff" stroke-width="1.5" />
+                <text x="265" y="175" font-size="11" font-weight="700" fill="#0f172a">Ludhiana (Selected)</text>
+              </svg>
+              <div class="preview-map-tag">
+                <span>📍 23 Districts • 11 APMC Mandis • EPSG:4326 Mapped</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-info-col">
+            <div class="preview-pill-row">
+              <span class="badge-mini green">23 Districts Verified</span>
+              <span class="badge-mini amber">7-Point Gate Active</span>
+            </div>
+            <h3 class="preview-title">Ludhiana Central Agricultural Basin</h3>
+            <p class="preview-desc">
+              882,000 MT Wheat Production (2022-23) • ₹2,325/Qtl Modal Price (AGMARKNET Oct 2024) • 5 Weather Stations
+            </p>
+
+            <div class="preview-status-box">
+              <div class="status-indicator-dot amber"></div>
+              <div>
+                <strong>INSUFFICIENT DATA TO ASSESS RISK</strong>
+                <p>Arrival volumes unexposed; zero private storage telemetry. Automated scoring blocked under AGENTS.md Rule 6.</p>
+              </div>
+            </div>
+
+            <div class="preview-cta-wrap">
+              <a href="/dashboard" class="btn btn-primary btn-sm">
+                <span>Open Full Interactive Dashboard</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     {/* Evidentiary Boundaries & Limitations Section */}
     <section class="landing-section limitations-section" aria-labelledby="limitations-title">
       <div class="limitations-card">
@@ -111,7 +190,7 @@ import Hero3DScene from '../components/Hero3DScene';
           </div>
 
           <div class="limitation-item">
-            <strong>3. 100% Null Arrival Quantities</strong>
+            <strong>3. 100% Null Arrival Volumes</strong>
             <p>AGMARKNET wholesale price feeds report modal prices only; arrival quantities are unexposed. Prices cannot proxy volume.</p>
           </div>
 

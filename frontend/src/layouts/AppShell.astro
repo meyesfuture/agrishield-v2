@@ -29,7 +29,7 @@ const {
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <div class="app-layout">
-    <!-- Top Navigation Header -->
+    <!-- Top Navigation Header (Compact Google Material Top Bar) -->
     <header class="top-nav" role="banner">
       <div class="nav-container">
         <div class="brand-section">
@@ -42,7 +42,7 @@ const {
           </a>
         </div>
 
-        <!-- Minimal Primary Navigation (Home + Dashboard only) -->
+        <!-- Primary Navigation (Home + Dashboard only) -->
         <nav class="nav-links" role="navigation" aria-label="Main Navigation">
           <a href="/" class={activeNav === 'home' ? 'nav-item active' : 'nav-item'}>
             Home
@@ -52,9 +52,21 @@ const {
           </a>
         </nav>
 
+        <!-- Compact Top Bar Indicators: Last Verified Update & Coverage -->
+        <div class="nav-indicators" aria-label="System Coverage and Data Vintage">
+          <div class="indicator-pill" title="Verified Data Vintage: DES APY 2022-23, AGMARKNET Oct 2024, RMS 2025-26">
+            <span class="indicator-dot verified" aria-hidden="true"></span>
+            <span class="indicator-label">Updated: <strong>DES APY 2022-23</strong></span>
+          </div>
+          <div class="indicator-pill" title="Geographic Coverage: All 23 administrative districts of Punjab mapped in EPSG:4326">
+            <span class="indicator-dot green" aria-hidden="true"></span>
+            <span class="indicator-label">Coverage: <strong>23/23 Districts</strong></span>
+          </div>
+        </div>
+
         <div class="header-actions">
           <a href="/dashboard" class="btn-nav-cta">
-            Open Dashboard →
+            Explore Dashboard (Open Dashboard) →
           </a>
         </div>
       </div>

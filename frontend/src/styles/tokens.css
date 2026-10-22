@@ -1,85 +1,110 @@
 /* ==========================================================================
    Punjab GrainWatch — Modern Agricultural Design System Tokens
-   Aesthetic: Apple Restraint + Material Clarity + Agricultural Domain Identity
+   Aesthetic: Google Material Clarity + Apple Typographic Restraint
+   Theme: Light Agricultural Intelligence
    ========================================================================== */
 
 :root {
-  /* --- Primitive Color Tokens: Neutrals --- */
-  --color-slate-950: #0a0d12;
-  --color-slate-900: #0f141c;
-  --color-slate-850: #141b24;
-  --color-slate-800: #1a222e;
-  --color-slate-700: #253142;
-  --color-slate-600: #3b4b61;
-  --color-slate-400: #8899af;
+  /* --- Primitive Color Tokens: Light Neutrals --- */
+  --color-slate-950: #0f172a;
+  --color-slate-900: #1e293b;
+  --color-slate-800: #334155;
+  --color-slate-700: #475569;
+  --color-slate-600: #64748b;
+  --color-slate-400: #94a3b8;
   --color-slate-300: #cbd5e1;
+  --color-slate-200: #e2e8f0;
   --color-slate-100: #f1f5f9;
-  --color-white: #ffffff;
+  --color-slate-50:  #f8fafc;
+  --color-white:     #ffffff;
 
-  /* --- Primitive Color Tokens: Agricultural & Semantic --- */
-  --color-wheat-500: #e8c872;
-  --color-wheat-600: #d4a849;
-  --color-wheat-400: #f5df9b;
+  /* --- Agricultural Green & Wheat Gold Accents --- */
+  --color-green-900: #14532d;
+  --color-green-800: #166534;
+  --color-green-700: #15803d;
+  --color-green-600: #16a34a;
+  --color-green-500: #22c55e;
+  --color-green-200: #bbf7d0;
+  --color-green-100: #dcfce7;
+  --color-green-50:  #f0fdf4;
+
+  --color-wheat-800: #92400e;
+  --color-wheat-700: #b45309;
+  --color-wheat-600: #d97706;
+  --color-wheat-500: #f59e0b;
+  --color-wheat-400: #fbbf24;
+  --color-wheat-200: #fde68a;
+  --color-wheat-100: #fef3c7;
+  --color-wheat-50:  #fffbeb;
+
+  --color-amber-700: #b45309;
+  --color-amber-600: #d97706;
   --color-amber-500: #f59e0b;
   --color-amber-400: #fbbf24;
-  --color-emerald-500: #10b981;
-  --color-emerald-600: #059669;
-  --color-emerald-400: #34d399;
-  --color-sky-500: #0ea5e9;
-  --color-sky-400: #38bdf8;
-  --color-crimson-500: #ef4444;
-  --color-crimson-400: #f87171;
-  --color-purple-400: #c084fc;
+  --color-amber-200: #fde68a;
+  --color-amber-100: #fef3c7;
+  --color-amber-50:  #fffbeb;
 
-  /* --- Semantic Tokens: Surface & Backgrounds --- */
-  --bg-canvas: var(--color-slate-950);
-  --bg-surface: var(--color-slate-900);
-  --bg-surface-elevated: var(--color-slate-850);
-  --bg-surface-card: var(--color-slate-800);
-  --bg-surface-glass: rgba(15, 20, 28, 0.75);
-  --bg-surface-hover: rgba(255, 255, 255, 0.04);
-  --bg-surface-active: rgba(255, 255, 255, 0.08);
+  --color-crimson-700: #b91c1c;
+  --color-crimson-600: #dc2626;
+  --color-crimson-500: #ef4444;
+  --color-crimson-200: #fecaca;
+  --color-crimson-100: #fee2e2;
+  --color-crimson-50:  #fef2f2;
+
+  --color-sky-700: #0369a1;
+  --color-sky-600: #0284c7;
+  --color-sky-500: #0ea5e9;
+  --color-sky-200: #bae6fd;
+  --color-sky-100: #e0f2fe;
+  --color-sky-50:  #f0f9ff;
+
+  /* --- Semantic Tokens: Surface & Backgrounds (Material Light Theme) --- */
+  --bg-canvas: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-surface-card: #ffffff;
+  --bg-surface-subtle: #f8fafc;
+  --bg-surface-glass: rgba(255, 255, 255, 0.95);
+  --bg-surface-hover: #f1f5f9;
+  --bg-surface-active: #e2e8f0;
 
   /* --- Semantic Tokens: Typography --- */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
   --text-muted: #64748b;
-  --text-accent: var(--color-wheat-500);
-  --text-inverse: var(--color-slate-950);
+  --text-accent: #15803d;
+  --text-inverse: #ffffff;
 
   /* --- Semantic Tokens: Borders & Outlines --- */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.14);
-  --border-strong: rgba(255, 255, 255, 0.22);
-  --border-accent: rgba(232, 200, 114, 0.35);
+  --border-subtle: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-strong: #94a3b8;
+  --border-accent: #15803d;
 
   /* --- Semantic Tokens: Statuses --- */
-  --status-observed-bg: rgba(16, 185, 129, 0.12);
-  --status-observed-text: var(--color-emerald-400);
-  --status-observed-border: rgba(16, 185, 129, 0.3);
+  --status-observed-bg: #f0fdf4;
+  --status-observed-text: #166534;
+  --status-observed-border: #bbf7d0;
 
-  --status-derived-bg: rgba(14, 165, 233, 0.12);
-  --status-derived-text: var(--color-sky-400);
-  --status-derived-border: rgba(14, 165, 233, 0.3);
+  --status-derived-bg: #f0f9ff;
+  --status-derived-text: #0369a1;
+  --status-derived-border: #bae6fd;
 
-  --status-metadata-bg: rgba(192, 132, 252, 0.12);
-  --status-metadata-text: var(--color-purple-400);
-  --status-metadata-border: rgba(192, 132, 252, 0.3);
+  --status-blocked-bg: #fffbeb;
+  --status-blocked-text: #b45309;
+  --status-blocked-border: #fde68a;
 
-  --status-blocked-bg: rgba(245, 158, 11, 0.12);
-  --status-blocked-text: var(--color-amber-400);
-  --status-blocked-border: rgba(245, 158, 11, 0.3);
+  --status-missing-bg: #fef2f2;
+  --status-missing-text: #b91c1c;
+  --status-missing-border: #fecaca;
 
-  --status-missing-bg: rgba(239, 68, 68, 0.12);
-  --status-missing-text: var(--color-crimson-400);
-  --status-missing-border: rgba(239, 68, 68, 0.3);
-
-  --status-stale-bg: rgba(100, 116, 139, 0.15);
-  --status-stale-text: #94a3b8;
-  --status-stale-border: rgba(100, 116, 139, 0.3);
+  --status-stale-bg: #f1f5f9;
+  --status-stale-text: #475569;
+  --status-stale-border: #cbd5e1;
 
   /* --- Accessibility Focus Ring --- */
-  --focus-ring: 0 0 0 3px rgba(16, 185, 129, 0.45);
+  --focus-ring: 0 0 0 3px rgba(22, 101, 52, 0.4);
   --focus-ring-offset: 2px;
 
   /* --- Typography Scale --- */
@@ -107,18 +132,18 @@
   --space-12: 3rem;     /* 48px */
   --space-16: 4rem;     /* 64px */
 
-  /* --- Elevation & Shadows --- */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
-  --shadow-glow-amber: 0 0 20px -3px rgba(232, 200, 114, 0.25);
-  --shadow-glow-emerald: 0 0 20px -3px rgba(16, 185, 129, 0.25);
+  /* --- Elevation & Shadows (Google Material Soft Depth) --- */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
 
   /* --- Border Radius --- */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
   --radius-full: 9999px;
 
   /* --- Motion Tokens --- */
@@ -152,50 +177,21 @@ body {
   font-family: var(--font-sans);
   background-color: var(--bg-canvas);
   color: var(--text-primary);
-  line-height: 1.6;
-  min-height: 100vh;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Accessible Focus Styling */
-:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-  border-radius: var(--radius-sm);
-}
-
-/* Skip link for screen readers */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 1rem;
-  background: var(--color-emerald-500);
-  color: var(--color-slate-950);
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
-  z-index: 1000;
-  transition: top var(--transition-fast);
-}
-
-.skip-link:focus {
-  top: 1rem;
-}
-
-/* Links */
 a {
-  color: var(--color-wheat-500);
+  color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast);
 }
 
-a:hover {
-  color: var(--color-wheat-400);
-  text-decoration: underline;
+button {
+  font-family: inherit;
+  cursor: pointer;
 }
 
-/* Code & Pre */
-code, pre {
-  font-family: var(--font-mono);
+input, select, textarea {
+  font-family: inherit;
 }

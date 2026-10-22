@@ -67,9 +67,9 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
           renderer.toneMapping = THREE.ACESFilmicToneMapping;
           renderer.toneMappingExposure = 1.1;
 
-          // Initialize Scene & Fog
+          // Initialize Scene & Fog (Light Agricultural Atmosphere)
           const scene = new THREE.Scene();
-          scene.fog = new THREE.FogExp2('#0a0d12', 0.04);
+          scene.fog = new THREE.FogExp2('#f8fafc', 0.02);
 
           // Initialize Camera
           const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
@@ -77,28 +77,28 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
           camera.lookAt(0, 1.2, 0);
 
           // --- Lighting ---
-          const ambientLight = new THREE.AmbientLight(0xfff3d6, 0.9);
+          const ambientLight = new THREE.AmbientLight(0xfffaed, 1.2);
           scene.add(ambientLight);
 
-          const sunLight = new THREE.DirectionalLight(0xfcd34d, 1.8);
+          const sunLight = new THREE.DirectionalLight(0xf59e0b, 2.0);
           sunLight.position.set(6, 10, 5);
           scene.add(sunLight);
 
-          const fillLight = new THREE.DirectionalLight(0x60a5fa, 0.4);
+          const fillLight = new THREE.DirectionalLight(0x94a3b8, 0.6);
           fillLight.position.set(-6, 4, -3);
           scene.add(fillLight);
 
           // --- Materials ---
           const siloBodyMaterial = new THREE.MeshStandardMaterial({
-            color: 0x94a3b8,
-            metalness: 0.85,
-            roughness: 0.32,
+            color: 0xcbd5e1, // Light brushed steel
+            metalness: 0.8,
+            roughness: 0.35,
           });
 
           const siloRoofMaterial = new THREE.MeshStandardMaterial({
-            color: 0xd4a849, // Golden wheat accent
-            metalness: 0.65,
-            roughness: 0.4,
+            color: 0xd97706, // Warm golden wheat accent
+            metalness: 0.6,
+            roughness: 0.35,
           });
 
           const gantryMaterial = new THREE.MeshStandardMaterial({
@@ -108,15 +108,15 @@ export const Hero3DScene: React.FC<Hero3DSceneProps> = ({ className = '' }) => {
           });
 
           const groundMaterial = new THREE.MeshStandardMaterial({
-            color: 0x141d17, // Punjab alluvial soil
-            roughness: 0.9,
+            color: 0x166534, // Rich Punjab agricultural field green
+            roughness: 0.85,
             metalness: 0.1,
           });
 
           const groundGridMaterial = new THREE.LineBasicMaterial({
-            color: 0xd4a849,
+            color: 0x86efac,
             transparent: true,
-            opacity: 0.15,
+            opacity: 0.25,
           });
 
           // --- Silo Complex Group ---

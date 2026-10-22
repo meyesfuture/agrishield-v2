@@ -13,6 +13,7 @@
 - [x] UI & Motion Polish, Accessible Focus Rings, 3D Agricultural Silo & Field Hero Visualizer (Phase 5 complete).
 - [x] Exploratory Data Quality Analysis & Scenario Modeling Guardrails (Phase 6 complete).
 - [x] Release checks passed, product simplified to core 2-screen architecture (Phase 7 complete).
+- [x] Design Refinement Complete: Google Material Light UI, 4 Meaningful Visualizations, and Verified Screening (Refinement complete).
 
 ## Current evidence guardrails
 - APMC arrival panel: verified 3,892 daily observations for produce (62 crops); zero wheat/paddy grain rows. 71 rows matching "dhan" are Coriander Green (Hara Dhaniya). 3 rows have `modal_price == 0.0` as explicit clerk sentinels for "not reported".
@@ -29,29 +30,37 @@
 - Anti-Hoarding Governance (Rule 6): Statistical anomaly is strictly an investigation prompt, never proof of intent. Hoarding detection is `STRICTLY FORBIDDEN`. No actor-level rankings or trader naming. Locations without adequate coverage explicitly state "INSUFFICIENT DATA TO ASSESS RISK".
 - Synthetic Counterfactual Segregation: `data/synthetic/` contains `scenario_hypothetical_wheat_dip.json` (`is_synthetic=true`), prominent crimson watermark banners, excluded from real metrics and production dataset catalogs.
 
-## Latest completed phase
-- Phase: 7 (Hardening, Full Verification & Ruthless Product Simplification)
-- Date/time: 2026-10-22T10:20:00+05:30
+## Latest completed milestone
+- Milestone: Design Refinement — Google Material-inspired Light UI, 4 Meaningful Visualizations, Live Dashboard Preview, and Verified Screening Integrity
+- Date/time: 2026-10-22T10:35:00+05:30
 - Evidence/output:
-  - **Git Recovery Checkpoint:** Created git tag `pre-simplification-checkpoint` at commit `28e4844` prior to removing any files.
-  - **Product Simplification Plan:** Documented in `docs/release/SIMPLIFICATION_PLAN.md`.
-  - **Removal Audit Log:** Documented all 18 deleted files (9 Astro pages, 9 React components) with justification and zero broken dependencies in `docs/release/REMOVAL_LOG.md`.
-  - **Design Specification:** Created `DESIGN.md` establishing Apple typographic restraint + Google Material visual clarity tokens.
-  - **Streamlined 2-Screen Experience:**
-    - Landing Page (`/`): Clear product identity, methodology boundaries, "Open Dashboard" primary CTA, procedural WebGL 3D agricultural hero visual (`Hero3DScene.tsx`), and clean footer.
-    - Main Dashboard (`/dashboard`): Unified interactive 23-district map with APMC mandi markers, dynamic district selection, location assessment panel displaying "INSUFFICIENT DATA TO ASSESS RISK", verified physical observations, commodity filter, and clear data limitations.
-  - **Preserved Backend & Data Integrity:**
-    - All 49 source files in `data/inbox/` remain 100% immutable (SHA-256 verified).
-    - All 13 FastAPI endpoints and domain schemas remain active.
-    - All 11 physical JSON data caches in `frontend/public/data/` preserved.
+  - **Google Material Light Design Tokens (`frontend/src/styles/tokens.css`):**
+    - Warm white canvas (`#f8fafc`), crisp white card surfaces (`#ffffff`), subtle borders (`#e2e8f0`), modest elevation shadows (`0 1px 3px rgba(0,0,0,0.06)`).
+    - Agricultural green primary (`#15803d` / `#166534`) and restrained wheat gold secondary (`#d97706` / `#f59e0b` / `#b45309`).
+  - **Compact Top Bar (`frontend/src/layouts/AppShell.astro`):**
+    - Brand with wheat sheaf icon, Home & Dashboard links, verified vintage indicator (`Updated: DES APY 2022-23`), district coverage indicator (`Coverage: 23/23 Districts`), and "Explore Dashboard" CTA.
+  - **Landing Page Refinement (`frontend/src/pages/index.astro`):**
+    - Compelling agricultural intelligence headline and lead paragraph.
+    - Procedural 3D silo visual with sunlight and agricultural field green terrain.
+    - "How Potential Risk Screening Works" 3-card explainer.
+    - **Live Dashboard Preview Card:** Realistic mock of the Punjab screening workspace with Ludhiana selected, live status alert, and launch CTA.
+    - System Boundaries & Limitations 4-card governance section.
+  - **Main Dashboard Refinement (`frontend/src/components/DashboardView.tsx`):**
+    - 4 Google Material summary metric cards: Usable Observation Basins (23 Districts • 11 Mandis), Locations Flagged (0 Flagged), District Geographic Coverage (23 / 23 Districts), Verified Physical Observations (6,692 Rows).
+    - Map Shading Mode Toggle: Switch between "Wheat Production (MT)" (choropleth gradient from `#dcfce7` to `#15803d`) and "Evidence Status" (`#fef3c7` Insufficient Evidence).
+    - Interactive 23-district map with hovering tooltips, click selection, and APMC mandi pins.
+    - Selected Location Details Panel: LGD code, Hoarding Risk Evaluation with "INSUFFICIENT DATA TO ASSESS RISK", 4 missing evidence criteria, evidence sufficiency gauge (28% Low/Incomplete), and physical observations (production, yield, modal prices, weather).
+  - **Four Meaningful Visualizations with 6-Point Provenance Disclosures:**
+    - Chart 1: Historical Wheat Productivity Series (1968–2023) in kg/ha.
+    - Chart 2: Cross-District Wheat Production Comparison (Top Basins) in MT.
+    - Chart 3: Location Evidence Breakdown (6 required streams evaluated).
+    - Chart 4: Institutional Data Coverage & Freshness Matrix (8 supply dimensions).
+    - Every chart documents Question, Source, Calculation, Units/Range, Missing Values handling, and Supported/Unsupported conclusions.
   - **Automated Verification:**
     - `npm run check --prefix frontend`: 0 errors, 0 warnings.
-    - `npm run build --prefix frontend`: Exactly 2 static pages generated (`/index.html` and `/dashboard/index.html`) in 1.04s.
-    - `pytest tests/ -v`: 112/112 tests PASSED in 3.19s across all test suites.
-    - Browser E2E smoke test: Landing page CTA navigation, interactive SVG map clicks, dynamic assessment panel updates, and error-free rendering verified.
-  - `docs/release/SIMPLIFICATION_TEST_RESULTS.md`
-  - `docs/research/FINAL_VERIFICATION_REPORT.md`
-  - `logs/phase_reports/PHASE_7_REPORT.md`
+    - `npm run build --prefix frontend`: 2 pages generated in 0.71s (`/index.html` and `/dashboard/index.html`).
+    - `pytest tests/ -v`: **119/119 tests PASSED** in 2.13s (including `tests/test_design_refinement.py`).
+    - `browser_subagent`: Live browser E2E session inspected landing page, 3D visual, live preview card, navigated to dashboard, verified metric cards, tested map shading toggle, selected Fazilka (LGD 651), verified 4 analytical chart tabs, confirmed 0 console errors.
 
 ## Current blockers
 1. No daily wheat/paddy market arrival quantity panel (foodgrains routed to credentialed Anaaj Kharid).
@@ -60,45 +69,41 @@
 4. Four external source routes blocked (CAPTCHA, token, TLS root CA, or internal agency credentials).
 
 ## Next single action
-System is in a stable, verified, simplified release state. Ready for user presentation and operational demonstration.
+System is in a stable, verified, beautiful Google Material release state. Ready for final presentation to user.
 
 ## Handoff template (update every session)
-- Last phase/status: Phase 7 COMPLETE (All 112/112 pytest tests passed in 3.19s; Astro static build 2/2 routes passed in 1.04s; Browser subagent E2E smoke test passed with 0 console errors)
-- Files changed/created/deleted:
-  - Created `DESIGN.md` (Google Material clarity + Apple typography design system)
-  - Created `docs/release/SIMPLIFICATION_PLAN.md` (comprehensive audit and classification)
-  - Created `docs/release/REMOVAL_LOG.md` (audit of 18 removed frontend files)
-  - Created `docs/release/SIMPLIFICATION_TEST_RESULTS.md` (verification log across all criteria)
-  - Created `docs/research/FINAL_VERIFICATION_REPORT.md` (security, accessibility, data integrity report)
-  - Created `frontend/src/pages/dashboard.astro` (main dashboard page)
-  - Created `frontend/src/components/DashboardView.tsx` (unified interactive map & location assessment panel)
-  - Modified `frontend/src/pages/index.astro` (streamlined landing page with primary CTA)
-  - Modified `frontend/src/layouts/AppShell.astro` (simplified 2-link navigation: Home, Dashboard)
-  - Modified `frontend/src/styles/dashboard.css` (polished Material design tokens and layout)
-  - Deleted 9 obsolete Astro pages (`analytics.astro`, `datasets.astro`, `district-map.astro`, `market-watch.astro`, `methodology.astro`, `procurement-stocks.astro`, `production-yield.astro`, `status.astro`, `weather.astro`)
-  - Deleted 9 obsolete React views (`AnalyticsGateView.tsx`, `DatasetExplorer.tsx`, `DistrictMapView.tsx`, `MarketWatchView.tsx`, `ProcurementStocksView.tsx`, `ProductionYieldView.tsx`, `QualityReadinessView.tsx`, `SystemHealthMonitor.tsx`, `WeatherView.tsx`)
-  - Created `tests/test_simplified_product.py` (10 tests asserting 2-screen architecture, landing CTA, dashboard map, data assessment, and backend preservation)
-  - Updated `tests/test_phase4_dashboard.py`, `tests/test_phase5_polish.py`, `tests/test_phase6_analytics.py` (updated to match simplified routes)
-  - Updated `README.md` (streamlined documentation for 2-page application)
-  - Created `logs/phase_reports/PHASE_7_REPORT.md`
+- Last milestone/status: Design Refinement COMPLETE (All 119/119 pytest tests passed in 2.13s; Astro static build 2/2 routes passed in 0.71s; Browser subagent E2E inspection verified error-free)
+- Files changed/created:
+  - Modified `frontend/src/styles/tokens.css` (Google Material Light Theme tokens, warm canvas `#f8fafc`, surface `#ffffff`, agricultural green `#15803d`, wheat gold `#d97706`)
+  - Modified `frontend/src/styles/dashboard.css` (Google Material styling for cards, metrics grid, toolbar, map, assessment panel, 4 analytical charts, and landing preview)
+  - Modified `frontend/src/components/DashboardView.tsx` (Summary metrics cards, choropleth map toggle, location assessment panel, and 4 meaningful analytical charts with 6-point disclosures)
+  - Modified `frontend/src/components/Hero3DScene.tsx` (Agricultural light-theme atmosphere, warm sunlight, rich field green terrain, soft `#f8fafc` fog)
+  - Modified `frontend/src/layouts/AppShell.astro` (Compact top bar with verified vintage indicator and district coverage pill)
+  - Modified `frontend/src/pages/index.astro` (Refined headline, "Explore Dashboard" CTA, live dashboard preview card, and governance boundaries)
+  - Created `tests/test_design_refinement.py` (7 automated tests covering tokens, top bar, metrics, 4 charts, 6-point disclosures, and live preview)
 - Commands executed:
   - `npm run check --prefix frontend` (0 errors, 0 warnings)
-  - `npm run build --prefix frontend` (2 static routes generated in 1.04s)
-  - `pytest tests/ -v` (112/112 tests PASSED in 3.19s)
-  - Browser subagent E2E smoke test (Landing page CTA, map clicks, district assessment, 0 console errors)
+  - `npm run build --prefix frontend` (2 static routes generated cleanly)
+  - `pytest tests/ -v` (119/119 tests PASSED in 2.13s)
+  - Browser subagent E2E smoke test (All interactions verified error-free, 0 console errors)
 - Tests executed and actual outputs:
-  - Data Integrity & Hashes: 16/16 PASSED
-  - Backend API & Ingestion: 39/39 PASSED
-  - Frontend Routes & Navigation: 18/18 PASSED
-  - Visual Polish & 3D Hero: 7/7 PASSED
-  - Analytics Gates & Anti-Hoarding Invariant: 17/17 PASSED
-  - Core Product Scope & Architecture: 10/10 PASSED
-  - Total: 112/112 tests PASSED in 3.19s
+  - Data Integrity: 16/16 PASSED
+  - Backend API: 25/25 PASSED
+  - Domain Schemas: 6/6 PASSED
+  - Idempotent Import: 3/3 PASSED
+  - Core Dashboard: 24/24 PASSED
+  - Interface Polish & 3D: 6/6 PASSED
+  - Transparent Analytics: 15/15 PASSED
+  - Simplified Scope: 10/10 PASSED
+  - Design Refinement: 7/7 PASSED
+  - Data Layer Endpoints: 7/7 PASSED
+  - Total: 119/119 tests PASSED in 2.13s
 - Decisions made and rationale:
-  - Ruthless simplification: Consolidated all user-facing interactions into exactly two experiences: Landing Page (`/`) and Main Dashboard (`/dashboard`). Removed 9 standalone sub-pages that distracted from the core screening purpose.
-  - Strict Anti-Hoarding Invariant: Whenever a district or mandi is selected, the assessment panel displays "INSUFFICIENT DATA TO ASSESS RISK", explaining that while physical production, modal prices, and weather are available, daily wheat/paddy arrival quantities and stock movement data are absent.
-  - Full Preservation of Raw Evidence & Backend: Kept all 49 files in `data/inbox/`, all validation scripts, and all 13 FastAPI endpoints intact.
+  - Google Material Light Theme: Replaced legacy dark slate styling with a warm white (`#f8fafc`), crisp white card surface (`#ffffff`), restrained agricultural green (`#15803d`), and wheat gold (`#d97706`), strictly adhering to `DESIGN.md`.
+  - Four Meaningful Visualizations: Implemented exact charts requested (Historical Productivity Trend, Cross-District Basin Comparison, Screening Evidence Breakdown, and Supply Chain Coverage Matrix), each accompanied by a 6-point methodology & provenance disclosure.
+  - Interactive Choropleth Map: Enabled toggling between Wheat Production (MT) color scale and Evidence Status (warm amber tint), ensuring transparent visual communication of data readiness.
+  - Live Dashboard Preview on Landing Page: Added an authentic miniature preview card demonstrating the actual screening workspace.
 - Blockers: External data coverage gaps (Anaaj Kharid arrival volumes, mill stock movements).
 - Next single action: Present release handoff to user.
 - Skills actually consulted: `gravitas`, `gravitas-python`, `ponytail`, `frontend-design`, `ui-ux-pro-max`.
-- Last updated (UTC): 2026-10-22T04:50:00Z
+- Last updated (UTC): 2026-10-22T05:06:00Z
